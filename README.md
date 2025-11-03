@@ -1,14 +1,26 @@
-# Ajay Banga Voice Clone - Next.js App
+# CEO Alignment Checker
 
-AI-powered speech generator that creates speeches in the style of Ajay Banga (World Bank Group President) with ElevenLabs voice cloning.
+AI-powered tool to test if your content aligns with CEO values, vision, and communication style.
 
 ## Features
 
-- 🎤 **Voice Cloning**: Integrate with ElevenLabs to generate authentic voice
-- 📝 **Speech Style Analysis**: Based on 14 real speeches (2023-2025)
-- 🤖 **AI Text Generation**: Creates speeches matching his speaking patterns
-- 🎧 **Audio Playback**: Listen to generated speeches
-- 💾 **Download Audio**: Save speeches as MP3 files
+✅ **Authentication** - Email/password login with Supabase  
+✅ **Landing Page** - Professional homepage with feature showcase  
+✅ **Voice Call** - Talk to CEO AI in their authentic voice (ElevenLabs)  
+✅ **Content Analysis** - Test alignment with CEO style (score + feedback)  
+✅ **AI Rewriting** - Get content rewritten in CEO's voice  
+✅ **Vision Page** - Explore CEO values, vision & communication patterns  
+✅ **Analysis Database** - 14 real speeches, 19,904 words analyzed  
+
+## Tech Stack
+
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Shadcn/ui** - UI components
+- **Supabase** - Authentication & database
+- **ElevenLabs** - Voice AI agent
+- **OpenAI** - Enhanced speech analysis
 
 ## Quick Start
 
@@ -18,140 +30,175 @@ AI-powered speech generator that creates speeches in the style of Ajay Banga (Wo
 npm install
 ```
 
-### 2. Configure ElevenLabs API
+### 2. Configure Environment Variables
 
-Get your API key from: https://elevenlabs.io/app/settings/api-keys
+Copy `.env.local.example` to `.env.local`:
 
-### 3. Run the Development Server
+```bash
+cp .env.local.example .env.local
+```
+
+Then fill in your API keys:
+
+```env
+# ElevenLabs
+NEXT_PUBLIC_ELEVENLABS_API_KEY=sk_...
+NEXT_PUBLIC_AGENT_ID=agent_...
+
+# OpenAI (optional)
+OPENAI_API_KEY=sk-proj-...
+
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+```
+
+### 3. Setup Supabase
+
+Follow `SUPABASE_SETUP.md` for complete instructions:
+
+1. Create Supabase project
+2. Run SQL to create tables
+3. Configure authentication
+4. Add API keys to `.env.local`
+
+### 4. Run Development Server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## How to Clone Ajay Banga's Voice
-
-### Step 1: Get Audio Samples
-
-Find clear audio/video of Ajay Banga speaking:
-
-**YouTube Sources:**
-- World Bank YouTube: https://www.youtube.com/@WorldBank/search?query=Ajay+Banga
-- Annual Meetings speeches
-- Mission 300 Africa Energy Summit
-- Georgetown University Commencement 2025
-
-**Requirements:**
-- 1-10 minutes of clear audio
-- Minimal background noise
-- Single speaker (Ajay Banga only)
-
-### Step 2: Clone Voice in ElevenLabs
-
-1. Go to https://elevenlabs.io/voice-lab
-2. Click "Add Instant Voice Clone"
-3. Upload your audio samples
-4. Name it "Ajay Banga"
-5. Copy the generated **Voice ID**
-
-### Step 3: Use in App
-
-1. Paste your ElevenLabs API Key in the app
-2. Paste the Voice ID in the app
-3. Generate speeches and hear them in his voice!
-
-## Speaking Style Analysis
-
-The generator uses patterns from 14 analyzed speeches:
-
-**Common Themes:**
-- Development and partnerships
-- Private sector collaboration
-- Reform and innovation
-- Job creation and opportunity
-- Climate and energy solutions
-
-**Speaking Patterns:**
-- Direct, action-oriented language
-- Emphasis on collaboration
-- Data-driven arguments
-- Clear calls to action
-
-## Tech Stack
-
-- **Next.js 15** - React framework
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **ElevenLabs API** - Voice synthesis
-- **@elevenlabs/react** - React SDK
-
-## Environment Variables
-
-Create `.env.local`:
-
-```env
-NEXT_PUBLIC_ELEVENLABS_API_KEY=your_api_key
-NEXT_PUBLIC_AJAY_BANGA_VOICE_ID=your_voice_id
-```
-
-## API Costs
-
-ElevenLabs pricing (as of 2024):
-- **Free Tier**: 10,000 characters/month
-- **Starter**: $5/month - 30,000 characters
-- **Creator**: $22/month - 100,000 characters
-
-Average speech = ~3,000 characters
+Open http://localhost:3001
 
 ## Project Structure
 
 ```
 ajay-banga-voice-clone/
 ├── app/
-│   ├── page.tsx          # Main application
-│   └── layout.tsx        # App layout
-├── .env.local            # Environment variables
-└── README.md             # This file
+│   ├── page.tsx                 # Landing page
+│   ├── login/page.tsx           # Authentication
+│   ├── dashboard/
+│   │   ├── layout.tsx           # Protected route wrapper
+│   │   └── page.tsx             # Main app (voice + analysis)
+│   ├── vision/page.tsx          # CEO vision & values
+│   └── api/
+│       └── analyze-speech/      # AI analysis endpoint
+├── components/ui/               # Shadcn components
+├── lib/
+│   ├── supabase.ts             # Supabase client
+│   └── speech-analyzer.ts      # Speech analysis logic
+├── public/
+│   ├── speeches_database.json  # 14 speeches data
+│   └── banga_style_guide.json  # Style patterns
+└── SUPABASE_SETUP.md           # Database setup guide
 ```
 
-## Development
+## Pages
+
+### Landing Page (`/`)
+- Hero section with CEO profile
+- Feature cards (Call, Test, Vision, Rewrite)
+- How it works section
+- CTA for sign up
+
+### Login (`/login`)
+- Email/password authentication
+- Sign up / Sign in toggle
+- Protected by Supabase Auth
+
+### Dashboard (`/dashboard`)
+- Protected route (requires login)
+- iPhone-style call interface
+- CEO alignment checker modal
+- Voice conversation with AI agent
+
+### Vision (`/vision`)
+- CEO biography & vision statement
+- Core values with icons
+- Communication style guide
+- Key themes & statistics
+
+## Features in Detail
+
+### 🎤 Voice Call
+- Real-time conversation with AI agent
+- Speaks in CEO's authentic voice
+- Discuss content, get feedback
+- Powered by ElevenLabs
+
+### 📊 Content Analysis
+- Upload speech/article/statement
+- Get alignment score (0-100%)
+- See strengths & gaps
+- AI rewriting in CEO's voice
+- Pattern matching + GPT-4 analysis
+
+### 📖 Vision & Values
+- CEO biography
+- Vision statement
+- 6 core values
+- Communication style guide
+- Key themes from speeches
+
+### 🔐 Authentication
+- Email/password login
+- Supabase Auth
+- Protected routes
+- User session management
+
+## Database Schema
+
+### Tables:
+- `user_profiles` - User information
+- `ceo_profiles` - CEO data & configuration
+- `speeches` - CEO speech database
+- `analysis_history` - User analysis results
+
+See `SUPABASE_SETUP.md` for complete schema.
+
+## Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_ELEVENLABS_API_KEY` | ElevenLabs API key |
+| `NEXT_PUBLIC_AGENT_ID` | ElevenLabs agent ID |
+| `OPENAI_API_KEY` | OpenAI API key (optional) |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key |
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push to GitHub
+2. Import to Vercel
+3. Add environment variables
+4. Deploy!
+
+### Manual
 
 ```bash
-# Run dev server
-npm run dev
-
-# Build for production
 npm run build
-
-# Start production server
 npm start
 ```
 
-## Recommended YouTube Videos for Voice Cloning
-
-1. **World Bank Annual Meetings 2025**
-   - Search: "Ajay Banga Annual Meetings 2025 plenary"
-   
-2. **Mission 300 Africa Energy Summit**
-   - Search: "Ajay Banga Mission 300 Africa"
-   
-3. **Georgetown Commencement 2025**
-   - Search: "Ajay Banga Georgetown commencement 2025"
-
-## Legal & Ethics
-
-- Voice cloning should be used responsibly
-- Clearly label AI-generated content
-- Respect intellectual property rights
-- Use for research, education, or authorized purposes only
-
 ## Support
 
-For issues or questions:
-- ElevenLabs Docs: https://elevenlabs.io/docs
-- Next.js Docs: https://nextjs.org/docs
+For issues:
+- Check `SUPABASE_SETUP.md` for database setup
+- Verify all environment variables are set
+- Check browser console for errors
 
 ## License
 
-MIT License - See LICENSE file for details
+MIT
+
+## Credits
+
+- ElevenLabs - Voice AI
+- OpenAI - Text analysis
+- Supabase - Auth & database
+- Shadcn/ui - Components
+- World Bank - Speech data
