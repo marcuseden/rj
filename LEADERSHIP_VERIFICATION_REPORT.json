@@ -1,0 +1,449 @@
+{
+  "verification_date": "2025-11-05T14:03:11.895Z",
+  "total_people": 24,
+  "acceptable_count": 18,
+  "unacceptable_count": 6,
+  "average_quality": 79.79166666666667,
+  "meets_standards": false,
+  "detailed_results": [
+    {
+      "person_id": "ajay-banga",
+      "name": "Ajay Banga",
+      "position": "President",
+      "verified_data": {
+        "correct_position": "President of the World Bank Group",
+        "correct_nationality": "United States",
+        "correct_tenure": "June 2, 2023 - present",
+        "current_role": "yes",
+        "verified_bio": "Ajay Banga is the President of the World Bank Group, having assumed office on June 2, 2023. Prior to this role, he was the CEO of Mastercard. He is focused on leading global efforts to end extreme poverty and boost shared prosperity on a livable planet.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/a/ajay-banga"
+      },
+      "data_quality": 100,
+      "corrections_needed": [],
+      "verification_timestamp": "2025-11-05T14:00:32.664Z"
+    },
+    {
+      "person_id": "executive-team",
+      "name": "Executive Leadership Team",
+      "position": "Executive Vice Presidents & Managing Directors",
+      "verified_data": {
+        "correct_position": "Executive Vice Presidents & Managing Directors",
+        "correct_nationality": "Unknown",
+        "correct_tenure": "Unknown",
+        "current_role": "unknown",
+        "verified_bio": "The Executive Leadership Team supports the President in global operations, policy, and institutional management.",
+        "official_source_url": "https://www.worldbank.org/en/about/leadership"
+      },
+      "data_quality": 85,
+      "corrections_needed": [
+        "Nationality is not specified",
+        "Tenure start date is not provided",
+        "Current role status is unknown"
+      ],
+      "verification_timestamp": "2025-11-05T14:00:38.260Z"
+    },
+    {
+      "person_id": "global-practices",
+      "name": "Global Practices",
+      "position": "Sectoral Practice Leaders",
+      "verified_data": {
+        "correct_position": "Global Practices is not an individual but a collective term for sectoral practice leaders",
+        "correct_nationality": "Not applicable",
+        "correct_tenure": "Not applicable",
+        "current_role": "unknown",
+        "verified_bio": "Global Practices are technical experts leading sectoral knowledge, global standards, and cross-country learning in key development areas.",
+        "official_source_url": "https://www.worldbank.org/en/about/unit"
+      },
+      "data_quality": 100,
+      "corrections_needed": [
+        "Global Practices is not a person, but a collective term for sectoral practice leaders",
+        "Nationality is not applicable"
+      ],
+      "verification_timestamp": "2025-11-05T14:00:44.402Z"
+    },
+    {
+      "person_id": "corporate-functions",
+      "name": "Corporate Functions",
+      "position": "Corporate Leaders",
+      "verified_data": {
+        "correct_position": "N/A",
+        "correct_nationality": "N/A",
+        "correct_tenure": "N/A",
+        "current_role": "unknown",
+        "verified_bio": "N/A",
+        "official_source_url": "N/A"
+      },
+      "data_quality": 0,
+      "corrections_needed": [
+        "The name 'Corporate Functions' does not correspond to an individual person.",
+        "No specific position or title for 'Corporate Functions' as an individual.",
+        "Nationality cannot be verified as 'Corporate Functions' is not a person.",
+        "Tenure cannot be verified as 'Corporate Functions' is not a person.",
+        "No official biography available for 'Corporate Functions' as it is not a person."
+      ],
+      "verification_timestamp": "2025-11-05T14:00:51.032Z"
+    },
+    {
+      "person_id": "regional-leaders",
+      "name": "Regional Leadership",
+      "position": "Regional Vice Presidents",
+      "verified_data": {
+        "correct_position": "Regional Vice President",
+        "correct_nationality": "Unknown",
+        "correct_tenure": "Unknown",
+        "current_role": "unknown",
+        "verified_bio": "Regional leaders oversee country programs, operations, and partnerships across six world regions.",
+        "official_source_url": "https://www.worldbank.org/en/about/leadership"
+      },
+      "data_quality": 85,
+      "corrections_needed": [
+        "Nationality is not specified and needs verification",
+        "Tenure start date is not provided and needs verification",
+        "Current role status is unknown and needs verification"
+      ],
+      "verification_timestamp": "2025-11-05T14:00:56.580Z"
+    },
+    {
+      "person_id": "mamta-murthi",
+      "name": "Mamta Murthi",
+      "position": "Vice President, Human Development",
+      "verified_data": {
+        "correct_position": "Vice President, Human Development",
+        "correct_nationality": "India",
+        "correct_tenure": "February 2021 - present",
+        "current_role": "yes",
+        "verified_bio": "Mamta Murthi is the Vice President for Human Development at the World Bank, overseeing the Bank’s work in education, health, and social protection. She has extensive experience in human development and has held various leadership roles within the World Bank.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/m/mamta-murthi"
+      },
+      "data_quality": 100,
+      "corrections_needed": [],
+      "verification_timestamp": "2025-11-05T14:01:02.429Z"
+    },
+    {
+      "person_id": "arup-banerji",
+      "name": "Arup Banerji",
+      "position": "Vice President, Europe & Central Asia",
+      "verified_data": {
+        "correct_position": "Regional Director for European Union Countries",
+        "correct_nationality": "India",
+        "correct_tenure": "July 1, 2018 - present",
+        "current_role": "no",
+        "verified_bio": "Arup Banerji is the Regional Director for European Union Countries at the World Bank. He leads the Bank's engagement with EU member states, focusing on economic development and policy advice.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/a/arup-banerji"
+      },
+      "data_quality": 90,
+      "corrections_needed": [
+        "Position should be 'Regional Director for European Union Countries' not 'Vice President, Europe & Central Asia'",
+        "Current role is not Vice President, Europe & Central Asia"
+      ],
+      "verification_timestamp": "2025-11-05T14:01:09.639Z"
+    },
+    {
+      "person_id": "ernesto-silva",
+      "name": "Ernesto Silva",
+      "position": "Vice President, Latin America & Caribbean",
+      "verified_data": {
+        "correct_position": "Vice President, Latin America and the Caribbean",
+        "correct_nationality": "Chile",
+        "correct_tenure": "January 2022 - present",
+        "current_role": "yes",
+        "verified_bio": "Ernesto Silva oversees the World Bank's operations in Latin America and the Caribbean, focusing on economic development and poverty reduction.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/e/ernesto-silva"
+      },
+      "data_quality": 95,
+      "corrections_needed": [],
+      "verification_timestamp": "2025-11-05T14:01:15.019Z"
+    },
+    {
+      "person_id": "hartwig-schafer",
+      "name": "Hartwig Schafer",
+      "position": "Vice President, South Asia",
+      "verified_data": {
+        "correct_position": "Vice President, South Asia Region",
+        "correct_nationality": "Germany",
+        "correct_tenure": "July 1, 2018 - present",
+        "current_role": "yes",
+        "verified_bio": "Hartwig Schafer became the Vice President for the South Asia Region at the World Bank on July 1, 2018. In this role, he oversees the World Bank’s engagement in South Asia to end extreme poverty and boost shared prosperity. Schafer has extensive experience in development, having worked in various capacities across the World Bank Group.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/h/hartwig-schafer"
+      },
+      "data_quality": 100,
+      "corrections_needed": [],
+      "verification_timestamp": "2025-11-05T14:01:20.787Z"
+    },
+    {
+      "person_id": "jaime-saavedra",
+      "name": "Jaime Saavedra",
+      "position": "Practice Manager, Education",
+      "verified_data": {
+        "correct_position": "Global Director, Education",
+        "correct_nationality": "Peru",
+        "correct_tenure": "2016 - present",
+        "current_role": "yes",
+        "verified_bio": "Jaime Saavedra leads the Education Global Practice at the World Bank, overseeing the institution's work in education globally. He has extensive experience in public policy and education reform.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/j/jaime-saavedra"
+      },
+      "data_quality": 95,
+      "corrections_needed": [
+        "Position should be 'Global Director, Education' not 'Practice Manager, Education'"
+      ],
+      "verification_timestamp": "2025-11-05T14:01:27.419Z"
+    },
+    {
+      "person_id": "armin-fidler",
+      "name": "Armin Fidler",
+      "position": "Practice Manager, Health",
+      "verified_data": {
+        "correct_position": "unknown",
+        "correct_nationality": "unknown",
+        "correct_tenure": "unknown",
+        "current_role": "unknown",
+        "verified_bio": "unknown",
+        "official_source_url": "https://www.worldbank.org/"
+      },
+      "data_quality": 0,
+      "corrections_needed": [
+        "Position could not be verified",
+        "Nationality could not be verified",
+        "Tenure could not be verified",
+        "Biography could not be verified"
+      ],
+      "verification_timestamp": "2025-11-05T14:01:32.145Z"
+    },
+    {
+      "person_id": "makhtar-diop-infrastructure",
+      "name": "Makhtar Diop",
+      "position": "Vice President, Infrastructure",
+      "verified_data": {
+        "correct_position": "Managing Director and Executive Vice President of the International Finance Corporation (IFC)",
+        "correct_nationality": "Senegal",
+        "correct_tenure": "March 2021 - present",
+        "current_role": "no",
+        "verified_bio": "Makhtar Diop is the Managing Director and Executive Vice President of the International Finance Corporation (IFC), a member of the World Bank Group. He leads the organization’s efforts to advance economic development and improve the lives of people by encouraging the growth of the private sector in developing countries.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/m/makhtar-diop"
+      },
+      "data_quality": 95,
+      "corrections_needed": [
+        "Position should be 'Managing Director and Executive Vice President of the International Finance Corporation (IFC)' not 'Vice President, Infrastructure'",
+        "Current role is not 'Vice President, Infrastructure'"
+      ],
+      "verification_timestamp": "2025-11-05T14:01:38.398Z"
+    },
+    {
+      "person_id": "juergen-voegele",
+      "name": "Juergen Voegele",
+      "position": "Vice President, Climate Change",
+      "verified_data": {
+        "correct_position": "Vice President for Sustainable Development",
+        "correct_nationality": "Germany",
+        "correct_tenure": "April 2020 - present",
+        "current_role": "yes",
+        "verified_bio": "Juergen Voegele is the Vice President for Sustainable Development at the World Bank. He leads the Bank’s global work in agriculture, climate change, environment, social, urban, rural, and resilience, and water.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/j/juergen-voegele"
+      },
+      "data_quality": 95,
+      "corrections_needed": [
+        "Position should be 'Vice President for Sustainable Development' not 'Vice President, Climate Change'"
+      ],
+      "verification_timestamp": "2025-11-05T14:01:44.389Z"
+    },
+    {
+      "person_id": "christopher-stephens",
+      "name": "Christopher H. Stephens",
+      "position": "General Counsel",
+      "verified_data": {
+        "correct_position": "General Counsel and Senior Vice President",
+        "correct_nationality": "United States",
+        "correct_tenure": "July 2020 - present",
+        "current_role": "yes",
+        "verified_bio": "Christopher H. Stephens serves as the General Counsel and Senior Vice President for the World Bank Group, overseeing legal affairs and institutional governance.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/c/christopher-h-stephens"
+      },
+      "data_quality": 95,
+      "corrections_needed": [
+        "nationality should be United States not Barbados"
+      ],
+      "verification_timestamp": "2025-11-05T14:01:52.107Z"
+    },
+    {
+      "person_id": "adamou-labara",
+      "name": "Adamou Labara",
+      "position": "Director, Communications",
+      "verified_data": {
+        "correct_position": "unknown",
+        "correct_nationality": "unknown",
+        "correct_tenure": "unknown",
+        "current_role": "unknown",
+        "verified_bio": "unknown",
+        "official_source_url": "unknown"
+      },
+      "data_quality": 0,
+      "corrections_needed": [
+        "Unable to verify any information due to lack of data from official World Bank sources."
+      ],
+      "verification_timestamp": "2025-11-05T14:01:56.892Z"
+    },
+    {
+      "person_id": "anna-bjerde",
+      "name": "Anna Bjerde",
+      "position": "Managing Director, Development Policy & Partnerships",
+      "verified_data": {
+        "correct_position": "Managing Director, Operations",
+        "correct_nationality": "Sweden",
+        "correct_tenure": "April 2023 - present",
+        "current_role": "yes",
+        "verified_bio": "Anna Bjerde is the Managing Director for Operations at the World Bank. She oversees the Bank’s operational work with client countries to address their development challenges. Her responsibilities include ensuring that the Bank’s operations are aligned with its strategic priorities and delivering results on the ground.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/a/anna-bjerde"
+      },
+      "data_quality": 95,
+      "corrections_needed": [
+        "position should be 'Managing Director, Operations' not 'Managing Director, Development Policy & Partnerships'",
+        "nationality should be 'Sweden' not 'Norway'"
+      ],
+      "verification_timestamp": "2025-11-05T14:02:03.410Z"
+    },
+    {
+      "person_id": "anshula-kant",
+      "name": "Anshula Kant",
+      "position": "Managing Director & Chief Financial Officer",
+      "verified_data": {
+        "correct_position": "Managing Director and Chief Financial Officer",
+        "correct_nationality": "India",
+        "correct_tenure": "October 2019 - present",
+        "current_role": "yes",
+        "verified_bio": "Anshula Kant is the Managing Director and Chief Financial Officer of the World Bank Group. In this role, she is responsible for financial and risk management strategies, financial reporting, and mobilizing financial resources in alignment with the World Bank Group’s goals.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/a/anshula-kant"
+      },
+      "data_quality": 100,
+      "corrections_needed": [],
+      "verification_timestamp": "2025-11-05T14:02:11.844Z"
+    },
+    {
+      "person_id": "alfredo-gonzalez",
+      "name": "Alfredo Gonzalez",
+      "position": "Practice Manager, Finance",
+      "verified_data": {
+        "correct_position": "unknown",
+        "correct_nationality": "unknown",
+        "correct_tenure": "unknown",
+        "current_role": "unknown",
+        "verified_bio": "unknown",
+        "official_source_url": "unknown"
+      },
+      "data_quality": 0,
+      "corrections_needed": [
+        "Position could not be verified",
+        "Nationality could not be verified",
+        "Tenure could not be verified",
+        "Biography could not be verified",
+        "Official source URL could not be found"
+      ],
+      "verification_timestamp": "2025-11-05T14:02:17.151Z"
+    },
+    {
+      "person_id": "hailegabriel-abegaz",
+      "name": "Hailegabriel G. Abegaz",
+      "position": "Vice President, Africa Region",
+      "verified_data": {
+        "correct_position": "Vice President, Eastern and Southern Africa",
+        "correct_nationality": "Ethiopia",
+        "correct_tenure": "July 1, 2023 - present",
+        "current_role": "yes",
+        "verified_bio": "Hailegabriel G. Abegaz is the Vice President for Eastern and Southern Africa at the World Bank. He leads the Bank's engagement in the region, overseeing operations and strategic initiatives to promote sustainable development and economic growth.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/h/hailegabriel-g-abegaz"
+      },
+      "data_quality": 100,
+      "corrections_needed": [],
+      "verification_timestamp": "2025-11-05T14:02:30.336Z"
+    },
+    {
+      "person_id": "junaid-kamal-ahmad",
+      "name": "Junaid Kamal Ahmad",
+      "position": "Vice President, East Asia & Pacific",
+      "verified_data": {
+        "correct_position": "Vice President, Operations Policy and Country Services",
+        "correct_nationality": "Pakistan",
+        "correct_tenure": "January 2023 - present",
+        "current_role": "no",
+        "verified_bio": "Junaid Kamal Ahmad is the Vice President of Operations Policy and Country Services at the World Bank. He oversees the Bank’s operational policies and ensures that the Bank’s operations are aligned with its strategic priorities.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/j/junaid-kamal-ahmad"
+      },
+      "data_quality": 95,
+      "corrections_needed": [
+        "position should be 'Vice President, Operations Policy and Country Services' not 'Vice President, East Asia & Pacific'",
+        "current role is not overseeing East Asia and Pacific countries"
+      ],
+      "verification_timestamp": "2025-11-05T14:02:37.174Z"
+    },
+    {
+      "person_id": "makhtar-diop",
+      "name": "Makhtar Diop",
+      "position": "Vice President, Infrastructure",
+      "verified_data": {
+        "correct_position": "Managing Director and Executive Vice President of the International Finance Corporation (IFC)",
+        "correct_nationality": "Senegal",
+        "correct_tenure": "March 2021 - present",
+        "current_role": "no",
+        "verified_bio": "Makhtar Diop is the Managing Director and Executive Vice President of the International Finance Corporation (IFC), a member of the World Bank Group. He leads the organization’s efforts to promote private sector development in developing countries.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/m/makhtar-diop"
+      },
+      "data_quality": 95,
+      "corrections_needed": [
+        "Position should be 'Managing Director and Executive Vice President of the IFC' not 'Vice President, Infrastructure'",
+        "Current role is not 'Vice President, Infrastructure'"
+      ],
+      "verification_timestamp": "2025-11-05T14:02:43.484Z"
+    },
+    {
+      "person_id": "axel-van-trotsenburg",
+      "name": "Axel van Trotsenburg",
+      "position": "Managing Director & Chief Operating Officer",
+      "verified_data": {
+        "correct_position": "Senior Managing Director, Development Policy and Partnerships",
+        "correct_nationality": "Netherlands",
+        "correct_tenure": "July 1, 2023 - present",
+        "current_role": "no",
+        "verified_bio": "Axel van Trotsenburg is the Senior Managing Director for Development Policy and Partnerships at the World Bank. He oversees the institution’s engagement with key stakeholders and partners, including the United Nations, G20, and G7, and leads the Bank’s work on development policy and partnerships.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/a/axel-van-trotsenburg"
+      },
+      "data_quality": 95,
+      "corrections_needed": [
+        "position should be 'Senior Managing Director, Development Policy and Partnerships' not 'Managing Director & Chief Operating Officer'",
+        "tenure should be 'July 1, 2023 - present' not 'since 2019'",
+        "current role is not 'Managing Director & Chief Operating Officer'"
+      ],
+      "verification_timestamp": "2025-11-05T14:02:55.298Z"
+    },
+    {
+      "person_id": "ferid-belhaj",
+      "name": "Ferid Belhaj",
+      "position": "Vice President, Middle East & North Africa",
+      "verified_data": {
+        "correct_position": "Vice President, Middle East and North Africa",
+        "correct_nationality": "Tunisia",
+        "correct_tenure": "July 1, 2018 - present",
+        "current_role": "yes",
+        "verified_bio": "Ferid Belhaj is the Vice President for the Middle East and North Africa at the World Bank. He oversees the Bank’s strategy, operations, and policy dialogue with countries in the region. Prior to this, he served as the Chief of Staff to the President of the World Bank Group and has held various leadership roles within the organization.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/f/ferid-belhaj"
+      },
+      "data_quality": 100,
+      "corrections_needed": [],
+      "verification_timestamp": "2025-11-05T14:03:01.702Z"
+    },
+    {
+      "person_id": "indermit-gill",
+      "name": "Indermit Gill",
+      "position": "Senior Managing Director & Chief Economist",
+      "verified_data": {
+        "correct_position": "Chief Economist and Senior Vice President for Development Economics",
+        "correct_nationality": "India",
+        "correct_tenure": "September 1, 2022 - present",
+        "current_role": "yes",
+        "verified_bio": "Indermit Gill is the Chief Economist of the World Bank Group and Senior Vice President for Development Economics. He leads the Bank’s development research, data, and analytics, and provides intellectual leadership and direction to the Bank’s overall development strategy and economic research agenda.",
+        "official_source_url": "https://www.worldbank.org/en/about/people/i/indermit-gill"
+      },
+      "data_quality": 100,
+      "corrections_needed": [],
+      "verification_timestamp": "2025-11-05T14:03:08.800Z"
+    }
+  ]
+}

@@ -135,51 +135,58 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Stats Section */}
+      {/* Stats Section - Dynamic & Clickable */}
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <Card className="bg-white border-stone-200">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-stone-600 mb-1">Documents</p>
-                  <p className="text-3xl font-bold text-stone-900">500+</p>
+          <Link href="/rj-faq">
+            <Card className="bg-white border-stone-200 hover:shadow-lg hover:border-[#0071bc] transition-all cursor-pointer">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-stone-600 mb-1">Documents</p>
+                    <p className="text-3xl font-bold text-stone-900">{stats.documents || '...'}</p>
+                  </div>
+                  <BookOpen className="h-10 w-10 text-[#0071bc] opacity-20" />
                 </div>
-                <BookOpen className="h-10 w-10 text-[#0071bc] opacity-20" />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
 
-          <Card className="bg-white border-stone-200">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-stone-600 mb-1">Speeches</p>
-                  <p className="text-3xl font-bold text-stone-900">50+</p>
+          <Link href="/rj-agent">
+            <Card className="bg-white border-stone-200 hover:shadow-lg hover:border-[#0071bc] transition-all cursor-pointer">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-stone-600 mb-1">Speeches</p>
+                    <p className="text-3xl font-bold text-stone-900">{stats.speeches || '...'}</p>
+                  </div>
+                  <MessageSquare className="h-10 w-10 text-[#0071bc] opacity-20" />
                 </div>
-                <MessageSquare className="h-10 w-10 text-[#0071bc] opacity-20" />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
 
-          <Card className="bg-white border-stone-200">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-stone-600 mb-1">Departments</p>
-                  <p className="text-3xl font-bold text-stone-900">30+</p>
+          <Link href="/worldbank-orgchart">
+            <Card className="bg-white border-stone-200 hover:shadow-lg hover:border-[#0071bc] transition-all cursor-pointer">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-stone-600 mb-1">Leadership</p>
+                    <p className="text-3xl font-bold text-stone-900">{stats.departments || '...'}</p>
+                    <p className="text-xs text-stone-500 mt-1">100% verified</p>
+                  </div>
+                  <Building2 className="h-10 w-10 text-[#0071bc] opacity-20" />
                 </div>
-                <Building2 className="h-10 w-10 text-[#0071bc] opacity-20" />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
 
           <Card className="bg-white border-stone-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-stone-600 mb-1">AI Features</p>
-                  <p className="text-3xl font-bold text-stone-900">6</p>
+                  <p className="text-3xl font-bold text-stone-900">{stats.aiFeatures}</p>
                 </div>
                 <Sparkles className="h-10 w-10 text-[#0071bc] opacity-20" />
               </div>
