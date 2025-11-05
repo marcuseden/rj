@@ -47,45 +47,45 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md bg-slate-900 border-slate-700 p-8">
+    <main className="min-h-screen bg-gradient-to-b from-stone-100 via-stone-50 to-stone-100 flex items-center justify-center p-4">
+      <Card className="w-full max-w-md bg-white border-stone-200 p-8 shadow-lg">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
-            CEO Alignment Checker
+          <h1 className="text-3xl font-bold text-stone-900 mb-2">
+            RJ Banga System
           </h1>
-          <p className="text-slate-400">
+          <p className="text-stone-600">
             {isSignUp ? 'Create your account' : 'Sign in to continue'}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-3">
-              <p className="text-sm text-red-400">{error}</p>
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+              <p className="text-sm text-red-600">{error}</p>
             </div>
           )}
 
           <div>
-            <label className="block text-sm text-slate-400 mb-2">Email</label>
+            <label className="block text-sm text-stone-700 mb-2 font-medium">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:ring-2 focus:ring-[#0071bc] focus:border-transparent"
+              className="w-full bg-white border border-stone-300 rounded-lg px-4 py-3 text-stone-900 placeholder:text-stone-400 focus:ring-2 focus:ring-[#0071bc] focus:border-transparent"
               placeholder="your@email.com"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-slate-400 mb-2">Password</label>
+            <label className="block text-sm text-stone-700 mb-2 font-medium">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={6}
-              className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:ring-2 focus:ring-[#0071bc] focus:border-transparent"
+              className="w-full bg-white border border-stone-300 rounded-lg px-4 py-3 text-stone-900 placeholder:text-stone-400 focus:ring-2 focus:ring-[#0071bc] focus:border-transparent"
               placeholder="••••••••"
             />
           </div>
@@ -93,7 +93,7 @@ export default function LoginPage() {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-[#0071bc] to-[#009fdb] hover:from-[#005a99] hover:to-[#0071bc] text-white"
+            className="w-full bg-[#0071bc] hover:bg-[#005a99] text-white py-3 font-medium"
           >
             {loading ? 'Please wait...' : isSignUp ? 'Sign Up' : 'Sign In'}
           </Button>
@@ -102,7 +102,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => setIsSignUp(!isSignUp)}
-              className="text-sm text-slate-400 hover:text-white"
+              className="text-sm text-stone-600 hover:text-stone-900"
             >
               {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
             </button>
