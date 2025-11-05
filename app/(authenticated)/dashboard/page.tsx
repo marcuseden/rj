@@ -87,7 +87,7 @@ export default function DashboardPage() {
           <div className="flex items-center gap-3 mb-4">
             <Sparkles className="h-8 w-8 text-[#0071bc]" />
             <h1 className="text-4xl font-bold text-stone-900">
-              Welcome to RJ Banga System
+              Welcome to Strategic Alignment Platform
             </h1>
           </div>
           <p className="text-xl text-stone-600 mb-6">
