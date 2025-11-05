@@ -334,24 +334,27 @@ export default function DepartmentPage() {
           </Card>
         )}
 
+        {/* Current Affairs & Recent Achievements */}
+        {department.recent_achievements && department.recent_achievements.length > 0 && (
+          <Card className="bg-white border-stone-200 p-6 mb-6">
+            <h2 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
+              <TrendingUp className="w-5 h-5 mr-2" />
+              Current Affairs & Recent Achievements
+            </h2>
+            <div className="space-y-4">
+              {department.recent_achievements.map((achievement, idx) => (
+                <div key={idx} className="flex items-start gap-3 bg-blue-50 border border-blue-100 rounded-lg p-4">
+                  <CheckCircle className="w-5 h-5 text-[#0071bc] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-stone-800 font-medium">{achievement}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
+
         <div className="grid md:grid-cols-2 gap-6 mb-6">
-          {/* Recent Achievements */}
-          {department.recent_achievements && department.recent_achievements.length > 0 && (
-            <Card className="bg-white border-stone-200 p-6">
-              <h2 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
-                <TrendingUp className="w-5 h-5 mr-2" />
-                Recent Achievements
-              </h2>
-              <ul className="space-y-3">
-                {department.recent_achievements.map((achievement, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-stone-700">
-                    <CheckCircle className="w-4 h-4 text-stone-400 flex-shrink-0 mt-1" />
-                    {achievement}
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          )}
 
           {/* Challenges */}
           {department.challenges && department.challenges.length > 0 && (
