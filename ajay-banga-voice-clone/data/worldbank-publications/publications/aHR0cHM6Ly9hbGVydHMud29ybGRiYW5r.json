@@ -1,0 +1,52 @@
+{
+  "id": "aHR0cHM6Ly9hbGVydHMud29ybGRiYW5r",
+  "title": "How to create a new email alert!",
+  "url": "https://alerts.worldbank.org/",
+  "content": "Skip to main content How to create a new email alert! Click the button above to login or create a profile.Pick the type of alert you wish to receive: General, Follow a Project, or Procurement.Pick the items of interest: countries/regions; topics; type of resources; languages; or procurement codes (depending on the type of alert).Name and save your alert. You can subscribe to multiple alerts and can change the alert preferences at any time",
+  "summary": "Skip to main content How to create a new email alert!  Click the button above to login or create a profile. Pick the type of alert you wish to receive: General, Follow a Project, or Procurement.",
+  "date": "2025-11-04",
+  "publicationType": "sector-report",
+  "tags": {
+    "documentType": "report",
+    "sectors": [],
+    "regions": [],
+    "countries": [],
+    "themes": [],
+    "initiatives": [],
+    "authors": [],
+    "departments": [],
+    "lendingInstruments": [],
+    "projectCodes": []
+  },
+  "strategicAlignment": {
+    "score": 0,
+    "aligned": [],
+    "misaligned": [],
+    "gaps": [
+      "climate: No mention of climate or carbon",
+      "poverty: No mention of poverty or inequality",
+      "partnership: No mention of partnership or collaboration",
+      "reform: No mention of reform or transformation",
+      "impact: No mention of impact or results",
+      "digital: No mention of digital or technology",
+      "jobs: No mention of employment or jobs",
+      "fragility: No mention of fragility or conflict",
+      "Missing partnership and private sector engagement"
+    ],
+    "references": []
+  },
+  "metadata": {
+    "language": "en",
+    "wordCount": 73,
+    "readingTime": 1,
+    "publicationYear": 2025
+  },
+  "sourceReference": {
+    "originalUrl": "https://alerts.worldbank.org/",
+    "scrapedFrom": "https://documents.worldbank.org/en/publication/documents-reports?q=climate&year=2024",
+    "discoveredAt": "2025-11-04T16:39:04.022Z",
+    "sourceType": "linked"
+  },
+  "fileType": "html",
+  "scrapedAt": "2025-11-04T16:39:04.022Z"
+}

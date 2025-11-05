@@ -1,0 +1,23 @@
+{
+  "totalDocuments": 0,
+  "lastUpdated": "2025-11-04T10:02:51.461Z",
+  "dateRange": {
+    "start": "2024-01-01",
+    "end": "2025-12-31"
+  },
+  "statistics": {
+    "byType": {},
+    "bySector": {},
+    "byRegion": {}
+  },
+  "categories": [
+    "strategy",
+    "caseStudies",
+    "projects",
+    "countryStrategies",
+    "sectorReports",
+    "annualReports",
+    "climate",
+    "digital"
+  ]
+}

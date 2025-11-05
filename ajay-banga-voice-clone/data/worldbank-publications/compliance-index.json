@@ -1,0 +1,554 @@
+{
+  "metadata": {
+    "totalPublications": 41,
+    "generated": "2025-11-04T16:39:07.481Z",
+    "dateRange": {
+      "min": "2024-01-01",
+      "max": "present"
+    }
+  },
+  "compliance": {
+    "high": {
+      "count": 9,
+      "percentage": 22,
+      "publications": [
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Driving Accountability and Impact",
+          "score": 70,
+          "type": "annual-report"
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Multilateral Investment Guarantee Agency (MIGA)",
+          "score": 75,
+          "type": "annual-report"
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Results by Region",
+          "score": 100,
+          "type": "annual-report"
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "International Finance Corporation (IFC)",
+          "score": 100,
+          "type": "annual-report"
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "International Centre for Settlement of Investment Disputes (ICSID)",
+          "score": 70,
+          "type": "annual-report"
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "One World Bank Group",
+          "score": 100,
+          "type": "annual-report"
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "World Bank (IBRD/IDA)",
+          "score": 100,
+          "type": "annual-report"
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Results by Theme",
+          "score": 100,
+          "type": "annual-report"
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "LEADERSHIP PERSPECTIVES",
+          "score": 95,
+          "type": "annual-report"
+        }
+      ]
+    },
+    "medium": {
+      "count": 3,
+      "percentage": 7,
+      "publications": [
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Strategic Priorities",
+          "score": 55,
+          "type": "annual-report"
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Research and Publications",
+          "score": 60,
+          "type": "annual-report"
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Corporate Responsibility: Sustainability Review",
+          "score": 50,
+          "type": "annual-report"
+        }
+      ]
+    },
+    "low": {
+      "count": 29,
+      "percentage": 71,
+      "publications": [
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Creating Jobs, Growing Economies",
+          "score": 20,
+          "type": "annual-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "reform: No mention of reform or transformation",
+            "digital: No mention of digital or technology",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cuYmFucXVlbW9uZGlh",
+          "title": "Rapport annuel 2024",
+          "score": 5,
+          "type": "annual-report",
+          "gaps": [
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Creating Jobs, Growing Economies",
+          "score": 30,
+          "type": "annual-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "reform: No mention of reform or transformation",
+            "digital: No mention of digital or technology",
+            "fragility: No mention of fragility or conflict"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cuYmFuY29tdW5kaWFs",
+          "title": "Informe anual 2024",
+          "score": 5,
+          "type": "annual-report",
+          "gaps": [
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Download the World Bank Group Annual Report",
+          "score": 20,
+          "type": "annual-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "reform: No mention of reform or transformation",
+            "digital: No mention of digital or technology",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Financial Summary",
+          "score": 35,
+          "type": "annual-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "reform: No mention of reform or transformation",
+            "digital: No mention of digital or technology"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Creating Jobs, Growing Economies",
+          "score": 20,
+          "type": "annual-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "reform: No mention of reform or transformation",
+            "digital: No mention of digital or technology",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Creating Jobs, Growing Economies",
+          "score": 20,
+          "type": "annual-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "reform: No mention of reform or transformation",
+            "digital: No mention of digital or technology",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cudnNlbWlybnlqYmFu",
+          "title": "Годовой отчет 2024",
+          "score": 0,
+          "type": "annual-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cuc2hpaGFuZy5vcmcv",
+          "title": "2024年年度报告",
+          "score": 0,
+          "type": "annual-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMud29ybGRi",
+          "title": "Documentos e Relatórios",
+          "score": 5,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMuYmFucXVl",
+          "title": "Documents et rapports",
+          "score": 0,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudG9zLmJhbmNv",
+          "title": "Documentos e informes",
+          "score": 0,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMud29ybGRi",
+          "title": "Reboot Development : The Economics of a Livable Planet",
+          "score": 0,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMuYWxiYW5r",
+          "title": "المستندات والتقارير",
+          "score": 0,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMudnNlbWly",
+          "title": "Документы и отчеты",
+          "score": 0,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMud29ybGRi",
+          "title": "The World Bank Group Annual Report 2025",
+          "score": 0,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMud29ybGRi",
+          "title": "Documents & Reports - Advanced Search",
+          "score": 5,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMuc2hpaGFu",
+          "title": "文件与报告库",
+          "score": 0,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMud29ybGRi",
+          "title": "Documents & Reports",
+          "score": 10,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "reform: No mention of reform or transformation",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMud29ybGRi",
+          "title": "Documents & Reports",
+          "score": 5,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cuYWxiYW5rYWxkYXds",
+          "title": "التقرير السنوي لعام 2024",
+          "score": 0,
+          "type": "annual-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9hbGVydHMud29ybGRiYW5r",
+          "title": "How to create a new email alert!",
+          "score": 0,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9kb2N1bWVudHMud29ybGRi",
+          "title": "Documents & Reports",
+          "score": 10,
+          "type": "sector-report",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cuYmFucXVlbW9uZGlh",
+          "title": "Publication",
+          "score": 0,
+          "type": "policy-paper",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cuYmFuY29tdW5kaWFs",
+          "title": "Publication",
+          "score": 5,
+          "type": "policy-paper",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cud29ybGRiYW5rLm9y",
+          "title": "Publication",
+          "score": 15,
+          "type": "policy-paper",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly93d3cuYWxiYW5rYWxkYXds",
+          "title": "Publication",
+          "score": 0,
+          "type": "policy-paper",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "impact: No mention of impact or results",
+            "digital: No mention of digital or technology",
+            "jobs: No mention of employment or jobs",
+            "fragility: No mention of fragility or conflict",
+            "Missing partnership and private sector engagement"
+          ]
+        },
+        {
+          "id": "aHR0cHM6Ly9pZWcud29ybGRiYW5rZ3Jv",
+          "title": "| Independent Evaluation Group",
+          "score": 25,
+          "type": "evaluation",
+          "gaps": [
+            "climate: No mention of climate or carbon",
+            "poverty: No mention of poverty or inequality",
+            "partnership: No mention of partnership or collaboration",
+            "reform: No mention of reform or transformation",
+            "Missing partnership and private sector engagement"
+          ]
+        }
+      ]
+    }
+  },
+  "averageScore": 30
+}

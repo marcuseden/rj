@@ -1,0 +1,55 @@
+{
+  "id": "aHR0cHM6Ly93d3cuYmFuY29tdW5kaWFs",
+  "title": "Publication",
+  "url": "https://www.bancomundial.org/es/research/publication",
+  "content": "Trabajamos por un mundo sin pobreza Esta página en: Español ES English Français العربية Português English Français العربية Português Bienvenidos Ud. ha cliqueado en un enlace que lleva a una página que no se incluye en la versión beta del nuevo sitio bancomundial.org. Antes que salga del sitio, nos encantaría recibir sus comentarios acerca de la experiencia que tuvo mientras lo visitó. ¿Tiene dos minutospara completar una breve encuesta que nos ayudará a mejorar nuestro sitio web? Cancelar No, gracias. Sí, proporcionaré comentarios. xClose Encuesta sobre comentarios ¿Para qué visitó bancomundial.org hoy? ¿El diseño y la navegación del nuevo sitio le ayudaron a encontrar lo que estaba buscando? Yes No ¿Tiene otros comentarios acerca de la nueva versión de nuestro sitio web? Email Si le interesa ayudarnos a mejorar nuestro sitio web, escriba su dirección de correo electrónico abajo para poder contactarle en el futuro. ¿Cuál de las siguientes opciones describe mejor su campo profesional u organización? Estudiante Académico/Profesor Empleado del Gobierno Medio de comunicación Organismo multilateral ONG o entidad sin fines de lucro Empresa del sector privado Grupo Banco Mundial Otro ¿Con qué frecuencia visita el sitio web del Banco Mundial? Esta es la primera vez A diario Alrededor de una vez a la semana Alrededor de una vez al mes Cada seis meses o con menor frecuencia ENVIAR ¡Muchas gracias por participar en nuestra encuesta! Sus comentarios son muy valiosos para nosotros mientras buscamos mejorar nuestro sitio web.",
+  "summary": "Trabajamos por un mundo sin pobreza Esta página en: Español ES English Français العربية Português English Français العربية Português Bienvenidos Ud.  ha cliqueado en un enlace que lleva a una página que no se incluye en la versión beta del nuevo sitio bancomundial. org.",
+  "date": "2025-11-04",
+  "publicationType": "policy-paper",
+  "tags": {
+    "documentType": "report",
+    "sectors": [],
+    "regions": [],
+    "countries": [],
+    "themes": [],
+    "initiatives": [],
+    "authors": [],
+    "departments": [
+      "IDA"
+    ],
+    "lendingInstruments": [],
+    "projectCodes": []
+  },
+  "strategicAlignment": {
+    "score": 5,
+    "aligned": [
+      "partnership: Mentions multilateral"
+    ],
+    "misaligned": [],
+    "gaps": [
+      "climate: No mention of climate or carbon",
+      "poverty: No mention of poverty or inequality",
+      "reform: No mention of reform or transformation",
+      "impact: No mention of impact or results",
+      "digital: No mention of digital or technology",
+      "jobs: No mention of employment or jobs",
+      "fragility: No mention of fragility or conflict",
+      "Missing partnership and private sector engagement"
+    ],
+    "references": []
+  },
+  "metadata": {
+    "language": "en",
+    "wordCount": 240,
+    "readingTime": 2,
+    "publicationYear": 2025
+  },
+  "sourceReference": {
+    "originalUrl": "https://www.bancomundial.org/es/research/publication",
+    "scrapedFrom": "https://www.worldbank.org/en/research/publication",
+    "discoveredAt": "2025-11-04T16:39:04.582Z",
+    "sourceType": "linked"
+  },
+  "fileType": "html",
+  "scrapedAt": "2025-11-04T16:39:04.582Z"
+}
