@@ -20,13 +20,47 @@ import { createClient } from '@/lib/supabase';
 
 export default function DashboardPage() {
   const [user, setUser] = useState<any>(null);
+  const [stats, setStats] = useState({
+    documents: 0,
+    speeches: 0,
+    departments: 0,
+    aiFeatures: 6,
+  });
   const supabase = createClient();
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUser(user);
     });
+    fetchDynamicStats();
   }, []);
+
+  const fetchDynamicStats = async () => {
+    try {
+      // Get real documents count
+      const docsRes = await fetch('/data/worldbank-strategy/ajay-banga-documents-verified.json');
+      if (docsRes.ok) {
+        const docs = await docsRes.json();
+        setStats(prev => ({ ...prev, documents: docs.length }));
+      }
+
+      // Get real speeches count
+      const speechesRes = await fetch('/speeches_database.json');
+      if (speechesRes.ok) {
+        const speeches = await speechesRes.json();
+        setStats(prev => ({ ...prev, speeches: speeches.total_speeches || speeches.length }));
+      }
+
+      // Get real departments count
+      const depsRes = await fetch('/api/worldbank-orgchart');
+      if (depsRes.ok) {
+        const deps = await depsRes.json();
+        setStats(prev => ({ ...prev, departments: deps.hierarchy?.length || 0 }));
+      }
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+    }
+  };
 
   const features = [
     {

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -65,6 +66,61 @@ interface DepartmentData {
   data_verified?: boolean;
   last_verified_date?: string;
   verification_source?: string;
+}
+
+function TeamMembersList({ departmentId }: { departmentId: string }) {
+  const [members, setMembers] = useState<DepartmentData[]>([]);
+
+  useEffect(() => {
+    async function fetchMembers() {
+      try {
+        const response = await fetch('/api/worldbank-orgchart');
+        if (response.ok) {
+          const data = await response.json();
+          const teamMembers = data.hierarchy.filter((m: DepartmentData) => m.parent_id === departmentId);
+          setMembers(teamMembers);
+        }
+      } catch (error) {
+        console.error('Error fetching team members:', error);
+      }
+    }
+    fetchMembers();
+  }, [departmentId]);
+
+  if (members.length === 0) {
+    return <p className="text-stone-600 text-sm">No direct reports</p>;
+  }
+
+  return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {members.map((member) => {
+        const initials = member.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+        return (
+          <Link key={member.id} href={`/department/${member.id}`}>
+            <Card className="bg-stone-50 border-stone-200 hover:shadow-md hover:border-[#0071bc] transition-all cursor-pointer">
+              <div className="p-4 flex items-center gap-3">
+                <Avatar className="w-12 h-12 ring-2 ring-stone-200">
+                  <AvatarImage src={member.avatar_url} alt={member.name} />
+                  <AvatarFallback className="bg-stone-200 text-stone-700 font-semibold">
+                    {initials}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold text-stone-900 text-sm truncate">{member.name}</h4>
+                  <p className="text-xs text-stone-600 truncate">{member.position}</p>
+                  {member.country && (
+                    <Badge className="bg-stone-100 text-stone-600 border-stone-200 text-xs mt-1">
+                      {member.country}
+                    </Badge>
+                  )}
+                </div>
+              </div>
+            </Card>
+          </Link>
+        );
+      })}
+    </div>
+  );
 }
 
 export default function DepartmentPage() {
@@ -193,10 +249,22 @@ export default function DepartmentPage() {
                 </div>
               </div>
               
-              <p className="text-stone-700 leading-relaxed">{department.bio}</p>
+              {/* Personal Bio */}
+              <div className="mb-4">
+                <h3 className="font-semibold text-stone-900 mb-2">Biography</h3>
+                <p className="text-stone-700 leading-relaxed">{department.bio}</p>
+              </div>
+
+              {/* Department Role Description */}
+              {department.department_description && (
+                <div className="mb-4 p-4 bg-blue-50 border border-blue-100 rounded-lg">
+                  <h3 className="font-semibold text-stone-900 mb-2">Role & Department Overview</h3>
+                  <p className="text-stone-700 leading-relaxed">{department.department_description}</p>
+                </div>
+              )}
               
               {department.quote && (
-                <blockquote className="mt-4 pl-4 border-l-4 border-stone-300 italic text-stone-600">
+                <blockquote className="mt-4 pl-4 border-l-4 border-[#0071bc] italic text-stone-600">
                   "{department.quote}"
                 </blockquote>
               )}
@@ -380,6 +448,16 @@ export default function DepartmentPage() {
           <Card className="bg-stone-900 text-white border-stone-700 p-6 mb-6">
             <h2 className="text-xl font-semibold mb-3">Future Direction & Strategy</h2>
             <p className="text-stone-200 leading-relaxed">{department.future_direction}</p>
+          </Card>
+        )}
+
+        {/* Team Members */}
+        {department.children_count && department.children_count > 0 && (
+          <Card className="bg-white border-stone-200 p-6 mb-6">
+            <h2 className="text-xl font-semibold text-stone-900 mb-4">
+              Team Members ({department.children_count})
+            </h2>
+            <TeamMembersList departmentId={department.id} />
           </Card>
         )}
 
