@@ -33,33 +33,45 @@ export async function GET(request: NextRequest) {
       total: 0
     };
 
-    // Search Projects
+    // Search Projects (extracted from countries.recent_projects)
     if (type === 'all' || type === 'projects') {
-      let projectQuery = supabase
-        .from('worldbank_projects')
-        .select('*');
-
-      if (query) {
-        projectQuery = projectQuery.or(`project_name.ilike.%${query}%,country_name.ilike.%${query}%`);
-      }
-
-      if (department) {
-        projectQuery = projectQuery.contains('tagged_departments', [department]);
-      }
-
-      if (size) {
-        projectQuery = projectQuery.eq('tagged_size_category', size);
-      }
-
-      if (country) {
-        projectQuery = projectQuery.eq('country_name', country);
-      }
-
-      const { data: projects } = await projectQuery
-        .order('total_commitment', { ascending: false })
-        .limit(limit);
-
-      results.projects = projects || [];
+      // Get countries with projects
+      const { data: countriesWithProjects } = await supabase
+        .from('worldbank_countries')
+        .select('iso2_code, name, region, recent_projects')
+        .not('recent_projects', 'is', null);
+      
+      // Extract and flatten projects
+      const allProjects: any[] = [];
+      countriesWithProjects?.forEach((country: any) => {
+        if (country.recent_projects && Array.isArray(country.recent_projects)) {
+          country.recent_projects.forEach((project: any, idx: number) => {
+            const projectName = project.project_name || project.title || '';
+            const matchesQuery = !query || 
+              projectName.toLowerCase().includes(query.toLowerCase()) ||
+              country.name.toLowerCase().includes(query.toLowerCase()) ||
+              (project.sector && project.sector.toLowerCase().includes(query.toLowerCase()));
+            
+            if (matchesQuery) {
+              allProjects.push({
+                id: `project-${country.iso2_code.toLowerCase()}-${idx}`,
+                project_name: projectName,
+                country_name: country.name,
+                country_code: country.iso2_code,
+                region: country.region,
+                sector: project.sector || 'N/A',
+                theme: project.theme,
+                status: project.status || 'Active',
+                total_commitment: project.total_amt || project.totalamt,
+                board_approval_date: project.approvalfy || project.board_approval_date,
+                ...project
+              });
+            }
+          });
+        }
+      });
+      
+      results.projects = allProjects.slice(0, limit);
     }
 
     // Search Countries
@@ -80,13 +92,14 @@ export async function GET(request: NextRequest) {
     }
 
     // Search Documents
-    if (type === 'all' || type === 'documents') {
+    if (type === 'all' || type === 'documents' || type === 'speech' || type === 'strategy') {
       let docQuery = supabase
         .from('worldbank_documents')
-        .select('*');
+        .select('id, title, summary, date, type, tags_document_type, tags_authors, tags_sectors, tags_regions, tags_departments, tags_priority, metadata_reading_time, metadata_word_count');
 
       if (query) {
-        docQuery = docQuery.or(`title.ilike.%${query}%,summary.ilike.%${query}%`);
+        // Search in title, summary, and keywords
+        docQuery = docQuery.or(`title.ilike.%${query}%,summary.ilike.%${query}%,keywords.cs.{${query}}`);
       }
 
       if (department) {
@@ -100,21 +113,22 @@ export async function GET(request: NextRequest) {
       results.documents = documents || [];
     }
 
-    // Search Departments
-    if (type === 'all' || type === 'departments') {
-      let deptQuery = supabase
+    // Search People/Departments (from org chart)
+    if (type === 'all' || type === 'departments' || type === 'people') {
+      let peopleQuery = supabase
         .from('worldbank_orgchart')
         .select('*');
 
       if (query) {
-        deptQuery = deptQuery.or(`name.ilike.%${query}%,position.ilike.%${query}%,department_description.ilike.%${query}%`);
+        peopleQuery = peopleQuery.or(`name.ilike.%${query}%,position.ilike.%${query}%,department.ilike.%${query}%,bio.ilike.%${query}%`);
       }
 
-      const { data: departments } = await deptQuery
+      const { data: people } = await peopleQuery
         .eq('is_active', true)
-        .order('level');
+        .order('level')
+        .limit(limit);
 
-      results.departments = departments || [];
+      results.departments = people || [];
     }
 
     // Convert to unified search result format
