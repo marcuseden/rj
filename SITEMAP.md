@@ -1,4 +1,4 @@
-# RJ Banga System - Sitemap & Menu Structure
+# Strategic Alignment Platform - Sitemap & Menu Structure
 
 ## Public Pages (No Sidebar)
 - `/` - Landing page with features overview and sign-up CTA
@@ -49,8 +49,8 @@ All pages below require authentication and show the global left sidebar menu:
 ## Sidebar Menu Structure
 
 ```
-┌─ RJ Banga ─────────────────┐
-│ World Bank Assistant       │
+┌─ Strategic Alignment ──────┐
+│ World Bank Platform        │
 ├────────────────────────────┤
 │ 🏠 Dashboard              │
 │ 💬 AI Agent               │

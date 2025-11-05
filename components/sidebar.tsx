@@ -47,12 +47,12 @@ export function Sidebar() {
         <div className="p-6 border-b border-stone-200 flex items-center justify-between">
           {!isCollapsed && (
             <div>
-              <h2 className="text-xl font-bold text-stone-900">RJ Banga</h2>
-              <p className="text-xs text-stone-600 mt-1">World Bank Assistant</p>
+              <h2 className="text-lg font-bold text-stone-900">Strategic Alignment</h2>
+              <p className="text-xs text-stone-600 mt-1">World Bank Platform</p>
             </div>
           )}
           {isCollapsed && (
-            <div className="text-xl font-bold text-stone-900 mx-auto">RJ</div>
+            <div className="text-xl font-bold text-stone-900 mx-auto">SA</div>
           )}
         </div>
 
