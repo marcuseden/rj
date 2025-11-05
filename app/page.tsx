@@ -73,7 +73,7 @@ export default function LandingPage() {
             World Bank AI Assistant
           </Badge>
           <h1 className="text-5xl md:text-6xl font-bold text-stone-900 mb-6">
-            RJ Banga System
+            Strategic Alignment Platform
           </h1>
           <p className="text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto mb-8">
             AI-powered insights into World Bank strategy and Ajay Banga's leadership vision
@@ -117,7 +117,7 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto mb-20">
           <Card className="bg-white border-stone-200 p-8">
             <h2 className="text-3xl font-bold text-stone-900 mb-8 text-center">
-              Why Use RJ Banga System?
+              Why Use Strategic Alignment Platform?
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
@@ -160,7 +160,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-stone-200 py-8">
         <div className="container mx-auto px-4 text-center text-stone-600">
-          <p>© 2024 RJ Banga System. World Bank AI Assistant.</p>
+          <p>© 2024 Strategic Alignment Platform. World Bank AI Assistant.</p>
         </div>
       </footer>
     </main>

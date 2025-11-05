@@ -51,7 +51,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md bg-white border-stone-200 p-8 shadow-lg">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-stone-900 mb-2">
-            RJ Banga System
+            Strategic Alignment Platform
           </h1>
           <p className="text-stone-600">
             {isSignUp ? 'Create your account' : 'Sign in to continue'}
