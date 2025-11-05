@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useConversation } from '@elevenlabs/react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Phone, PhoneOff, Volume2, Mic, MicOff } from 'lucide-react';
+import { Phone, PhoneOff, Volume2, Mic } from 'lucide-react';
 
 export default function RJAgentPage() {
   const [callDuration, setCallDuration] = useState(0);
@@ -70,112 +70,96 @@ export default function RJAgentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      {/* Header */}
-      <div className="bg-white border-b border-stone-200 px-6 py-4">
-        <h1 className="text-2xl font-semibold text-stone-900">RJ Banga Voice Agent</h1>
-        <p className="text-sm text-stone-600 mt-1">Voice conversation with AI trained on Ajay Banga's speeches</p>
-      </div>
-
-      <div className="flex items-center justify-center min-h-[calc(100vh-80px)] p-6">
-        <Card className="w-full max-w-md bg-white border-stone-200 shadow-xl">
-          <CardContent className="p-12 text-center">
-            {/* Avatar */}
-            <div className="mb-8">
-              <div className={`w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${
-                isConnected 
-                  ? 'from-[#0071bc] to-[#005a99] animate-pulse' 
-                  : 'from-stone-100 to-stone-200'
-              } flex items-center justify-center relative`}>
-                {isConnected ? (
-                  <Volume2 className="h-16 w-16 text-white animate-pulse" />
-                ) : (
-                  <div className="text-3xl font-bold text-stone-700">AB</div>
-                )}
-                {isConnected && (
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-green-500 text-white border-0">
-                      Connected
-                    </Badge>
-                  </div>
-                )}
-              </div>
+    <div className="min-h-screen bg-gradient-to-b from-stone-900 via-stone-800 to-stone-900 flex flex-col items-center justify-between py-20 px-6">
+      {/* Top Section - Avatar and Info */}
+      <div className="flex-1 flex flex-col items-center justify-center">
+        {/* Large Avatar - iPhone style */}
+        <div className="mb-8 relative">
+          <Avatar className={`w-40 h-40 border-4 ${isConnected ? 'border-green-500' : 'border-stone-600'} transition-all`}>
+            <AvatarImage src="/ajay-banga-avatar.jpg" alt="Ajay Banga" />
+            <AvatarFallback className={`text-5xl font-bold ${isConnected ? 'bg-[#0071bc] text-white' : 'bg-stone-200 text-stone-700'}`}>
+              AB
+            </AvatarFallback>
+          </Avatar>
+          {isConnected && (
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
+              <Badge className="bg-green-500 text-white border-0 shadow-lg">
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse mr-2"></div>
+                Connected
+              </Badge>
             </div>
+          )}
+        </div>
 
-            {/* Name and Title */}
-            <h2 className="text-2xl font-bold text-stone-900 mb-2">
-              Ajay Banga
-            </h2>
-            <p className="text-stone-600 mb-8">
+        {/* Name and Title */}
+        <h1 className="text-4xl font-semibold text-white mb-3">
+          Ajay Banga
+        </h1>
+        
+        {isConnected ? (
+          <div className="text-center">
+            <div className="text-6xl font-light text-green-400 mb-2">
+              {formatDuration(callDuration)}
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <Volume2 className="h-4 w-4 text-green-400 animate-pulse" />
+              <p className="text-lg text-stone-300">
+                Call in progress
+              </p>
+            </div>
+          </div>
+        ) : (
+          <>
+            <p className="text-xl text-stone-400 mb-2">
+              World Bank President
+            </p>
+            <p className="text-sm text-stone-500">
               AI Voice Agent
             </p>
+          </>
+        )}
+      </div>
 
-            {/* Call Duration */}
-            {isConnected && (
-              <div className="mb-8">
-                <div className="text-4xl font-bold text-[#0071bc] mb-2">
-                  {formatDuration(callDuration)}
-                </div>
-                <div className="flex items-center justify-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm text-stone-600">Call in progress</span>
-                </div>
-              </div>
+      {/* Bottom Section - Call Button */}
+      <div className="flex flex-col items-center gap-8">
+        {/* Info text */}
+        {!isConnected && (
+          <p className="text-stone-400 text-center max-w-md">
+            Tap to start conversation
+          </p>
+        )}
+
+        {/* Big Round Call Button - iPhone style */}
+        {!isConnected ? (
+          <button
+            onClick={startCall}
+            disabled={conversation.status === 'connecting'}
+            className="w-24 h-24 rounded-full bg-green-500 hover:bg-green-600 active:scale-95 flex items-center justify-center transition-all shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {conversation.status === 'connecting' ? (
+              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-white"></div>
+            ) : (
+              <Phone className="h-12 w-12 text-white" />
             )}
+          </button>
+        ) : (
+          <button
+            onClick={endCall}
+            className="w-24 h-24 rounded-full bg-red-500 hover:bg-red-600 active:scale-95 flex items-center justify-center transition-all shadow-2xl"
+          >
+            <PhoneOff className="h-12 w-12 text-white" />
+          </button>
+        )}
 
-            {/* Call Status */}
-            {!isConnected && (
-              <div className="mb-8">
-                <p className="text-stone-600 mb-4">
-                  Tap to start a voice conversation
-                </p>
-                <div className="flex items-center justify-center gap-2 text-xs text-stone-500">
-                  <Mic className="h-3 w-3" />
-                  <span>Voice-powered by ElevenLabs</span>
-                </div>
-              </div>
-            )}
-
-            {/* Call Button */}
-            <div className="flex justify-center gap-4">
-              {!isConnected ? (
-                <button
-                  onClick={startCall}
-                  disabled={conversation.status === 'connecting'}
-                  className="w-20 h-20 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <Phone className="h-10 w-10 text-white" />
-                </button>
-              ) : (
-                <button
-                  onClick={endCall}
-                  className="w-20 h-20 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center transition-all shadow-lg hover:shadow-xl"
-                >
-                  <PhoneOff className="h-10 w-10 text-white" />
-                </button>
-              )}
+        {/* Additional info */}
+        {!isConnected && (
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 text-xs text-stone-500">
+              <Mic className="h-3 w-3" />
+              <span>Powered by ElevenLabs</span>
             </div>
-
-            {/* Info */}
-            {!isConnected && (
-              <div className="mt-8 pt-8 border-t border-stone-200">
-                <p className="text-xs text-stone-500">
-                  This agent has knowledge of World Bank strategy, RJ Banga's speeches, and development initiatives. Ask about climate action, poverty reduction, partnerships, or any World Bank topics.
-                </p>
-              </div>
-            )}
-
-            {/* Conversation Status */}
-            {conversation.status === 'connecting' && (
-              <div className="mt-6">
-                <div className="flex items-center justify-center gap-2">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[#0071bc]"></div>
-                  <span className="text-sm text-stone-600">Connecting...</span>
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+          </div>
+        )}
       </div>
     </div>
   );
