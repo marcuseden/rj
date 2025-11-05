@@ -6,8 +6,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { AppHeader } from '@/components/app-header';
-import { AppFooter } from '@/components/app-footer';
 import { useConversation } from '@elevenlabs/react';
 
 interface Message {
@@ -152,10 +150,10 @@ export default function RJAgentPage() {
 
   return (
     <div className="min-h-screen bg-stone-50 flex flex-col">
-      <AppHeader 
-        title="RJ Banga AI Agent"
-        subtitle="AI assistant trained on Ajay Banga's speeches and World Bank strategy"
-      />
+      <div className="bg-white border-b border-stone-200 px-6 py-4">
+        <h1 className="text-2xl font-semibold text-stone-900">RJ Banga AI Agent</h1>
+        <p className="text-sm text-stone-600 mt-1">AI assistant trained on Ajay Banga's speeches and World Bank strategy</p>
+      </div>
 
       <div className="flex-1 max-w-4xl mx-auto w-full px-4 py-6 pb-32">
         {/* Info Banner */}
@@ -273,8 +271,6 @@ export default function RJAgentPage() {
           )}
         </div>
       </div>
-
-      <AppFooter />
     </div>
   );
 }

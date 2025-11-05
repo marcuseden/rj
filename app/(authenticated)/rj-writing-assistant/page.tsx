@@ -5,8 +5,6 @@ import { Sparkles, Copy, Check } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { AppHeader } from '@/components/app-header';
-import { AppFooter } from '@/components/app-footer';
 
 export default function RJWritingAssistantPage() {
   const [inputText, setInputText] = useState('');
@@ -28,10 +26,10 @@ export default function RJWritingAssistantPage() {
 
   return (
     <div className="min-h-screen bg-stone-50 flex flex-col">
-      <AppHeader 
-        title="RJ Banga Writing Assistant"
-        subtitle="Align your text with RJ Banga's strategic communication style"
-      />
+      <div className="bg-white border-b border-stone-200 px-6 py-4">
+        <h1 className="text-2xl font-semibold text-stone-900">RJ Banga Writing Assistant</h1>
+        <p className="text-sm text-stone-600 mt-1">Align your text with RJ Banga's strategic communication style</p>
+      </div>
 
       <div className="flex-1 max-w-4xl mx-auto w-full px-4 py-6 pb-24">
         <Card className="mb-6">
@@ -98,8 +96,6 @@ export default function RJWritingAssistantPage() {
           </CardContent>
         </Card>
       </div>
-
-      <AppFooter />
     </div>
   );
 }

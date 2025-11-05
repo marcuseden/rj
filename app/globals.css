@@ -45,52 +45,52 @@
 :root {
   --radius: 0.625rem;
   
-  /* World Bank Colors */
-  --wb-blue: #0071bc;
-  --wb-blue-dark: #003f5c;
-  --wb-blue-light: #009fdb;
-  --wb-teal: #00aeef;
-  --wb-green: #4caf50;
-  --wb-red: #eb1c2d;
+  /* MANDATORY: Beige, Light Beige, and Primary Pink - NO BLUE ALLOWED */
+  --beige: #f5f5dc;
+  --light-beige: #faf8f3;
+  --primary-pink: #e91e63;
+  --dark-pink: #c2185b;
   
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --background: #faf8f3; /* light beige */
+  --foreground: #292524; /* stone-800 */
+  --card: #ffffff;
+  --card-foreground: #292524;
+  --popover: #ffffff;
+  --popover-foreground: #292524;
   
-  /* World Bank Blue as primary */
-  --primary: oklch(0.45 0.15 240);
-  --primary-foreground: oklch(1 0 0);
+  /* Primary Pink instead of blue */
+  --primary: #e91e63; /* primary pink */
+  --primary-foreground: #ffffff;
   
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.55 0.15 200);
-  --accent-foreground: oklch(1 0 0);
+  --secondary: #f5f5f4; /* stone-100 */
+  --secondary-foreground: #292524;
+  --muted: #f5f5f4; /* stone-100 */
+  --muted-foreground: #78716c; /* stone-500 */
+  --accent: #f5f5dc; /* beige */
+  --accent-foreground: #292524;
   
-  /* iPhone Call colors */
-  --success: oklch(0.65 0.19 145);
-  --destructive: oklch(0.55 0.22 25);
+  --success: #16a34a; /* green-600 */
+  --destructive: #dc2626; /* red-600 */
   
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.45 0.15 240);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.45 0.15 240);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --border: #e7e5e4; /* stone-200 */
+  --input: #e7e5e4; /* stone-200 */
+  --ring: #e91e63; /* primary pink */
+  
+  /* Chart colors using stone/beige/pink palette */
+  --chart-1: #e91e63; /* pink */
+  --chart-2: #78716c; /* stone-500 */
+  --chart-3: #d6d3d1; /* stone-300 */
+  --chart-4: #f5f5dc; /* beige */
+  --chart-5: #a8a29e; /* stone-400 */
+  
+  --sidebar: #faf8f3; /* light beige */
+  --sidebar-foreground: #292524;
+  --sidebar-primary: #e91e63; /* primary pink */
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f5f4; /* stone-100 */
+  --sidebar-accent-foreground: #292524;
+  --sidebar-border: #e7e5e4; /* stone-200 */
+  --sidebar-ring: #78716c; /* stone-500 */
 }
 
 .dark {
