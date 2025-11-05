@@ -204,34 +204,52 @@ export default function DepartmentPage() {
           </div>
         </Card>
 
-        {/* Department Mission & Vision */}
-        {(department.department_mission || department.department_vision) && (
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            {department.department_mission && (
-              <Card className="bg-white border-stone-200 p-6">
-                <h2 className="text-xl font-semibold text-stone-900 mb-3">Mission</h2>
-                <p className="text-stone-700 leading-relaxed">{department.department_mission}</p>
-              </Card>
-            )}
-            
-            {department.department_vision && (
-              <Card className="bg-white border-stone-200 p-6">
-                <h2 className="text-xl font-semibold text-stone-900 mb-3">Vision</h2>
-                <p className="text-stone-700 leading-relaxed">{department.department_vision}</p>
-              </Card>
-            )}
-          </div>
+        {/* Strategy & Vision */}
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          {department.department_mission && (
+            <Card className="bg-gradient-to-br from-[#0071bc] to-[#005a99] border-0 p-6">
+              <h2 className="text-xl font-semibold text-white mb-3">Mission & Strategy</h2>
+              <p className="text-blue-50 leading-relaxed">{department.department_mission}</p>
+            </Card>
+          )}
+          
+          {department.department_vision && (
+            <Card className="bg-white border-stone-200 p-6">
+              <h2 className="text-xl font-semibold text-stone-900 mb-3">Vision & Future Direction</h2>
+              <p className="text-stone-700 leading-relaxed">{department.department_vision}</p>
+            </Card>
+          )}
+        </div>
+
+        {/* Future Direction */}
+        {department.future_direction && (
+          <Card className="bg-white border-stone-200 p-6 mb-6">
+            <h2 className="text-xl font-semibold text-stone-900 mb-3">Future Direction & Strategy</h2>
+            <p className="text-stone-700 leading-relaxed">{department.future_direction}</p>
+          </Card>
         )}
 
-        {/* Key Metrics */}
-        {department.department_metrics && Object.keys(department.department_metrics).length > 0 && (
+        {/* Key Numbers - Projects, Money, Employees */}
+        {(department.department_metrics || department.current_projects || department.team_size || department.budget_allocation) && (
           <Card className="bg-white border-stone-200 p-6 mb-6">
             <h2 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
               <BarChart3 className="w-5 h-5 mr-2" />
-              Key Metrics & Performance
+              Key Numbers & Performance
             </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {Object.entries(department.department_metrics).map(([key, value]) => (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              {department.team_size && (
+                <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
+                  <p className="text-sm text-stone-600 mb-1">Employees</p>
+                  <p className="text-3xl font-bold text-[#0071bc]">{department.team_size.toLocaleString()}</p>
+                </div>
+              )}
+              {department.budget_allocation && (
+                <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
+                  <p className="text-sm text-stone-600 mb-1">Budget</p>
+                  <p className="text-2xl font-bold text-[#0071bc]">{department.budget_allocation}</p>
+                </div>
+              )}
+              {department.department_metrics && Object.entries(department.department_metrics).slice(0, 6).map(([key, value]) => (
                 <div key={key} className="bg-stone-50 rounded-lg p-4">
                   <p className="text-sm text-stone-600 mb-1">
                     {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
@@ -240,6 +258,23 @@ export default function DepartmentPage() {
                 </div>
               ))}
             </div>
+            
+            {/* Current Projects */}
+            {department.current_projects && Object.keys(department.current_projects).length > 0 && (
+              <div className="pt-4 border-t border-stone-200">
+                <h3 className="font-semibold text-stone-900 mb-3">Current Projects & Initiatives</h3>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {Object.entries(department.current_projects).map(([key, value]) => (
+                    <div key={key} className="bg-stone-50 rounded-lg p-3">
+                      <p className="text-xs text-stone-600 mb-1">
+                        {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                      </p>
+                      <p className="text-lg font-semibold text-stone-900">{value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </Card>
         )}
 
