@@ -33,7 +33,7 @@ export default function OrgChartPage() {
       const response = await fetch('/api/worldbank-orgchart');
       if (response.ok) {
         const data = await response.json();
-        setDepartments(data.departments || []);
+        setDepartments(data.hierarchy || []);
       }
     } catch (error) {
       console.error('Error fetching departments:', error);

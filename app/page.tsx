@@ -20,6 +20,11 @@ import Link from 'next/link';
 
 export default function LandingPage() {
   const [user, setUser] = useState<any>(null);
+  const [stats, setStats] = useState({
+    documents: 0,
+    speeches: 0,
+    departments: 0,
+  });
   const router = useRouter();
   const supabase = createClient();
 
@@ -30,7 +35,37 @@ export default function LandingPage() {
         router.push('/dashboard');
       }
     });
+
+    // Fetch real stats
+    fetchStats();
   }, [router]);
+
+  const fetchStats = async () => {
+    try {
+      // Get documents count
+      const docsRes = await fetch('/data/worldbank-strategy/ajay-banga-documents-verified.json');
+      if (docsRes.ok) {
+        const docs = await docsRes.json();
+        setStats(prev => ({ ...prev, documents: docs.length }));
+      }
+
+      // Get speeches count
+      const speechesRes = await fetch('/speeches_database.json');
+      if (speechesRes.ok) {
+        const speeches = await speechesRes.json();
+        setStats(prev => ({ ...prev, speeches: speeches.length }));
+      }
+
+      // Get departments count
+      const depsRes = await fetch('/api/worldbank-orgchart');
+      if (depsRes.ok) {
+        const deps = await depsRes.json();
+        setStats(prev => ({ ...prev, departments: deps.hierarchy?.length || 0 }));
+      }
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+    }
+  };
 
   const features = [
     {
@@ -75,9 +110,23 @@ export default function LandingPage() {
           <h1 className="text-5xl md:text-6xl font-bold text-stone-900 mb-6">
             Strategic Alignment Platform
           </h1>
-          <p className="text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto mb-4">
             AI-powered insights into World Bank strategy and Ajay Banga's leadership vision
           </p>
+          <div className="flex items-center justify-center gap-6 mb-8 text-stone-600">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[#0071bc]">{stats.documents}+</div>
+              <div className="text-sm">Documents</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[#0071bc]">{stats.speeches}+</div>
+              <div className="text-sm">Speeches</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[#0071bc]">{stats.departments}+</div>
+              <div className="text-sm">Departments</div>
+            </div>
+          </div>
           <div className="flex items-center justify-center gap-4">
             <Link href="/login">
               <Button className="bg-[#0071bc] hover:bg-[#005a99] text-white px-8 py-6 text-lg">

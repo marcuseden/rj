@@ -60,7 +60,7 @@ export default function RJFAQPage() {
 
   const loadDocuments = async () => {
     try {
-      const response = await fetch('/data/worldbank-strategy/documents.json');
+      const response = await fetch('/data/worldbank-strategy/ajay-banga-documents-verified.json');
       if (response.ok) {
         const data = await response.json();
         setDocuments(data);
