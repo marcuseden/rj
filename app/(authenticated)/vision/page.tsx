@@ -1,16 +1,10 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Target, Heart, Lightbulb, Users, TrendingUp, Globe } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import speechesDatabase from '@/public/speeches_database.json';
+import { Target, Heart, Lightbulb, Users, TrendingUp, Globe, Sparkles, Quote } from 'lucide-react';
 
 export default function VisionPage() {
-  const router = useRouter();
-
   const values = [
     { icon: Users, title: 'Partnership', description: 'Collaboration between governments, private sector, and development banks' },
     { icon: Target, title: 'Accountability', description: 'Measurable results and transparent progress tracking' },
@@ -20,182 +14,177 @@ export default function VisionPage() {
     { icon: TrendingUp, title: 'Results-Driven', description: 'Focus on concrete actions and measurable outcomes' },
   ];
 
-  const themes = [
-    'Development Finance & IDA',
-    'Private Sector Partnership',
-    'Climate Finance & Energy Access',
-    'Job Creation & Economic Opportunity',
-    'Food Security & Agriculture',
-    'Reform & Innovation',
-    'Poverty Reduction',
-    'Infrastructure Investment'
+  const priorities = [
+    { title: 'Evolution Roadmap', description: 'Institutional reform to make the World Bank faster, more effective, and better integrated' },
+    { title: 'Climate Action', description: '45% of financing for climate by 2025 - over $40 billion annually for mitigation and adaptation' },
+    { title: 'Job Creation', description: 'Explicit focus on creating opportunities for 1.2 billion young people' },
+    { title: 'Private Capital', description: 'Mobilizing $150+ billion in private sector commitments for development' },
+    { title: 'Food Security', description: '$9 billion annually by 2030 for agribusiness and food systems' },
+    { title: 'IDA Replenishment', description: 'Expanding concessional financing for low-income countries' },
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <header className="border-b border-slate-800 bg-slate-950/50 backdrop-blur">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Button
-            variant="ghost"
-            onClick={() => router.back()}
-            className="text-slate-400 hover:text-white"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back
-          </Button>
-          
-          <Badge className="bg-[#0071bc] text-white border-0">
-            CEO Vision & Values
+      <div className="bg-white border-b border-stone-200 px-6 py-6">
+        <div className="max-w-6xl mx-auto">
+          <Badge className="mb-4 bg-[#0071bc] text-white border-0">
+            Leadership Vision
           </Badge>
+          <h1 className="text-4xl font-bold text-stone-900 mb-2">
+            Ajay Banga's Strategic Vision
+          </h1>
+          <p className="text-lg text-stone-600">
+            President, World Bank Group
+          </p>
         </div>
-      </header>
+      </div>
 
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        {/* CEO Profile */}
-        <section className="text-center mb-16">
-          <div className="flex justify-center mb-6">
-            <Avatar className="w-32 h-32 ring-4 ring-[#0071bc] ring-offset-4 ring-offset-slate-950">
-              <AvatarImage src="https://www.worldbank.org/content/dam/photos/780x439/2023/jun-3/Ajay-Banga.jpg" />
-              <AvatarFallback className="bg-gradient-to-br from-[#0071bc] to-[#009fdb] text-white text-4xl font-bold">
-                AB
-              </AvatarFallback>
-            </Avatar>
-          </div>
-
-          <h1 className="text-4xl font-bold text-white mb-2">Ajay Banga</h1>
-          <p className="text-xl text-slate-400 mb-6">President, World Bank Group</p>
-          
-          <Card className="bg-slate-900/50 border-slate-700 p-6 text-left">
-            <h2 className="text-2xl font-bold text-white mb-4">Vision Statement</h2>
-            <p className="text-lg text-slate-300 leading-relaxed">
-              "Creating a world free of poverty on a livable planet through partnership, innovation, and measurable results. 
-              The World Bank Group's mission is to ensure that job creation is not a byproduct of our projects but an explicit aim, 
-              driving development through collaboration between governments, private sector, and development banks."
-            </p>
-          </Card>
-        </section>
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        {/* Vision Statement */}
+        <Card className="bg-gradient-to-br from-[#0071bc] to-[#005a99] border-0 mb-12">
+          <CardContent className="p-8">
+            <div className="flex items-start gap-4 mb-4">
+              <Quote className="h-8 w-8 text-blue-200 flex-shrink-0" />
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-4">Mission</h2>
+                <p className="text-lg text-blue-50 leading-relaxed">
+                  "Creating a world free of poverty on a livable planet through partnership, innovation, and measurable results. 
+                  The World Bank Group's mission is to ensure that job creation is not a byproduct of our projects but an explicit aim, 
+                  driving development through collaboration between governments, private sector, and development banks."
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Core Values */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8">Core Values</h2>
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold text-stone-900 mb-6">
+            Core Values
+          </h2>
           
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
-                <Card key={index} className="bg-slate-900/50 border-slate-700 p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#0071bc] to-[#009fdb] flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-6 h-6 text-white" />
+                <Card key={index} className="bg-white border-stone-200">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-6 h-6 text-[#0071bc]" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-stone-900 mb-1">{value.title}</h3>
+                        <p className="text-sm text-stone-600">{value.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-white mb-2">{value.title}</h3>
-                      <p className="text-slate-400 text-sm">{value.description}</p>
-                    </div>
-                  </div>
+                  </CardContent>
                 </Card>
               );
             })}
           </div>
         </section>
 
-        {/* Communication Style */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8">Communication Style</h2>
+        {/* Strategic Priorities */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold text-stone-900 mb-6">
+            Strategic Priorities
+          </h2>
           
-          <Card className="bg-slate-900/50 border-slate-700 p-6 space-y-4">
-            <div>
-              <h3 className="text-xl font-bold text-white mb-2">Direct & Action-Oriented</h3>
-              <p className="text-slate-400">
-                Uses clear, direct language focused on concrete actions and measurable outcomes. 
-                Common phrases include "Let me be direct," "The facts are stark," and "The challenge before us."
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-white mb-2">Collaborative Emphasis</h3>
-              <p className="text-slate-400">
-                Consistently emphasizes partnership and collective action. Frequently uses "together," "partnership," 
-                and "collaboration" to stress the importance of working across sectors.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-white mb-2">Data-Driven Arguments</h3>
-              <p className="text-slate-400">
-                Supports statements with specific numbers, facts, and measurable targets. 
-                References concrete data points to build credible, compelling cases for action.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-white mb-2">Professional Yet Accessible</h3>
-              <p className="text-slate-400">
-                Maintains a professional tone while keeping language accessible and engaging. 
-                Balances technical expertise with clear communication for diverse audiences.
-              </p>
-            </div>
-          </Card>
-        </section>
-
-        {/* Key Themes */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8">Key Themes</h2>
-          
-          <div className="flex flex-wrap gap-3">
-            {themes.map((theme, index) => (
-              <Badge
-                key={index}
-                variant="outline"
-                className="border-[#0071bc]/30 bg-[#0071bc]/10 text-[#009fdb] px-4 py-2 text-sm"
-              >
-                {theme}
-              </Badge>
+          <div className="grid md:grid-cols-2 gap-6">
+            {priorities.map((priority, index) => (
+              <Card key={index} className="bg-white border-stone-200">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#0071bc] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm">
+                      {index + 1}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-stone-900 mb-2">{priority.title}</h3>
+                      <p className="text-stone-600 text-sm">{priority.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </section>
 
-        {/* Speech Database Stats */}
-        <section>
-          <h2 className="text-3xl font-bold text-white mb-8">Analysis Database</h2>
+        {/* Communication Style */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold text-stone-900 mb-6">
+            Communication Style
+          </h2>
           
-          <div className="grid md:grid-cols-3 gap-4">
-            <Card className="bg-slate-900/50 border-slate-700 p-6 text-center">
-              <div className="text-4xl font-bold text-[#0071bc] mb-2">
-                {speechesDatabase.total_speeches}
+          <Card className="bg-white border-stone-200">
+            <CardContent className="p-6 space-y-6">
+              <div>
+                <h3 className="text-xl font-semibold text-stone-900 mb-3">Direct & Action-Oriented</h3>
+                <p className="text-stone-700 leading-relaxed">
+                  Uses clear, direct language focused on concrete actions and measurable outcomes. 
+                  Common phrases include "Let me be direct," "The facts are stark," and "The challenge before us."
+                </p>
               </div>
-              <div className="text-slate-400">Real Speeches</div>
-            </Card>
 
-            <Card className="bg-slate-900/50 border-slate-700 p-6 text-center">
-              <div className="text-4xl font-bold text-[#0071bc] mb-2">
-                {speechesDatabase.total_words.toLocaleString()}
+              <div className="border-t border-stone-200 pt-6">
+                <h3 className="text-xl font-semibold text-stone-900 mb-3">Collaborative Emphasis</h3>
+                <p className="text-stone-700 leading-relaxed">
+                  Consistently emphasizes partnership and collective action. Frequently uses "together," "partnership," 
+                  and "collaboration" to stress the importance of working across sectors.
+                </p>
               </div>
-              <div className="text-slate-400">Words Analyzed</div>
-            </Card>
 
-            <Card className="bg-slate-900/50 border-slate-700 p-6 text-center">
-              <div className="text-4xl font-bold text-[#0071bc] mb-2">
-                2023-2025
+              <div className="border-t border-stone-200 pt-6">
+                <h3 className="text-xl font-semibold text-stone-900 mb-3">Data-Driven Arguments</h3>
+                <p className="text-stone-700 leading-relaxed">
+                  Supports statements with specific numbers, facts, and measurable targets. 
+                  References concrete data points to build credible, compelling cases for action.
+                </p>
               </div>
-              <div className="text-slate-400">Time Period</div>
-            </Card>
-          </div>
+
+              <div className="border-t border-stone-200 pt-6">
+                <h3 className="text-xl font-semibold text-stone-900 mb-3">Professional Yet Accessible</h3>
+                <p className="text-stone-700 leading-relaxed">
+                  Maintains a professional tone while keeping language accessible and engaging. 
+                  Balances technical expertise with clear communication for diverse audiences.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </section>
 
-        {/* CTA */}
-        <section className="mt-16 text-center">
-          <Button
-            onClick={() => router.push('/dashboard')}
-            size="lg"
-            className="bg-gradient-to-r from-[#0071bc] to-[#009fdb] hover:from-[#005a99] hover:to-[#0071bc] text-white"
-          >
-            Test Your Content Alignment
-          </Button>
+        {/* Key Themes */}
+        <section>
+          <h2 className="text-3xl font-bold text-stone-900 mb-6">
+            Key Themes Across Speeches
+          </h2>
+          
+          <Card className="bg-white border-stone-200">
+            <CardContent className="p-6">
+              <div className="flex flex-wrap gap-2">
+                {[
+                  'Development Finance & IDA',
+                  'Private Sector Partnership',
+                  'Climate Finance & Energy Access',
+                  'Job Creation & Economic Opportunity',
+                  'Food Security & Agriculture',
+                  'Reform & Innovation',
+                  'Poverty Reduction',
+                  'Infrastructure Investment'
+                ].map((theme, index) => (
+                  <Badge
+                    key={index}
+                    className="bg-blue-50 text-[#0071bc] border-blue-200 px-4 py-2"
+                  >
+                    {theme}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </section>
       </div>
-    </main>
+    </div>
   );
 }
-
