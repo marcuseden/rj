@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# colab scripts with credentials
+colab_*.py
+colab_*.ipynb
