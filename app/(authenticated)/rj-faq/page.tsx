@@ -101,11 +101,11 @@ export default function WorldBankDocsPage() {
       <div className="bg-white border-b border-stone-200 px-6 py-6">
         <h1 className="text-3xl font-bold text-stone-900 mb-2">
           World Bank Documents
-        </h1>
+          </h1>
         <p className="text-stone-600">
           {allDocuments.length} strategy documents and publications
-        </p>
-      </div>
+          </p>
+        </div>
 
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Search with Autocomplete */}
@@ -127,22 +127,22 @@ export default function WorldBankDocsPage() {
               <Card className="absolute top-full mt-2 w-full z-20 bg-white border-stone-200 shadow-lg">
                 <CardContent className="p-2">
                   {suggestions.map((suggestion, idx) => (
-                    <button
+        <button
                       key={idx}
                       onClick={() => selectSuggestion(suggestion)}
                       className="w-full text-left px-4 py-3 hover:bg-stone-50 rounded-lg transition-colors"
-                    >
+        >
                       <div className="flex items-center gap-3">
                         <FileText className="h-4 w-4 text-stone-400" />
                         <span className="text-sm text-stone-900">{suggestion}</span>
                       </div>
-                    </button>
+        </button>
                   ))}
                 </CardContent>
               </Card>
             )}
-          </div>
-        </div>
+              </div>
+            </div>
 
         {/* Results Count */}
         <div className="mb-4 text-sm text-stone-600">
@@ -154,38 +154,38 @@ export default function WorldBankDocsPage() {
           {filteredDocs.map((doc) => (
             <Link key={doc.id} href={`/document/${doc.id}`}>
               <Card className="bg-white border-stone-200 hover:shadow-lg hover:border-[#0071bc] transition-all cursor-pointer">
-                <CardContent className="p-6">
+              <CardContent className="p-6">
                   <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
                         {doc.tags?.documentType && (
                           <Badge className="bg-stone-100 text-stone-700 border-stone-200">
                             {doc.tags.documentType}
                           </Badge>
                         )}
                         {doc.tags?.priority && (
-                          <Badge className={
+                      <Badge className={
                             doc.tags.priority === 'high' 
                               ? 'bg-red-100 text-red-700 border-red-200' 
                               : doc.tags.priority === 'medium'
                               ? 'bg-yellow-100 text-yellow-700 border-yellow-200'
                               : 'bg-green-100 text-green-700 border-green-200'
-                          }>
-                            {doc.tags.priority}
-                          </Badge>
+                      }>
+                        {doc.tags.priority}
+                      </Badge>
                         )}
                         <span className="text-sm text-stone-500">{doc.date}</span>
-                      </div>
+                    </div>
                       
                       <h3 className="text-lg font-semibold text-stone-900 mb-2 hover:text-[#0071bc] transition-colors">
-                        {doc.title}
-                      </h3>
+                      {doc.title}
+                    </h3>
                       
                       <p className="text-stone-600 mb-4 line-clamp-3">
-                        {doc.summary}
-                      </p>
+                      {doc.summary}
+                    </p>
 
-                      {/* Tags */}
+                {/* Tags */}
                       <div className="flex flex-wrap gap-2">
                         {doc.tags?.sectors?.slice(0, 3).map((sector, idx) => (
                           <Badge key={idx} variant="secondary" className="bg-stone-50 text-stone-600 border-stone-200 text-xs">
@@ -212,9 +212,9 @@ export default function WorldBankDocsPage() {
                         <ExternalLink className="h-5 w-5 text-stone-400" />
                       )}
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+              </CardContent>
+            </Card>
             </Link>
           ))}
 
@@ -228,17 +228,17 @@ export default function WorldBankDocsPage() {
                 {searchQuery ? 'Try a different search term' : 'No documents available'}
               </p>
               {searchQuery && (
-                <button
+              <button
                   onClick={() => setSearchQuery('')}
                   className="text-[#0071bc] hover:text-[#005a99]"
-                >
+              >
                   Clear search
-                </button>
+              </button>
               )}
             </Card>
           )}
         </div>
       </div>
-    </div>
+        </div>
   );
 }

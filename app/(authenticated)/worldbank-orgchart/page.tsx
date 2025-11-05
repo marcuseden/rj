@@ -120,9 +120,9 @@ export default function OrgChartPage() {
           </div>
         )}
 
-        {/* Connecting Line */}
+        {/* Connecting Line - hide on mobile */}
         {president && executiveTeam.length > 0 && (
-          <div className="flex justify-center mb-6">
+          <div className="hidden md:flex justify-center mb-6">
             <div className="w-0.5 h-12 bg-stone-300"></div>
           </div>
         )}
@@ -130,14 +130,14 @@ export default function OrgChartPage() {
         {/* Level 2 - Executive Team */}
         {executiveTeam.length > 0 && (
           <>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 relative">
-              {/* Horizontal connecting line */}
-              <div className="absolute top-0 left-[12.5%] right-[12.5%] h-0.5 bg-stone-300 -translate-y-6"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 relative">
+              {/* Horizontal connecting line - hide on mobile */}
+              <div className="hidden md:block absolute top-0 left-[12.5%] right-[12.5%] h-0.5 bg-stone-300 -translate-y-6"></div>
               
               {executiveTeam.map((member, idx) => (
                 <div key={member.id} className="relative">
-                  {/* Vertical line to member */}
-                  <div className="absolute top-0 left-1/2 w-0.5 h-6 bg-stone-300 -translate-y-6 -translate-x-1/2"></div>
+                  {/* Vertical line to member - hide on mobile */}
+                  <div className="hidden md:block absolute top-0 left-1/2 w-0.5 h-6 bg-stone-300 -translate-y-6 -translate-x-1/2"></div>
                   
                   <Link href={`/department/${member.id}`}>
                     <Card className="bg-white border-stone-200 hover:shadow-lg transition-all cursor-pointer h-full">
@@ -168,9 +168,9 @@ export default function OrgChartPage() {
                     </Card>
                   </Link>
                   
-                  {/* Line to children if any */}
+                  {/* Line to children if any - hide on mobile */}
                   {member.children_count > 0 && getChildrenOf(member.id).length > 0 && (
-                    <div className="absolute bottom-0 left-1/2 w-0.5 h-6 bg-stone-300 translate-y-6 -translate-x-1/2"></div>
+                    <div className="hidden md:block absolute bottom-0 left-1/2 w-0.5 h-6 bg-stone-300 translate-y-6 -translate-x-1/2"></div>
                   )}
                 </div>
               ))}
