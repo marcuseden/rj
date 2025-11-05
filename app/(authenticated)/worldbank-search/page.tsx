@@ -81,9 +81,11 @@ export default function WorldBankSearchPage() {
     const regs = new Set<string>();
 
     docs.forEach(doc => {
-      types.add(doc.tags.documentType);
-      doc.tags.sectors.forEach(s => secs.add(s));
-      doc.tags.regions.forEach(r => regs.add(r));
+      if (doc.tags) {
+        if (doc.tags.documentType) types.add(doc.tags.documentType);
+        if (doc.tags.sectors) doc.tags.sectors.forEach(s => secs.add(s));
+        if (doc.tags.regions) doc.tags.regions.forEach(r => regs.add(r));
+      }
     });
 
     setDocTypes(Array.from(types).sort());
@@ -98,31 +100,31 @@ export default function WorldBankSearchPage() {
     if (searchQuery.trim()) {
       const queryLower = searchQuery.toLowerCase();
       filtered = filtered.filter(doc =>
-        doc.title.toLowerCase().includes(queryLower) ||
-        doc.summary.toLowerCase().includes(queryLower) ||
-        doc.tags.sectors.some(s => s.toLowerCase().includes(queryLower)) ||
-        doc.tags.initiatives.some(i => i.toLowerCase().includes(queryLower)) ||
-        doc.tags.authors.some(a => a.toLowerCase().includes(queryLower)) ||
-        doc.tags.regions.some(r => r.toLowerCase().includes(queryLower)) ||
-        doc.tags.documentType.toLowerCase().includes(queryLower)
+        doc.title?.toLowerCase().includes(queryLower) ||
+        doc.summary?.toLowerCase().includes(queryLower) ||
+        doc.tags?.sectors?.some(s => s.toLowerCase().includes(queryLower)) ||
+        doc.tags?.initiatives?.some(i => i.toLowerCase().includes(queryLower)) ||
+        doc.tags?.authors?.some(a => a.toLowerCase().includes(queryLower)) ||
+        doc.tags?.regions?.some(r => r.toLowerCase().includes(queryLower)) ||
+        doc.tags?.documentType?.toLowerCase().includes(queryLower)
       );
     }
 
     // Tag filters
     if (selectedDocType !== 'all') {
-      filtered = filtered.filter(doc => doc.tags.documentType === selectedDocType);
+      filtered = filtered.filter(doc => doc.tags?.documentType === selectedDocType);
     }
 
     if (selectedSector !== 'all') {
-      filtered = filtered.filter(doc => doc.tags.sectors.includes(selectedSector));
+      filtered = filtered.filter(doc => doc.tags?.sectors?.includes(selectedSector));
     }
 
     if (selectedRegion !== 'all') {
-      filtered = filtered.filter(doc => doc.tags.regions.includes(selectedRegion));
+      filtered = filtered.filter(doc => doc.tags?.regions?.includes(selectedRegion));
     }
 
     if (selectedPriority !== 'all') {
-      filtered = filtered.filter(doc => doc.tags.priority === selectedPriority);
+      filtered = filtered.filter(doc => doc.tags?.priority === selectedPriority);
     }
 
     setFilteredDocs(filtered);
@@ -348,14 +350,14 @@ export default function WorldBankSearchPage() {
 
                 {/* Tags */}
                 <div className="space-y-3 mb-4">
-                  {doc.tags.authors.length > 0 && (
+                  {doc.tags?.authors && doc.tags.authors.length > 0 && (
                     <div className="flex items-center gap-2">
                       <User className="h-4 w-4 text-gray-400" />
                       <span className="text-sm text-gray-700 dark:text-gray-300">{doc.tags.authors.join(', ')}</span>
                     </div>
                   )}
 
-                  {doc.tags.sectors.length > 0 && (
+                  {doc.tags?.sectors && doc.tags.sectors.length > 0 && (
                     <div className="flex items-start gap-2">
                       <Building2 className="h-4 w-4 text-gray-400 mt-0.5" />
                       <div className="flex flex-wrap gap-1">
@@ -368,7 +370,7 @@ export default function WorldBankSearchPage() {
                     </div>
                   )}
 
-                  {doc.tags.regions.length > 0 && (
+                  {doc.tags?.regions && doc.tags.regions.length > 0 && (
                     <div className="flex items-start gap-2">
                       <Globe className="h-4 w-4 text-gray-400 mt-0.5" />
                       <div className="flex flex-wrap gap-1">
@@ -381,7 +383,7 @@ export default function WorldBankSearchPage() {
                     </div>
                   )}
 
-                  {doc.tags.initiatives.length > 0 && (
+                  {doc.tags?.initiatives && doc.tags.initiatives.length > 0 && (
                     <div className="flex items-start gap-2">
                       <Briefcase className="h-4 w-4 text-gray-400 mt-0.5" />
                       <div className="flex flex-wrap gap-1">
@@ -491,7 +493,7 @@ export default function WorldBankSearchPage() {
 
               {/* All Tags */}
               <div className="space-y-4 mb-6">
-                {selectedDoc.tags.authors.length > 0 && (
+                {selectedDoc.tags?.authors && selectedDoc.tags.authors.length > 0 && (
                   <div>
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Authors</h4>
                     <div className="flex flex-wrap gap-2">
@@ -502,7 +504,7 @@ export default function WorldBankSearchPage() {
                   </div>
                 )}
 
-                {selectedDoc.tags.sectors.length > 0 && (
+                {selectedDoc.tags?.sectors && selectedDoc.tags.sectors.length > 0 && (
                   <div>
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Sectors</h4>
                     <div className="flex flex-wrap gap-2">
@@ -513,7 +515,7 @@ export default function WorldBankSearchPage() {
                   </div>
                 )}
 
-                {selectedDoc.tags.regions.length > 0 && (
+                {selectedDoc.tags?.regions && selectedDoc.tags.regions.length > 0 && (
                   <div>
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Regions</h4>
                     <div className="flex flex-wrap gap-2">
@@ -524,7 +526,7 @@ export default function WorldBankSearchPage() {
                   </div>
                 )}
 
-                {selectedDoc.tags.initiatives.length > 0 && (
+                {selectedDoc.tags?.initiatives && selectedDoc.tags.initiatives.length > 0 && (
                   <div>
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Initiatives & Projects</h4>
                     <div className="flex flex-wrap gap-2">
