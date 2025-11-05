@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "totalDocuments": 1,
+    "generated": "2025-11-03T14:07:15.366Z"
+  },
+  "sourceBreakdown": {
+    "https://www.worldbank.org/en/about/people/a/ajay-banga": [
+      {
+        "id": "aHR0cHM6Ly9zZWFyY2gud29ybGRiYW5r",
+        "title": "Untitled Document",
+        "url": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
+        "linkText": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,displayconttype_exact,lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
+        "discoveredAt": "2025-11-03T14:07:11.506Z"
+      }
+    ]
+  },
+  "documentReferences": [
+    {
+      "id": "aHR0cHM6Ly9zZWFyY2gud29ybGRiYW5r",
+      "title": "Untitled Document",
+      "url": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
+      "sourceReference": {
+        "originalUrl": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
+        "scrapedFrom": "https://www.worldbank.org/en/about/people/a/ajay-banga",
+        "parentPage": "https://www.worldbank.org/en/about/people/a/ajay-banga",
+        "linkText": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,displayconttype_exact,lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
+        "discoveredAt": "2025-11-03T14:07:11.506Z",
+        "sourceType": "linked"
+      },
+      "citations": [
+        "http://documents.worldbank.org/curated/en/099041012112425709/IDU1e4f269b812001be7f1329f1b79183b\"},\"_34400797\":{\"id\":\"34400797\",\"countrycode\":\"1W\",\"country\":\"World\",\"country_exact\":\"World\",\"countrycode_exact\":\"1W\",\"indextype\":\"wds\",\"docty\":{\"0\":{\"cdata!\":\"President's",
+        "http://documents.worldbank.org/curated/en/099302110072438743/IDU1360f0b2f1a0d1af181694fbb0506d1\"},\"_34372636\":{\"id\":\"34372636\",\"countrycode\":\"BR\",\"country\":\"Brazil\",\"country_exact\":\"Brazil\",\"countrycode_exact\":\"BR\",\"indextype\":\"wds\",\"docty\":{\"0\":{\"cdata!\":\"President's",
+        "http://documents.worldbank.org/curated/en/099503208022485751/IDU168dd050617051b39c1971f2f753a79\"},\"_34324264\":{\"id\":\"34324264\",\"country\":\"Africa",
+        "http://documents.worldbank.org/curated/en/099403205242425157/IDU13658782416051a43e153624fb0c4fa\"},\"_34253797\":{\"id\":\"34253797\",\"countrycode\":\"1W\",\"country\":\"World\",\"country_exact\":\"World\",\"countrycode_exact\":\"1W\",\"indextype\":\"wds\",\"docty\":{\"0\":{\"cdata!\":\"President's",
+        "http://documents.worldbank.org/curated/en/099227302072491278/IDU1a8b7ab551f011917c1e8eaca211d57\"},\"_34253804\":{\"id\":\"34253804\",\"countrycode\":\"1W\",\"country\":\"World\",\"country_exact\":\"World\",\"countrycode_exact\":\"1W\",\"indextype\":\"wds\",\"docty\":{\"0\":{\"cdata!\":\"President's",
+        "http://documents.worldbank.org/curated/en/099328402072415342/IDU1121d8a4f110719b6a14c1cc1f81b48\"},\"_34252956\":{\"id\":\"34252956\",\"countrycode\":\"1W\",\"country\":\"World\",\"country_exact\":\"World\",\"countrycode_exact\":\"1W\",\"indextype\":\"wds\",\"docty\":{\"0\":{\"cdata!\":\"President's",
+        "http://documents.worldbank.org/curated/en/099043402062416545/IDU15c9246d01408187ad1f76659c093e1\"},\"_34181163\":{\"id\":\"34181163\",\"countrycode\":\"1W\",\"country\":\"World\",\"country_exact\":\"World\",\"countrycode_exact\":\"1W\",\"indextype\":\"wds\",\"docty\":{\"0\":{\"cdata!\":\"President's",
+        "http://documents.worldbank.org/curated/en/099536510172340726/IDU073534b130b0009fe00d0ce65c022bb\"},\"_34393909\":{\"id\":\"34393909\",\"countrycode\":\"1W\",\"country\":\"World\",\"country_exact\":\"World\",\"countrycode_exact\":\"1W\",\"indextype\":\"wds\",\"docty\":{\"0\":{\"cdata!\":\"Governor's",
+        "http://documents.worldbank.org/curated/en/099837509232419266/IDU1bc0d6d351563414469186211e0e398700590\"},\"_34165421\":{\"id\":\"34165421\",\"countrycode\":\"1W\",\"country\":\"World\",\"country_exact\":\"World\",\"countrycode_exact\":\"1W\",\"indextype\":\"wds\",\"docty\":{\"0\":{\"cdata!\":\"President's",
+        "http://documents.worldbank.org/curated/en/099322409202365988/IDU020d143b2080f0bc3e029bba909c606\"},\"facets\":{\"lang_exact\":{\"0\":{\"count\":10,\"name\":\"English\",\"label\":\"English\"}}}}}",
+        "document highlights",
+        "document also",
+        "report discusses"
+      ]
+    }
+  ]
+}

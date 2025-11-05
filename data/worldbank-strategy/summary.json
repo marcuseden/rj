@@ -1,0 +1,12 @@
+{
+  "total": 9,
+  "byType": {
+    "President's Speech": 9
+  },
+  "byYear": {
+    "2023": 5,
+    "2024": 4
+  },
+  "averageWordCount": 477,
+  "generatedAt": "2025-11-04T10:17:34.189Z"
+}

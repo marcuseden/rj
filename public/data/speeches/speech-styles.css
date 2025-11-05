@@ -1,0 +1,455 @@
+/* Professional styling for World Bank speech pages */
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.7;
+    color: #2c3e50;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+    color: white;
+    padding: 0;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.sidebar-header p {
+    margin: 5px 0 0 0;
+    font-size: 0.9em;
+    color: #a0aec0;
+}
+
+.sidebar-nav {
+    padding: 20px 0;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin: 0;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 12px 20px;
+    color: #e2e8f0;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.sidebar-nav a:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-left-color: #4299e1;
+    color: white;
+}
+
+.sidebar-nav a.active {
+    background-color: rgba(66, 153, 225, 0.2);
+    border-left-color: #4299e1;
+    color: white;
+}
+
+.sidebar-nav .nav-section {
+    margin-top: 20px;
+}
+
+.sidebar-nav .nav-section:first-child {
+    margin-top: 0;
+}
+
+.sidebar-nav .nav-title {
+    padding: 8px 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Main Content Area */
+.content-wrapper {
+    flex: 1;
+    margin-left: 280px;
+    background-color: white;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.col-md-12, .col-lg-6, .col-md-5, .col-sm-5, .col-xs-6, .col-xs-12, .col-md-2, .col-lg-2 {
+    padding: 0 15px;
+}
+
+.col-lg-6 { flex: 0 0 50%; max-width: 50%; }
+.col-md-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+.col-sm-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+.col-xs-6 { flex: 0 0 50%; max-width: 50%; }
+.col-md-12 { flex: 0 0 100%; max-width: 100%; }
+.col-xs-12 { flex: 0 0 100%; max-width: 100%; }
+.col-md-2, .col-lg-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: #1a365d;
+    font-weight: 700;
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    color: #1a365d;
+}
+
+h2 {
+    font-size: 2em;
+    color: #2c5282;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #2d3748;
+}
+
+/* Speech Content Styling */
+article.lp__body_content {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 2em 0;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+article.lp__body_content p {
+    margin-bottom: 1.5em;
+    text-align: left;
+    color: #2d3748;
+}
+
+article.lp__body_content p:first-child {
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    color: #1a365d;
+    margin-bottom: 2em;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1em;
+}
+
+/* Breadcrumb Styling */
+.lp__breadcrumb {
+    background-color: #f7fafc;
+    padding: 1em 0;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 2em;
+}
+
+.lp__breadcrumb_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.lp__breadcrumb_list_item {
+    color: #718096;
+    font-size: 0.9em;
+}
+
+.lp__breadcrumb_list_item a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.lp__breadcrumb_list_item a:hover {
+    text-decoration: underline;
+}
+
+.lp__breadcrumb_list_item:not(:last-child)::after {
+    content: "/";
+    margin-left: 0.5em;
+    color: #a0aec0;
+}
+
+/* Social Sharing and Tools */
+.lp__socialshare_tool {
+    margin: 2em 0;
+    text-align: center;
+}
+
+.lp__socialshare_list {
+    display: inline-flex;
+    gap: 1em;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lp__socialbtn {
+    display: inline-block;
+    padding: 0.75em 1em;
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.lp__socialbtn:hover {
+    background-color: #4299e1;
+    color: white;
+    border-color: #4299e1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 250px;
+    }
+
+    .content-wrapper {
+        margin-left: 250px;
+    }
+
+    article.lp__body_content {
+        max-width: 650px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        box-shadow: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .sidebar-nav {
+        padding: 1em;
+    }
+
+    .sidebar-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+    }
+
+    .sidebar-nav li {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .content-wrapper {
+        margin-left: 0;
+    }
+
+    .container {
+        padding: 0 1em;
+    }
+
+    article.lp__body_content {
+        max-width: 100%;
+        padding: 1em 0;
+        font-size: 1em;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar-nav ul {
+        flex-direction: column;
+    }
+
+    .sidebar-nav li {
+        min-width: unset;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    article.lp__body_content p:first-child {
+        font-size: 1.1em;
+    }
+}
+
+
+/* World Bank specific styles */
+.wb_metadata {
+    background-color: #f1f5f9;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-left: 4px solid #2c5282;
+}
+
+.lp__heading {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #2c5282;
+    margin-bottom: 1em;
+    line-height: 1.2;
+}
+
+.full-row-news-content-banner {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+}
+
+.parbase {
+    margin-bottom: 20px;
+}
+
+.clearix {
+    clear: both;
+}
+
+/* Links */
+a {
+    color: #2c5282;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Lists */
+ul, ol {
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid #2c5282;
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #666;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Language toggler (hide it since it's not functional) */
+.lang-toggler {
+    display: none;
+}
+
+/* Footer styles */
+footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .col-lg-6, .col-md-5, .col-sm-5 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .lp__heading {
+        font-size: 1.8em;
+    }
+}
