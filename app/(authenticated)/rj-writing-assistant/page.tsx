@@ -149,7 +149,9 @@ Example: 'Our organization is working on renewable energy projects to address cl
 
           {/* Analysis Results - Claude style */}
           {analysis ? (
-            <div className="space-y-6">
+            <Card>
+              <CardContent className="p-6">
+                <div className="space-y-6">
               {/* Score Card - Minimal */}
               <div className={`px-6 py-4 rounded-xl border-2 ${getScoreBg(analysis.overallScore)}`}>
                 <div className="flex items-center justify-between">
@@ -366,8 +368,9 @@ Example: 'Our organization is working on renewable energy projects to address cl
                   </div>
                 </div>
               )}
-                </CardContent>
-              </Card>
+                </div>
+              </CardContent>
+            </Card>
             ) : (
               <Card>
                 <CardContent className="p-12 text-center">
