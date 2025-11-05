@@ -1,45 +1,29 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight } from 'lucide-react';
+import { Building2, Users, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import useSWR from 'swr';
 
-interface OrgMember {
-  id: string;
-  name: string;
-  position: string;
-  avatar_url?: string;
-  bio: string;
-  level: number;
-  department: string;
-  parent_id?: string;
-  children_count?: number;
-}
+import { fetchOrgChart } from '@/lib/search-api';
+import { OrgMember } from '@/lib/search-types';
+import { OrgChartSkeleton } from '@/components/SearchSkeleton';
 
 export default function OrgChartPage() {
-  const [hierarchy, setHierarchy] = useState<OrgMember[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchOrgChart();
-  }, []);
-
-  const fetchOrgChart = async () => {
-    try {
-      const response = await fetch('/api/worldbank-orgchart');
-      if (response.ok) {
-        const data = await response.json();
-        setHierarchy(data.hierarchy || []);
-      }
-    } catch (error) {
-      console.error('Error fetching org chart:', error);
-    } finally {
-      setLoading(false);
+  // Load top 2 levels immediately
+  const { data: topLevels, isLoading: topLoading } = useSWR(
+    'orgchart-top',
+    () => fetchOrgChart(),
+    {
+      revalidateOnFocus: false,
+      dedupingInterval: 300000 // 5 minutes
     }
-  };
+  );
+
+  const hierarchy = topLevels?.hierarchy || [];
 
   const getInitials = (name: string) => {
     return name
@@ -54,14 +38,24 @@ export default function OrgChartPage() {
     return hierarchy.filter(m => m.level === level);
   };
 
-  const getChildrenOf = (parentId: string) => {
-    return hierarchy.filter(m => m.parent_id === parentId);
+  // Determine if a member is a department (has direct reports)
+  const isDepartment = (member: OrgMember) => {
+    return member.children_count && member.children_count > 0;
   };
 
-  if (loading) {
+  if (topLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-stone-900"></div>
+      <div className="min-h-screen bg-stone-50 p-6">
+        <div className="mb-8 text-center">
+          <div className="h-8 bg-stone-200 rounded w-96 mx-auto mb-2 animate-pulse"></div>
+          <div className="h-4 bg-stone-200 rounded w-64 mx-auto animate-pulse"></div>
+        </div>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-center mb-12">
+            <OrgChartSkeleton count={1} />
+          </div>
+          <OrgChartSkeleton count={4} />
+        </div>
       </div>
     );
   }
@@ -83,34 +77,55 @@ export default function OrgChartPage() {
 
       {/* Org Chart - Node Based Design */}
       <div className="max-w-7xl mx-auto">
-        {/* Level 1 - President */}
+        {/* Level 1 - President (Department Card Style) */}
         {president && (
           <div className="flex justify-center mb-12">
             <Link href={`/department/${president.id}`}>
-              <Card className="bg-white border-stone-200 hover:shadow-xl transition-all cursor-pointer w-80">
+              <Card className="bg-gradient-to-br from-[#0071bc] to-[#005a99] border-0 hover:shadow-2xl transition-all cursor-pointer w-96 group">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
-                    <Avatar className="w-24 h-24 mb-4 ring-4 ring-[#0071bc]">
-                      <AvatarImage src={president.avatar_url} alt={president.name} />
-                      <AvatarFallback className="bg-[#0071bc] text-white text-2xl font-bold">
-                        {getInitials(president.name)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <h3 className="text-xl font-bold text-stone-900 mb-1">
-                      {president.name}
-                    </h3>
-                    <p className="text-sm text-[#0071bc] font-semibold mb-3">
+                    {/* Department Icon */}
+                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4">
+                      <Building2 className="w-8 h-8 text-white" />
+                    </div>
+                    
+                    {/* Department Name */}
+                    <h2 className="text-2xl font-bold text-white mb-2">
+                      {president.department || 'Office of the President'}
+                    </h2>
+                    <p className="text-sm text-blue-100 mb-4">
                       {president.position}
                     </p>
-                    <Badge className="bg-stone-100 text-stone-700 border-stone-200 mb-3">
-                      {president.department}
-                    </Badge>
-                    <p className="text-xs text-stone-600 line-clamp-2">
-                      {president.bio}
-                    </p>
-                    {president.children_count > 0 && (
-                      <div className="mt-4 text-xs text-stone-500">
+
+                    {/* Divider */}
+                    <div className="w-full h-px bg-white/20 my-4"></div>
+
+                    {/* Department Head - Smaller */}
+                    <div className="flex items-center gap-3 w-full bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                      <Avatar className="w-12 h-12 ring-2 ring-white/30">
+                        <AvatarImage src={president.avatar_url} alt={president.name} />
+                        <AvatarFallback className="bg-white/20 text-white font-bold">
+                          {getInitials(president.name)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 text-left">
+                        <p className="text-sm font-semibold text-white">
+                          {president.name}
+                        </p>
+                        <p className="text-xs text-blue-100">
+                          Department Head
+                        </p>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                    </div>
+
+                    {/* Team Size */}
+                    {president.children_count && president.children_count > 0 && (
+                      <div className="mt-4 flex items-center gap-2 text-white/80">
+                        <Users className="w-4 h-4" />
+                        <span className="text-sm">
                         {president.children_count} direct reports
+                        </span>
                       </div>
                     )}
                   </div>
@@ -127,20 +142,82 @@ export default function OrgChartPage() {
           </div>
         )}
 
-        {/* Level 2 - Executive Team */}
+        {/* Level 2 - Executive Team (Department Cards) */}
         {executiveTeam.length > 0 && (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 relative">
               {/* Horizontal connecting line - hide on mobile */}
               <div className="hidden md:block absolute top-0 left-[12.5%] right-[12.5%] h-0.5 bg-stone-300 -translate-y-6"></div>
               
-              {executiveTeam.map((member, idx) => (
+              {executiveTeam.map((member) => {
+                const hasDepartment = isDepartment(member);
+                
+                return (
                 <div key={member.id} className="relative">
                   {/* Vertical line to member - hide on mobile */}
                   <div className="hidden md:block absolute top-0 left-1/2 w-0.5 h-6 bg-stone-300 -translate-y-6 -translate-x-1/2"></div>
                   
                   <Link href={`/department/${member.id}`}>
-                    <Card className="bg-white border-stone-200 hover:shadow-lg transition-all cursor-pointer h-full">
+                      {hasDepartment ? (
+                        // DEPARTMENT CARD - Focus on department with head shown smaller
+                        <Card className="bg-white border-2 border-stone-200 hover:border-[#0071bc] hover:shadow-lg transition-all cursor-pointer h-full group">
+                          <CardContent className="p-4">
+                            <div className="flex flex-col items-center text-center">
+                              {/* Department Icon */}
+                              <div className="w-12 h-12 rounded-lg bg-stone-100 group-hover:bg-[#0071bc]/10 flex items-center justify-center mb-3 transition-colors">
+                                <Building2 className="w-6 h-6 text-stone-600 group-hover:text-[#0071bc] transition-colors" />
+                              </div>
+                              
+                              {/* Department Name */}
+                              <Badge className="bg-stone-900 text-white text-xs mb-2 px-3 py-1">
+                                {member.department}
+                              </Badge>
+                              <p className="text-xs text-stone-600 mb-3 line-clamp-2 min-h-[2.5rem]">
+                                {member.position}
+                              </p>
+
+                              {/* Divider */}
+                              <div className="w-full h-px bg-stone-200 my-2"></div>
+
+                              {/* Department Head - Compact */}
+                              <div className="flex items-center gap-2 w-full bg-stone-50 rounded-lg p-2 mt-2">
+                                <Avatar className="w-8 h-8 ring-2 ring-stone-200">
+                                  <AvatarImage src={member.avatar_url} alt={member.name} />
+                                  <AvatarFallback className="bg-stone-200 text-stone-700 text-xs font-semibold">
+                                    {getInitials(member.name)}
+                                  </AvatarFallback>
+                                </Avatar>
+                                <div className="flex-1 text-left min-w-0">
+                                  <p className="text-xs font-semibold text-stone-900 truncate">
+                                    {member.name}
+                                  </p>
+                                  <p className="text-xs text-stone-500">
+                                    Head
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Team Size */}
+                              {member.children_count && member.children_count > 0 && (
+                                <div className="mt-3 flex items-center gap-1.5 text-stone-600 bg-stone-50 rounded-full px-3 py-1.5">
+                                  <Users className="w-3.5 h-3.5" />
+                                  <span className="text-xs font-medium">
+                                    {member.children_count} members
+                                  </span>
+                                </div>
+                              )}
+
+                              {/* Click to view indicator */}
+                              <div className="mt-2 text-xs text-[#0071bc] font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                View Team
+                                <ChevronRight className="w-3 h-3" />
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ) : (
+                        // PERSON CARD - Focus on individual
+                        <Card className="bg-white border border-stone-200 hover:shadow-lg transition-all cursor-pointer h-full">
                       <CardContent className="p-4">
                         <div className="flex flex-col items-center text-center">
                           <Avatar className="w-16 h-16 mb-3 ring-2 ring-stone-200">
@@ -155,64 +232,19 @@ export default function OrgChartPage() {
                           <p className="text-xs text-stone-600 mb-2 line-clamp-2">
                             {member.position}
                           </p>
-                          <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
+                              <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
                             {member.department}
                           </Badge>
-                          {member.children_count > 0 && (
-                            <div className="mt-2 text-xs text-stone-500">
-                              {member.children_count} reports
-                            </div>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                  
-                  {/* Line to children if any - hide on mobile */}
-                  {member.children_count > 0 && getChildrenOf(member.id).length > 0 && (
-                    <div className="hidden md:block absolute bottom-0 left-1/2 w-0.5 h-6 bg-stone-300 translate-y-6 -translate-x-1/2"></div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Level 3 - Direct Reports grouped by parent */}
-            {executiveTeam.map((parent) => {
-              const children = getChildrenOf(parent.id);
-              if (children.length === 0) return null;
-
-              return (
-                <div key={parent.id} className="mb-12">
-                  <h3 className="text-lg font-semibold text-stone-700 mb-4 text-center">
-                    {parent.name}'s Team
-                  </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                    {children.map((member) => (
-                      <Link key={member.id} href={`/department/${member.id}`}>
-                        <Card className="bg-white border-stone-200 hover:shadow-lg transition-all cursor-pointer h-full">
-                          <CardContent className="p-4">
-                            <div className="flex flex-col items-center text-center">
-                              <Avatar className="w-14 h-14 mb-2 ring-2 ring-stone-200">
-                                <AvatarImage src={member.avatar_url} alt={member.name} />
-                                <AvatarFallback className="bg-stone-50 text-stone-600 text-sm font-semibold">
-                                  {getInitials(member.name)}
-                                </AvatarFallback>
-                              </Avatar>
-                              <h4 className="font-semibold text-stone-900 text-xs mb-1 line-clamp-2">
-                                {member.name}
-                              </h4>
-                              <p className="text-xs text-stone-600 line-clamp-2">
-                                {member.position}
-                              </p>
                             </div>
                           </CardContent>
                         </Card>
+                      )}
                       </Link>
-                    ))}
-                  </div>
                 </div>
               );
             })}
+            </div>
+
           </>
         )}
 

@@ -1,11 +1,13 @@
 [
   {
     "id": "34434774",
-    "title": "Remarks by World Bank Group            President Ajay Banga at the Agriculture and Food as an            Engine of Sustainable Growth and Jobs Event",
+    "title": "Remarks by World Bank Group President Ajay Banga at the Agriculture and Food as an Engine of Sustainable Growth and Jobs Event",
     "url": "http://documents.worldbank.org/curated/en/099041012112425709/IDU1e4f269b812001be7f1329f1b79183b",
-    "date": "2024-10-23",
-    "summary": "These remarks were delivered by World            Bank Group President Ajay Banga on October 23, 2024,            highlighted the potential of agribusiness in food security,            growth, and employment at the \"Agriculture and Food as            an Engine of Sustainable Growth and Jobs\" event. He            identified four key shifts: the need for climate-smart            agriculture, new financial tools for derisking,            digitalization to connect farmers with financial services,            and the role of farmer associations in overcoming financing            inefficiencies. He announced a strategic pivot to create a            comprehensive agribusiness ecosystem, doubling commitments            to $9 billion annually by 2030, integrating public and            private sector efforts, and focusing on regulations,            standards, and climate finance. He said that this initiative            aims to address the employment needs of 1.2 billion young            people in developing countries, improve quality of life, and            build resilient communities through a thriving agriculture industry.",
-    "type": "speech",
+    "content": "These remarks were delivered by World Bank Group President Ajay Banga on October 23, 2024, highlighted the potential of agribusiness in food security, growth, and employment at the \"Agriculture and Food as an Engine of Sustainable Growth and Jobs\" event. He identified four key shifts: the need for climate-smart agriculture, new financial tools for derisking, digitalization to connect farmers with financial services, and the role of farmer associations in overcoming financing inefficiencies. He announced a strategic pivot to create a comprehensive agribusiness ecosystem, doubling commitments to $9 billion annually by 2030, integrating public and private sector efforts, and focusing on regulations, standards, and climate finance. He said that this initiative aims to address the employment needs of 1.2 billion young people in developing countries, improve quality of life, and build resilient communities through a thriving agriculture industry. These remarks were delivered by World Bank Group President Ajay Banga on October 23, 2024, highlighted the potential of agribusiness in food security, growth, and employment at the \"Agriculture and Food as an Engine of Sustainable Growth and Jobs\" event. He identified four key shifts: the need for climate-smart agriculture, new financial tools for derisking, digitalization to connect farmers with financial services, and the role of farmer associations in overcoming financing inefficiencies. He announced a strategic pivot to create a comprehensive agribusiness ecosystem, doubling commitments to $9 billion annually by 2030, integrating public and private sector efforts, and focusing on regulations, standards, and climate finance. He said that this initiative aims to address the employment needs of 1.2 billion young people in developing countries, improve quality of life, and build resilient communities through a thriving agriculture industry. These remarks were delivered by World Bank Group President Ajay Banga on October 23, 2024, highlighted the potential of agribusiness in food security, growth, and employment at the \"Agriculture and Food as an Engine of Sustainable Growth and Jobs\" event. He identified four key shifts: the need for climate-smart agriculture, new financial tools for derisking, digitalization to connect farmers with financial services, and the role of farmer associations in overcoming financing inefficiencies. He announced a strategic pivot to create a comprehensive agribusiness ecosystem, doubling commitments to $9 billion annually by 2030, integrating public and private sector efforts, and focusing on regulations, standards, and climate finance. He said that this initiative aims to address the employment needs of 1.2 billion young people in developing countries, improve quality of life, and build resilient communities through a thriving agriculture industry.",
+    "summary": "These remarks were delivered by World Bank Group President Ajay Banga on October 23, 2024, highlighted the potential of agribusiness in food security, growth, and employment at the \"Agriculture and Food as an Engine of Sustainable Growth and Jobs\" event. He identified four key shifts: the need for climate-smart agriculture, new financial tools for derisking, digitalization to connect farmers with financial services, and the role of farmer associations in overcoming financing inefficiencies. He a...",
+    "date": "2024-10-23T00:00:00Z",
+    "type": "President's Speech",
+    "fileType": "html",
     "topics": [],
     "keywords": [
       "climate",
@@ -13,18 +15,13 @@
       "banga",
       "financing"
     ],
-    "initiatives": [],
     "regions": [
       "Global"
     ],
-    "sectors": [
-      "Climate",
-      "Agriculture",
-      "Finance",
-      "Technology"
-    ],
+    "sectors": [],
+    "initiatives": [],
     "tags": {
-      "documentType": "speech",
+      "documentType": "President's Speech",
       "contentType": "text",
       "audience": [
         "public",
@@ -40,47 +37,43 @@
     "sourceReference": {
       "originalUrl": "http://documents.worldbank.org/curated/en/099041012112425709/IDU1e4f269b812001be7f1329f1b79183b",
       "scrapedFrom": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
-      "discoveredAt": "2025-11-03T14:08:22.961Z",
+      "discoveredAt": "2025-11-04T10:17:34.174Z",
       "sourceType": "api"
     },
     "metadata": {
       "language": "English",
-      "wordCount": 137,
-      "readingTime": 1,
+      "wordCount": 411,
+      "readingTime": 3,
       "publicationYear": 2024
     },
-    "scrapedAt": "2025-11-03T14:08:22.962Z"
+    "scrapedAt": "2025-11-04T10:17:34.181Z"
   },
   {
     "id": "34400797",
-    "title": "Remarks by World Bank Group            President Ajay Banga at the Lowy Institute in Sydney, Australia",
+    "title": "Remarks by World Bank Group President Ajay Banga at the Lowy Institute in Sydney, Australia",
     "url": "http://documents.worldbank.org/curated/en/099302110072438743/IDU1360f0b2f1a0d1af181694fbb0506d1",
-    "date": "2024-09-10",
-    "summary": "These remarks were delivered by World            Bank Group President, Ajay Banga, at the Lowy Institute in            Sydney, Australia, on September 10, 2024. He discussed the            World Bank's efforts to address global challenges such            as climate change, inequality, and fragility. He highlighted            the reforms the World Bank has implemented to become more            effective and impactful, including shortening            project-approval processes and integrating operations. He            also mentioned the World Bank's commitment to providing            climate financing and improving access to healthcare and            clean energy. He emphasized the need for collaboration with            governments, philanthropies, multilateral development banks,            and the private sector to close the financing and jobs gap.            He mentioned the recruitment of leading CEOs to increase            private sector investment in renewable energy and the launch            of an initiative to generate jobs for young people. He            concluded by expressing the World Bank's ongoing            reforms and ambition for greater progress.",
-    "type": "speech",
+    "content": "These remarks were delivered by World Bank Group President, Ajay Banga, at the Lowy Institute in Sydney, Australia, on September 10, 2024. He discussed the World Bank's efforts to address global challenges such as climate change, inequality, and fragility. He highlighted the reforms the World Bank has implemented to become more effective and impactful, including shortening project-approval processes and integrating operations. He also mentioned the World Bank's commitment to providing climate financing and improving access to healthcare and clean energy. He emphasized the need for collaboration with governments, philanthropies, multilateral development banks, and the private sector to close the financing and jobs gap. He mentioned the recruitment of leading CEOs to increase private sector investment in renewable energy and the launch of an initiative to generate jobs for young people. He concluded by expressing the World Bank's ongoing reforms and ambition for greater progress. These remarks were delivered by World Bank Group President, Ajay Banga, at the Lowy Institute in Sydney, Australia, on September 10, 2024. He discussed the World Bank's efforts to address global challenges such as climate change, inequality, and fragility. He highlighted the reforms the World Bank has implemented to become more effective and impactful, including shortening project-approval processes and integrating operations. He also mentioned the World Bank's commitment to providing climate financing and improving access to healthcare and clean energy. He emphasized the need for collaboration with governments, philanthropies, multilateral development banks, and the private sector to close the financing and jobs gap. He mentioned the recruitment of leading CEOs to increase private sector investment in renewable energy and the launch of an initiative to generate jobs for young people. He concluded by expressing the World Bank's ongoing reforms and ambition for greater progress. These remarks were delivered by World Bank Group President, Ajay Banga, at the Lowy Institute in Sydney, Australia, on September 10, 2024. He discussed the World Bank's efforts to address global challenges such as climate change, inequality, and fragility. He highlighted the reforms the World Bank has implemented to become more effective and impactful, including shortening project-approval processes and integrating operations. He also mentioned the World Bank's commitment to providing climate financing and improving access to healthcare and clean energy. He emphasized the need for collaboration with governments, philanthropies, multilateral development banks, and the private sector to close the financing and jobs gap. He mentioned the recruitment of leading CEOs to increase private sector investment in renewable energy and the launch of an initiative to generate jobs for young people. He concluded by expressing the World Bank's ongoing reforms and ambition for greater progress.",
+    "summary": "These remarks were delivered by World Bank Group President, Ajay Banga, at the Lowy Institute in Sydney, Australia, on September 10, 2024. He discussed the World Bank's efforts to address global challenges such as climate change, inequality, and fragility. He highlighted the reforms the World Bank has implemented to become more effective and impactful, including shortening project-approval processes and integrating operations. He also mentioned the World Bank's commitment to providing climate fi...",
+    "date": "2024-09-10T00:00:00Z",
+    "type": "President's Speech",
+    "fileType": "html",
     "topics": [],
     "keywords": [
       "climate",
       "development",
       "reform",
-      "impact",
       "banga",
       "financing",
-      "investment"
+      "investment",
+      "impact"
     ],
-    "initiatives": [],
     "regions": [
       "Global"
     ],
-    "sectors": [
-      "Climate",
-      "Energy",
-      "Finance",
-      "Health",
-      "Governance"
-    ],
+    "sectors": [],
+    "initiatives": [],
     "tags": {
-      "documentType": "speech",
+      "documentType": "President's Speech",
       "contentType": "text",
       "audience": [
         "public",
@@ -96,38 +89,40 @@
     "sourceReference": {
       "originalUrl": "http://documents.worldbank.org/curated/en/099302110072438743/IDU1360f0b2f1a0d1af181694fbb0506d1",
       "scrapedFrom": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
-      "discoveredAt": "2025-11-03T14:08:22.963Z",
+      "discoveredAt": "2025-11-04T10:17:34.182Z",
       "sourceType": "api"
     },
     "metadata": {
       "language": "English",
-      "wordCount": 144,
-      "readingTime": 1,
+      "wordCount": 432,
+      "readingTime": 3,
       "publicationYear": 2024
     },
-    "scrapedAt": "2025-11-03T14:08:22.963Z"
+    "scrapedAt": "2025-11-04T10:17:34.182Z"
   },
   {
     "id": "34372636",
-    "title": "Remarks by World Bank Group            President Ajay Banga at G20 Global Alliance Against Hunger            and Poverty in Rio de Janeiro, Brazil",
+    "title": "Remarks by World Bank Group President Ajay Banga at G20 Global Alliance Against Hunger and Poverty in Rio de Janeiro, Brazil",
     "url": "http://documents.worldbank.org/curated/en/099503208022485751/IDU168dd050617051b39c1971f2f753a79",
-    "date": "2024-07-24",
-    "summary": "This document highlights the            interconnectedness of poverty and hunger, emphasizing the            need for a comprehensive approach to address both issues. It            emphasizes the importance of investing in proven solutions,            particularly in the areas of social protection, agricultural            development, and knowledge sharing. The document also            underscores the role of international partnerships and            financial resources in achieving these goals, aiming to            create a world free from both poverty and hunger.",
-    "type": "speech",
+    "content": "This document highlights the interconnectedness of poverty and hunger, emphasizing the need for a comprehensive approach to address both issues. It emphasizes the importance of investing in proven solutions, particularly in the areas of social protection, agricultural development, and knowledge sharing. The document also underscores the role of international partnerships and financial resources in achieving these goals, aiming to create a world free from both poverty and hunger. This document highlights the interconnectedness of poverty and hunger, emphasizing the need for a comprehensive approach to address both issues. It emphasizes the importance of investing in proven solutions, particularly in the areas of social protection, agricultural development, and knowledge sharing. The document also underscores the role of international partnerships and financial resources in achieving these goals, aiming to create a world free from both poverty and hunger. This document highlights the interconnectedness of poverty and hunger, emphasizing the need for a comprehensive approach to address both issues. It emphasizes the importance of investing in proven solutions, particularly in the areas of social protection, agricultural development, and knowledge sharing. The document also underscores the role of international partnerships and financial resources in achieving these goals, aiming to create a world free from both poverty and hunger.",
+    "summary": "This document highlights the interconnectedness of poverty and hunger, emphasizing the need for a comprehensive approach to address both issues. It emphasizes the importance of investing in proven solutions, particularly in the areas of social protection, agricultural development, and knowledge sharing. The document also underscores the role of international partnerships and financial resources in achieving these goals, aiming to create a world free from both poverty and hunger. This document hi...",
+    "date": "2024-07-24T00:00:00Z",
+    "type": "President's Speech",
+    "fileType": "html",
     "topics": [],
     "keywords": [
-      "poverty",
       "development",
-      "partnership",
-      "banga"
+      "poverty",
+      "banga",
+      "partnership"
     ],
-    "initiatives": [],
     "regions": [
       "Global"
     ],
     "sectors": [],
+    "initiatives": [],
     "tags": {
-      "documentType": "speech",
+      "documentType": "President's Speech",
       "contentType": "text",
       "audience": [
         "public",
@@ -143,41 +138,39 @@
     "sourceReference": {
       "originalUrl": "http://documents.worldbank.org/curated/en/099503208022485751/IDU168dd050617051b39c1971f2f753a79",
       "scrapedFrom": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
-      "discoveredAt": "2025-11-03T14:08:22.963Z",
+      "discoveredAt": "2025-11-04T10:17:34.183Z",
       "sourceType": "api"
     },
     "metadata": {
       "language": "English",
-      "wordCount": 68,
-      "readingTime": 1,
+      "wordCount": 204,
+      "readingTime": 2,
       "publicationYear": 2024
     },
-    "scrapedAt": "2025-11-03T14:08:22.963Z"
+    "scrapedAt": "2025-11-04T10:17:34.183Z"
   },
   {
     "id": "34324264",
-    "title": "World Bank Group President Ajay            Banga’s Remarks at IDA for Africa Heads of State Summit",
+    "title": "World Bank Group President Ajay Banga’s Remarks at IDA for Africa Heads of State Summit",
     "url": "http://documents.worldbank.org/curated/en/099403205242425157/IDU13658782416051a43e153624fb0c4fa",
-    "date": "2024-04-29",
-    "summary": "These remarks were delivered by the            World Bank Group President Ajaya Banga at the IDA for Africa            Heads of State Summit on April 29, 2024. The main idea            revolves around the potential for transformative change in            Africa through strategic investments and development            assistance. The President emphasizes the need for unity and            common ground among African leaders to address challenges            and unlock the continent's potential. Drawing parallels            with successful development stories from other regions, the            document highlights the importance of investing in people,            building infrastructure, and supporting job-generating            industries. It calls for a collaborative effort involving            governments, the international community, and the private            sector to realize Africa's economic future and create            opportunities for prosperity and progress.",
-    "type": "speech",
+    "content": "These remarks were delivered by the World Bank Group President Ajaya Banga at the IDA for Africa Heads of State Summit on April 29, 2024. The main idea revolves around the potential for transformative change in Africa through strategic investments and development assistance. The President emphasizes the need for unity and common ground among African leaders to address challenges and unlock the continent's potential. Drawing parallels with successful development stories from other regions, the document highlights the importance of investing in people, building infrastructure, and supporting job-generating industries. It calls for a collaborative effort involving governments, the international community, and the private sector to realize Africa's economic future and create opportunities for prosperity and progress. These remarks were delivered by the World Bank Group President Ajaya Banga at the IDA for Africa Heads of State Summit on April 29, 2024. The main idea revolves around the potential for transformative change in Africa through strategic investments and development assistance. The President emphasizes the need for unity and common ground among African leaders to address challenges and unlock the continent's potential. Drawing parallels with successful development stories from other regions, the document highlights the importance of investing in people, building infrastructure, and supporting job-generating industries. It calls for a collaborative effort involving governments, the international community, and the private sector to realize Africa's economic future and create opportunities for prosperity and progress. These remarks were delivered by the World Bank Group President Ajaya Banga at the IDA for Africa Heads of State Summit on April 29, 2024. The main idea revolves around the potential for transformative change in Africa through strategic investments and development assistance. The President emphasizes the need for unity and common ground among African leaders to address challenges and unlock the continent's potential. Drawing parallels with successful development stories from other regions, the document highlights the importance of investing in people, building infrastructure, and supporting job-generating industries. It calls for a collaborative effort involving governments, the international community, and the private sector to realize Africa's economic future and create opportunities for prosperity and progress.",
+    "summary": "These remarks were delivered by the World Bank Group President Ajaya Banga at the IDA for Africa Heads of State Summit on April 29, 2024. The main idea revolves around the potential for transformative change in Africa through strategic investments and development assistance. The President emphasizes the need for unity and common ground among African leaders to address challenges and unlock the continent's potential. Drawing parallels with successful development stories from other regions, the do...",
+    "date": "2024-04-29T00:00:00Z",
+    "type": "President's Speech",
+    "fileType": "html",
     "topics": [],
     "keywords": [
       "development",
       "banga",
       "investment"
     ],
-    "initiatives": [],
     "regions": [
-      "Africa",
       "Global"
     ],
-    "sectors": [
-      "Finance",
-      "Infrastructure"
-    ],
+    "sectors": [],
+    "initiatives": [],
     "tags": {
-      "documentType": "speech",
+      "documentType": "President's Speech",
       "contentType": "text",
       "audience": [
         "public",
@@ -193,15 +186,260 @@
     "sourceReference": {
       "originalUrl": "http://documents.worldbank.org/curated/en/099403205242425157/IDU13658782416051a43e153624fb0c4fa",
       "scrapedFrom": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
-      "discoveredAt": "2025-11-03T14:08:22.964Z",
+      "discoveredAt": "2025-11-04T10:17:34.183Z",
       "sourceType": "api"
     },
     "metadata": {
       "language": "English",
-      "wordCount": 115,
-      "readingTime": 1,
+      "wordCount": 345,
+      "readingTime": 2,
       "publicationYear": 2024
     },
-    "scrapedAt": "2025-11-03T14:08:22.964Z"
+    "scrapedAt": "2025-11-04T10:17:34.183Z"
+  },
+  {
+    "id": "34253797",
+    "title": "Remarks by World Bank Group President Ajay Banga at the International Development Association (IDA) Midterm Review",
+    "url": "http://documents.worldbank.org/curated/en/099227302072491278/IDU1a8b7ab551f011917c1e8eaca211d57",
+    "content": "These remarks were delivered by World Bank Group President, Ajay Banga, at the International Development Association (IDA) Midterm Review on December 6, 2023. He extended his condolences to Tanzania and the communities impacted in the floods a few days ago. He assured that the World Bank will be by their side during the recovery and reconstruction. He spoke about the founding of International Development Association, charged with a simple yet noble mission to raise standards of living and build momentum for growth in developing countries. He questioned on how can we hope to make even adequate progress while 600 million people in Africa &#x2013; 36 million of whom live here in Tanzania still don&#x2019;t have access to reliable electricity? He cited the example from town in Nigeria where IDA had helped fund a mini-grid system, and the electricity it generated allowed small farmers to do their work in half the time, it enabled shop keepers to accept digital payments, and gave diabetics regular access to climate-controlled insulin. He insisted that we must make good on the World Bank&#x2019;s evolution roadmap and make IDA more approachable, accessible, and understandable. He highlighted that together we will reimagine what IDA could become and what we could achieve as a result. He concluded by saying that we will have the opportunity to commit ourselves to the vision that sparked the creation of IDA&#x2014;a vision of a world where poverty is not a barrier to human potential, but a world where every individual has the opportunity to thrive. These remarks were delivered by World Bank Group President, Ajay Banga, at the International Development Association (IDA) Midterm Review on December 6, 2023. He extended his condolences to Tanzania and the communities impacted in the floods a few days ago. He assured that the World Bank will be by their side during the recovery and reconstruction. He spoke about the founding of International Development Association, charged with a simple yet noble mission to raise standards of living and build momentum for growth in developing countries. He questioned on how can we hope to make even adequate progress while 600 million people in Africa &#x2013; 36 million of whom live here in Tanzania still don&#x2019;t have access to reliable electricity? He cited the example from town in Nigeria where IDA had helped fund a mini-grid system, and the electricity it generated allowed small farmers to do their work in half the time, it enabled shop keepers to accept digital payments, and gave diabetics regular access to climate-controlled insulin. He insisted that we must make good on the World Bank&#x2019;s evolution roadmap and make IDA more approachable, accessible, and understandable. He highlighted that together we will reimagine what IDA could become and what we could achieve as a result. He concluded by saying that we will have the opportunity to commit ourselves to the vision that sparked the creation of IDA&#x2014;a vision of a world where poverty is not a barrier to human potential, but a world where every individual has the opportunity to thrive. These remarks were delivered by World Bank Group President, Ajay Banga, at the International Development Association (IDA) Midterm Review on December 6, 2023. He extended his condolences to Tanzania and the communities impacted in the floods a few days ago. He assured that the World Bank will be by their side during the recovery and reconstruction. He spoke about the founding of International Development Association, charged with a simple yet noble mission to raise standards of living and build momentum for growth in developing countries. He questioned on how can we hope to make even adequate progress while 600 million people in Africa &#x2013; 36 million of whom live here in Tanzania still don&#x2019;t have access to reliable electricity? He cited the example from town in Nigeria where IDA had helped fund a mini-grid system, and the electricity it generated allowed small farmers to do their work in half the time, it enabled shop keepers to accept digital payments, and gave diabetics regular access to climate-controlled insulin. He insisted that we must make good on the World Bank&#x2019;s evolution roadmap and make IDA more approachable, accessible, and understandable. He highlighted that together we will reimagine what IDA could become and what we could achieve as a result. He concluded by saying that we will have the opportunity to commit ourselves to the vision that sparked the creation of IDA&#x2014;a vision of a world where poverty is not a barrier to human potential, but a world where every individual has the opportunity to thrive.",
+    "summary": "These remarks were delivered by World Bank Group President, Ajay Banga, at the International Development Association (IDA) Midterm Review on December 6, 2023. He extended his condolences to Tanzania and the communities impacted in the floods a few days ago. He assured that the World Bank will be by their side during the recovery and reconstruction. He spoke about the founding of International Development Association, charged with a simple yet noble mission to raise standards of living and build ...",
+    "date": "2023-12-06T00:00:00Z",
+    "type": "President's Speech",
+    "fileType": "html",
+    "topics": [],
+    "keywords": [
+      "climate",
+      "development",
+      "poverty",
+      "banga",
+      "impact"
+    ],
+    "regions": [
+      "Global"
+    ],
+    "sectors": [],
+    "initiatives": [],
+    "tags": {
+      "documentType": "President's Speech",
+      "contentType": "text",
+      "audience": [
+        "public",
+        "government",
+        "stakeholders"
+      ],
+      "authors": [
+        "Ajay Banga"
+      ],
+      "priority": "high",
+      "status": "current"
+    },
+    "sourceReference": {
+      "originalUrl": "http://documents.worldbank.org/curated/en/099227302072491278/IDU1a8b7ab551f011917c1e8eaca211d57",
+      "scrapedFrom": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
+      "discoveredAt": "2025-11-04T10:17:34.183Z",
+      "sourceType": "api"
+    },
+    "metadata": {
+      "language": "English",
+      "wordCount": 759,
+      "readingTime": 4,
+      "publicationYear": 2023
+    },
+    "scrapedAt": "2025-11-04T10:17:34.183Z"
+  },
+  {
+    "id": "34253804",
+    "title": "Remarks by World Bank Group President, Ajay Banga at High Level Segment Summit on Methane at COP28 in Dubai, UAE",
+    "url": "http://documents.worldbank.org/curated/en/099328402072415342/IDU1121d8a4f110719b6a14c1cc1f81b48",
+    "content": "These remarks were delivered by World Bank Group President, Ajay Banga at High Level Segment Summit on Methane at COP28 in Dubai, UAE on December 2, 2023. He started by mentioning about how Methane is 80 times more powerful than carbon dioxide in warming the planet, making it a major driver of climate change. He said that the frontier of methane reduction is one such area where the World Bank believes there are answers at their fingertips, and that is why the World Bank is taking action, scaling proven &#x2013; and urgently needed &#x2013; strategies that can decisively bend the methane emission curve. He mentioned that over the following eighteen months, as part of a blueprint for methane reduction, World Bank will help launch fifteen national programs that aim to slash methane emissions. He also added that the World Bank has been working with Germany, Norway, the United States, and the UAE alongside the private sector to expand our long-standing efforts to significantly cut methane emissions across the whole energy value chain. He highlighted on Methane is one rare, clear area where we know there are low-cost remedies, effective and simple solutions that can be replicated and scaled. He concluded by saying, we must act, and in doing so we can reduce emissions, enhance agricultural yields, and improve health outcomes all in one go. These remarks were delivered by World Bank Group President, Ajay Banga at High Level Segment Summit on Methane at COP28 in Dubai, UAE on December 2, 2023. He started by mentioning about how Methane is 80 times more powerful than carbon dioxide in warming the planet, making it a major driver of climate change. He said that the frontier of methane reduction is one such area where the World Bank believes there are answers at their fingertips, and that is why the World Bank is taking action, scaling proven &#x2013; and urgently needed &#x2013; strategies that can decisively bend the methane emission curve. He mentioned that over the following eighteen months, as part of a blueprint for methane reduction, World Bank will help launch fifteen national programs that aim to slash methane emissions. He also added that the World Bank has been working with Germany, Norway, the United States, and the UAE alongside the private sector to expand our long-standing efforts to significantly cut methane emissions across the whole energy value chain. He highlighted on Methane is one rare, clear area where we know there are low-cost remedies, effective and simple solutions that can be replicated and scaled. He concluded by saying, we must act, and in doing so we can reduce emissions, enhance agricultural yields, and improve health outcomes all in one go. These remarks were delivered by World Bank Group President, Ajay Banga at High Level Segment Summit on Methane at COP28 in Dubai, UAE on December 2, 2023. He started by mentioning about how Methane is 80 times more powerful than carbon dioxide in warming the planet, making it a major driver of climate change. He said that the frontier of methane reduction is one such area where the World Bank believes there are answers at their fingertips, and that is why the World Bank is taking action, scaling proven &#x2013; and urgently needed &#x2013; strategies that can decisively bend the methane emission curve. He mentioned that over the following eighteen months, as part of a blueprint for methane reduction, World Bank will help launch fifteen national programs that aim to slash methane emissions. He also added that the World Bank has been working with Germany, Norway, the United States, and the UAE alongside the private sector to expand our long-standing efforts to significantly cut methane emissions across the whole energy value chain. He highlighted on Methane is one rare, clear area where we know there are low-cost remedies, effective and simple solutions that can be replicated and scaled. He concluded by saying, we must act, and in doing so we can reduce emissions, enhance agricultural yields, and improve health outcomes all in one go.",
+    "summary": "These remarks were delivered by World Bank Group President, Ajay Banga at High Level Segment Summit on Methane at COP28 in Dubai, UAE on December 2, 2023. He started by mentioning about how Methane is 80 times more powerful than carbon dioxide in warming the planet, making it a major driver of climate change. He said that the frontier of methane reduction is one such area where the World Bank believes there are answers at their fingertips, and that is why the World Bank is taking action, scaling...",
+    "date": "2023-12-02T00:00:00Z",
+    "type": "President's Speech",
+    "fileType": "html",
+    "topics": [],
+    "keywords": [
+      "climate",
+      "banga"
+    ],
+    "regions": [
+      "Global"
+    ],
+    "sectors": [],
+    "initiatives": [],
+    "tags": {
+      "documentType": "President's Speech",
+      "contentType": "text",
+      "audience": [
+        "public",
+        "government",
+        "stakeholders"
+      ],
+      "authors": [
+        "Ajay Banga"
+      ],
+      "priority": "high",
+      "status": "current"
+    },
+    "sourceReference": {
+      "originalUrl": "http://documents.worldbank.org/curated/en/099328402072415342/IDU1121d8a4f110719b6a14c1cc1f81b48",
+      "scrapedFrom": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
+      "discoveredAt": "2025-11-04T10:17:34.184Z",
+      "sourceType": "api"
+    },
+    "metadata": {
+      "language": "English",
+      "wordCount": 672,
+      "readingTime": 4,
+      "publicationYear": 2023
+    },
+    "scrapedAt": "2025-11-04T10:17:34.184Z"
+  },
+  {
+    "id": "34252956",
+    "title": "Remarks by World Bank Group President Ajay Banga at Transforming Climate Finance Event, COP28",
+    "url": "http://documents.worldbank.org/curated/en/099043402062416545/IDU15c9246d01408187ad1f76659c093e1",
+    "content": "These were the remarks delivered by World Bank Group President Ajay Banga at the COP28 Climate Finance Event on December 1, 2023. He spoke about the resources of wealthy nations can create opportunities, meanwhile the abundance of sun, wind, fertile soil, and young people enjoyed by emerging economies could drive our future. We have inherited decades of knowledge and benefitted from the generosity of every nation, now we are being called upon to lead, and we have never been better positioned to deliver the progress that is demanded. Today, the World Bank is setting an ambitious goal to devote 45 percent of our annual financing to climate by 2025. We&#x2019;re putting our ambition in overdrive and putting to work more than 40 billion dollars per year, around 9 billion dollars more than the original target. Making certain IBRD and IDA resources are deployed equally for mitigation and adaptation, because while we all are experiencing climate change, we are feeling the effects differently. Over the next few days, the World Bank will detail a blueprint for slashing methane emissions, announce a roadmap for high integrity carbon markets, discuss progress on our Private Sector Investment Lab, and outline efforts to deepen the collective impact of multilateral development banks. These were the remarks delivered by World Bank Group President Ajay Banga at the COP28 Climate Finance Event on December 1, 2023. He spoke about the resources of wealthy nations can create opportunities, meanwhile the abundance of sun, wind, fertile soil, and young people enjoyed by emerging economies could drive our future. We have inherited decades of knowledge and benefitted from the generosity of every nation, now we are being called upon to lead, and we have never been better positioned to deliver the progress that is demanded. Today, the World Bank is setting an ambitious goal to devote 45 percent of our annual financing to climate by 2025. We&#x2019;re putting our ambition in overdrive and putting to work more than 40 billion dollars per year, around 9 billion dollars more than the original target. Making certain IBRD and IDA resources are deployed equally for mitigation and adaptation, because while we all are experiencing climate change, we are feeling the effects differently. Over the next few days, the World Bank will detail a blueprint for slashing methane emissions, announce a roadmap for high integrity carbon markets, discuss progress on our Private Sector Investment Lab, and outline efforts to deepen the collective impact of multilateral development banks. These were the remarks delivered by World Bank Group President Ajay Banga at the COP28 Climate Finance Event on December 1, 2023. He spoke about the resources of wealthy nations can create opportunities, meanwhile the abundance of sun, wind, fertile soil, and young people enjoyed by emerging economies could drive our future. We have inherited decades of knowledge and benefitted from the generosity of every nation, now we are being called upon to lead, and we have never been better positioned to deliver the progress that is demanded. Today, the World Bank is setting an ambitious goal to devote 45 percent of our annual financing to climate by 2025. We&#x2019;re putting our ambition in overdrive and putting to work more than 40 billion dollars per year, around 9 billion dollars more than the original target. Making certain IBRD and IDA resources are deployed equally for mitigation and adaptation, because while we all are experiencing climate change, we are feeling the effects differently. Over the next few days, the World Bank will detail a blueprint for slashing methane emissions, announce a roadmap for high integrity carbon markets, discuss progress on our Private Sector Investment Lab, and outline efforts to deepen the collective impact of multilateral development banks.",
+    "summary": "These were the remarks delivered by World Bank Group President Ajay Banga at the COP28 Climate Finance Event on December 1, 2023. He spoke about the resources of wealthy nations can create opportunities, meanwhile the abundance of sun, wind, fertile soil, and young people enjoyed by emerging economies could drive our future. We have inherited decades of knowledge and benefitted from the generosity of every nation, now we are being called upon to lead, and we have never been better positioned to ...",
+    "date": "2023-12-01T00:00:00Z",
+    "type": "President's Speech",
+    "fileType": "html",
+    "topics": [],
+    "keywords": [
+      "climate",
+      "development",
+      "banga",
+      "financing",
+      "investment",
+      "impact"
+    ],
+    "regions": [
+      "Global"
+    ],
+    "sectors": [],
+    "initiatives": [],
+    "tags": {
+      "documentType": "President's Speech",
+      "contentType": "text",
+      "audience": [
+        "public",
+        "government",
+        "stakeholders"
+      ],
+      "authors": [
+        "Ajay Banga"
+      ],
+      "priority": "high",
+      "status": "current"
+    },
+    "sourceReference": {
+      "originalUrl": "http://documents.worldbank.org/curated/en/099043402062416545/IDU15c9246d01408187ad1f76659c093e1",
+      "scrapedFrom": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
+      "discoveredAt": "2025-11-04T10:17:34.184Z",
+      "sourceType": "api"
+    },
+    "metadata": {
+      "language": "English",
+      "wordCount": 618,
+      "readingTime": 4,
+      "publicationYear": 2023
+    },
+    "scrapedAt": "2025-11-04T10:17:34.185Z"
+  },
+  {
+    "id": "34181163",
+    "title": "Remarks by World Bank Group President Ajay Banga at the 2023 Annual Meetings Plenary",
+    "url": "http://documents.worldbank.org/curated/en/099536510172340726/IDU073534b130b0009fe00d0ce65c022bb",
+    "content": "This report discusses the remarks delivered by Ajay Banga, President of the World Bank at the annual meetings plenary. The World Bank stepped forward to support the most vulnerable when compounding challenges: the war in Ukraine, the effects of the pandemic, and inflation-hit. But the need was so great that we allocated the majority of our three-year crisis response window in the first year. Our partnership focuses on three objectives: attack deforestation in the Amazon, strengthen the Caribbean&#x2019;s resilience to natural disasters, and bridge the digital-access gap across Latin America and the Caribbean. This report discusses the remarks delivered by Ajay Banga, President of the World Bank at the annual meetings plenary. The World Bank stepped forward to support the most vulnerable when compounding challenges: the war in Ukraine, the effects of the pandemic, and inflation-hit. But the need was so great that we allocated the majority of our three-year crisis response window in the first year. Our partnership focuses on three objectives: attack deforestation in the Amazon, strengthen the Caribbean&#x2019;s resilience to natural disasters, and bridge the digital-access gap across Latin America and the Caribbean. This report discusses the remarks delivered by Ajay Banga, President of the World Bank at the annual meetings plenary. The World Bank stepped forward to support the most vulnerable when compounding challenges: the war in Ukraine, the effects of the pandemic, and inflation-hit. But the need was so great that we allocated the majority of our three-year crisis response window in the first year. Our partnership focuses on three objectives: attack deforestation in the Amazon, strengthen the Caribbean&#x2019;s resilience to natural disasters, and bridge the digital-access gap across Latin America and the Caribbean.",
+    "summary": "This report discusses the remarks delivered by Ajay Banga, President of the World Bank at the annual meetings plenary. The World Bank stepped forward to support the most vulnerable when compounding challenges: the war in Ukraine, the effects of the pandemic, and inflation-hit. But the need was so great that we allocated the majority of our three-year crisis response window in the first year. Our partnership focuses on three objectives: attack deforestation in the Amazon, strengthen the Caribbean...",
+    "date": "2023-10-17T00:00:00Z",
+    "type": "President's Speech",
+    "fileType": "html",
+    "topics": [],
+    "keywords": [
+      "banga",
+      "partnership"
+    ],
+    "regions": [
+      "Global"
+    ],
+    "sectors": [],
+    "initiatives": [],
+    "tags": {
+      "documentType": "President's Speech",
+      "contentType": "text",
+      "audience": [
+        "public",
+        "government",
+        "stakeholders"
+      ],
+      "authors": [
+        "Ajay Banga"
+      ],
+      "priority": "high",
+      "status": "current"
+    },
+    "sourceReference": {
+      "originalUrl": "http://documents.worldbank.org/curated/en/099536510172340726/IDU073534b130b0009fe00d0ce65c022bb",
+      "scrapedFrom": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
+      "discoveredAt": "2025-11-04T10:17:34.185Z",
+      "sourceType": "api"
+    },
+    "metadata": {
+      "language": "English",
+      "wordCount": 279,
+      "readingTime": 2,
+      "publicationYear": 2023
+    },
+    "scrapedAt": "2025-11-04T10:17:34.185Z"
+  },
+  {
+    "id": "34165421",
+    "title": "Remarks by World Bank President Ajay Banga at the 2023 G20 India Leaders Summit \"One Future\" Session",
+    "url": "http://documents.worldbank.org/curated/en/099322409202365988/IDU020d143b2080f0bc3e029bba909c606",
+    "content": "This report discusses the remarks delivered by the World Bank President, Ajay Banga, at the 2023 G20 India Leaders Summit \"One Future\" Session held on September 10, 2023. He said that we face declining progress in our fight against poverty, an existential climate crisis, food insecurity, fragility, a fledgling pandemic recovery, widening disparity, and a crippling war on the borders of Europe. He congratulated Prime Minister Modi and all G20 Members on, puts the World Bank at the center of their search for solutions. He mentioned that to truly make a difference, we will need a greater appetite for risk, meaningful private sector financing, and a sense of urgency. He explained that the World Bank is working to expand concessional financing to help more low-income countries achieve their goals, while thinking creatively about how to encourage cooperation across borders and tackle shared challenges. He insisted on keeping focus on how many girls are in school, jobs created, and private sector dollars mobilized. He concluded by saying that, as we face a new era in development, the World Bank remain committed to creating a world free of poverty on a livable planet. This report discusses the remarks delivered by the World Bank President, Ajay Banga, at the 2023 G20 India Leaders Summit \"One Future\" Session held on September 10, 2023. He said that we face declining progress in our fight against poverty, an existential climate crisis, food insecurity, fragility, a fledgling pandemic recovery, widening disparity, and a crippling war on the borders of Europe. He congratulated Prime Minister Modi and all G20 Members on, puts the World Bank at the center of their search for solutions. He mentioned that to truly make a difference, we will need a greater appetite for risk, meaningful private sector financing, and a sense of urgency. He explained that the World Bank is working to expand concessional financing to help more low-income countries achieve their goals, while thinking creatively about how to encourage cooperation across borders and tackle shared challenges. He insisted on keeping focus on how many girls are in school, jobs created, and private sector dollars mobilized. He concluded by saying that, as we face a new era in development, the World Bank remain committed to creating a world free of poverty on a livable planet. This report discusses the remarks delivered by the World Bank President, Ajay Banga, at the 2023 G20 India Leaders Summit \"One Future\" Session held on September 10, 2023. He said that we face declining progress in our fight against poverty, an existential climate crisis, food insecurity, fragility, a fledgling pandemic recovery, widening disparity, and a crippling war on the borders of Europe. He congratulated Prime Minister Modi and all G20 Members on, puts the World Bank at the center of their search for solutions. He mentioned that to truly make a difference, we will need a greater appetite for risk, meaningful private sector financing, and a sense of urgency. He explained that the World Bank is working to expand concessional financing to help more low-income countries achieve their goals, while thinking creatively about how to encourage cooperation across borders and tackle shared challenges. He insisted on keeping focus on how many girls are in school, jobs created, and private sector dollars mobilized. He concluded by saying that, as we face a new era in development, the World Bank remain committed to creating a world free of poverty on a livable planet.",
+    "summary": "This report discusses the remarks delivered by the World Bank President, Ajay Banga, at the 2023 G20 India Leaders Summit \"One Future\" Session held on September 10, 2023. He said that we face declining progress in our fight against poverty, an existential climate crisis, food insecurity, fragility, a fledgling pandemic recovery, widening disparity, and a crippling war on the borders of Europe. He congratulated Prime Minister Modi and all G20 Members on, puts the World Bank at the center of their...",
+    "date": "2023-09-10T00:00:00Z",
+    "type": "President's Speech",
+    "fileType": "html",
+    "topics": [],
+    "keywords": [
+      "climate",
+      "development",
+      "poverty",
+      "banga",
+      "financing"
+    ],
+    "regions": [
+      "Global"
+    ],
+    "sectors": [],
+    "initiatives": [],
+    "tags": {
+      "documentType": "President's Speech",
+      "contentType": "text",
+      "audience": [
+        "public",
+        "government",
+        "stakeholders"
+      ],
+      "authors": [
+        "Ajay Banga"
+      ],
+      "priority": "high",
+      "status": "current"
+    },
+    "sourceReference": {
+      "originalUrl": "http://documents.worldbank.org/curated/en/099322409202365988/IDU020d143b2080f0bc3e029bba909c606",
+      "scrapedFrom": "https://search.worldbank.org/api/v2/everything?format=json&fl=experts&sq=(experts.name:(masterupi:%22610586%22)OR(masterupi:%22000610586%22)%20OR%20(keywd:%22People:ajay-banga%22))&rows=150&fl=*&fct=status_exact,%20displayconttype_exact,%20lang_exact&srt=master_date&order=desc&apilang=en&lang_exact=English&os=0",
+      "discoveredAt": "2025-11-04T10:17:34.185Z",
+      "sourceType": "api"
+    },
+    "metadata": {
+      "language": "English",
+      "wordCount": 573,
+      "readingTime": 3,
+      "publicationYear": 2023
+    },
+    "scrapedAt": "2025-11-04T10:17:34.185Z"
   }
 ]

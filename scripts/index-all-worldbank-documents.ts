@@ -29,10 +29,19 @@ interface WorldBankAPIDocument {
 async function fetchFromWorldBankAPI(page: number = 1, perPage: number = 50): Promise<any> {
   console.log(`📥 Fetching page ${page}...`);
   
-  const url = `https://search.worldbank.org/api/v2/wds?format=json&qterm=ajay+banga+OR+world+bank+strategy&fl=id,docty,display_title,url,abstracts,docdt,topic,count&rows=${perPage}&os=${(page - 1) * perPage}`;
+  const offset = (page - 1) * perPage;
+  const url = `https://search.worldbank.org/api/v2/wds?format=json&qterm=ajay+banga+OR+world+bank+strategy&rows=${perPage}&os=${offset}`;
   
   const response = await fetch(url);
-  return await response.json();
+  const data = await response.json();
+  
+  // Convert documents object to array
+  const documents = data.documents ? Object.values(data.documents) : [];
+  
+  return {
+    ...data,
+    documents: documents
+  };
 }
 
 async function enrichDocumentWithAI(doc: WorldBankAPIDocument): Promise<any> {

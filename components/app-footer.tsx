@@ -8,7 +8,7 @@ export function AppFooter() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: '/dashboard', icon: Home, label: 'Home' },
+    { href: '/vision', icon: Home, label: 'Home' },
     { href: '/rj-agent', icon: MessageSquare, label: 'AI Agent' },
     { href: '/rj-faq', icon: BookOpen, label: 'Knowledge' },
     { href: '/worldbank-search', icon: Search, label: 'Search' },

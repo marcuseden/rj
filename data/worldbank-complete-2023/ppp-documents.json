@@ -1,0 +1,72 @@
+[
+  {
+    "id": "34240754",
+    "last_modified_date": "2024-01-18T00:00:00Z",
+    "admreg": "South Asia,South Asia",
+    "admreg_key": "119231,119231",
+    "authors": {
+      "0": {
+        "author": "World Bank"
+      }
+    },
+    "count": "People's Republic of Bangladesh,Bangladesh",
+    "count_key": "82675",
+    "docna": {
+      "0": {
+        "docna": "Public Private Partnership Handbook"
+      }
+    },
+    "docty": "Report",
+    "docty_key": "540664",
+    "owner": "Infra SAR Energy 1 (ISAE1)",
+    "projn": "BD-Sustainable Energy Support Program -- P172183",
+    "subsc": "Energy Transmission and Distribution,Renewable Energy Wind,Public Administration - Energy and Extractives,Renewable Energy Solar,Other Energy and Extractives",
+    "trustfund": "TF0B0886-Bangladesh â Roadmap for\n            meeting energy needs of refugees and host,TF0B2221-Bangladesh Energy Transitions,TF0B4079-Implementation support on\n            Building Energy and Environment Rating System,TF0B4450-Implementation support on\n            Building Energy and Environment Rating System,TF0B7295-Bangladesh : Strengthening the\n            PPP Institutional and Regulatory Framewo,TF0B7296-CREST - Bangladesh :\n            Strengthening the PPP Institutional and Regulatory,TF0B7820-Bangladesh : Enhancing\n            Renewable Energy Investments and Access to Land,TF0B9566-GIF PDA Bangladesh Priority PPP Identification",
+    "trustfund_key": "1804392,1877784,1961930,1977684,2104216,2104217,2129531,2216230",
+    "theme": "Energy Efficiency,Access to Energy,Energy,Energy Policies & Reform,Environment and Natural Resource Management",
+    "prdln": "Advisory Services & Analytics",
+    "prdln_key": "1416466",
+    "seccl": "Public",
+    "lang": "English",
+    "lang_key": "120701",
+    "entityids": {
+      "entityid": "34240754"
+    },
+    "repnb": "187045",
+    "docdt": "2024-01-15T00:00:00Z",
+    "datestored": "2024-01-15T04:19:25Z",
+    "volnb": "1",
+    "majdocty": "Publications & Research",
+    "majdocty_key": "658101",
+    "abstracts": {
+      "cdata!": "The Government of Bangladesh\n            recognizes the importance of enhancing private sector\n            investment through Public Private Partnerships (PPPs) to\n            support efforts to develop green, resilient and inclusive\n            infrastructure. Accordingly, the Government has embarked on\n            a systematic effort to develop a strong PPP framework to\n            mobilize private sector capital to support infrastructure\n            development. It passed a PPP Law in 2015 and issued various\n            associated guidelines including on procurement, viability\n            gap funding and unsolicited proposals. It also established\n            the Public Private Partnership Authority (PPPA) as a center\n            of excellence for PPPs in Bangladesh and several long-term\n            infrastructure financing institutions to facilitate PPPs in\n            the country. The PPPA has been established under the Prime\n            Minister's Office to support sector line\n            ministries/agencies in the identification, development,\n            structuring and delivery of PPP projects to international\n            standards. The PPPA’s role is to work in partnership with\n            the national and international investment community,\n            financiers, and civil society to realize the infrastructure\n            needs for Bangladesh. To ensure that the PPPA can provide\n            the necessary support, there is a need to develop sufficient\n            resources and tools to support the effective implementation\n            of PPP projects in Bangladesh in line with international\n            best practices. To this end, the PPPA has prepared this\n            Public Private Partnership Handbook. The Handbook aims to\n            disseminate good practices in implementing infrastructure\n            projects on a PPP basis, while elaborating the PPP concept\n            and the lifecycle approach of a PPP project. The purpose of\n            this Handbook is to help various stakeholders (both public\n            and private) develop a better understanding of the PPP\n            concept and how PPPs can be leveraged to help deliver\n            infrastructure more efficiently and effectively in Bangladesh."
+    },
+    "display_title": "Public Private Partnership Handbook",
+    "disclosure_date": "2024-01-18T00:00:00Z",
+    "disclosure_type": "NA",
+    "pdfurl": "http://documents.worldbank.org/curated/en/099011524111939011/pdf/P17218315f839d0d18db4145d96004bea4.pdf",
+    "txturl": "http://documents.worldbank.org/curated/en/099011524111939011/text/P17218315f839d0d18db4145d96004bea4.txt",
+    "listing_relative_url": "/research/2024/01/34240754/public-private-partnership-handbook",
+    "url_friendly_title": "http://documents.worldbank.org/curated/en/099011524111939011/P17218315f839d0d18db4145d96004bea4",
+    "new_url": "2024/01/34240754/P17218315f839d0d18db4145d96004bea4",
+    "ext_pub_date": "2024-01-18T00:00:00Z",
+    "disclstat": "Disclosed",
+    "topicv3": "Private Sector Development m1326060 1921,Infrastructure and Growth m1326244 1083",
+    "docm_id": "P172183-5f839d42-a2df-41ed-8db4-45d96004bea4",
+    "chronical_docm_id": "P172183-5f839d42-a2df-41ed-8db4-45d96004bea4",
+    "publishtoextweb_dt": "2024-01-18T00:00:00Z",
+    "versiontyp": "Final",
+    "versiontyp_key": "1309935",
+    "projectid": "P172183",
+    "guid": "099011524111939011",
+    "no_of_pages": "81",
+    "author_keys": {
+      "0": {
+        "author_key": "NA"
+      }
+    },
+    "available_in": "English",
+    "fullavailablein": [],
+    "url": "http://documents.worldbank.org/curated/en/099011524111939011/P17218315f839d0d18db4145d96004bea4"
+  }
+]

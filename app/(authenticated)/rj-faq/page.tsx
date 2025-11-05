@@ -11,21 +11,49 @@ interface WorldBankDocument {
   id: string;
   title: string;
   url?: string;
+  content?: string;
   summary: string;
   date: string;
+  type?: string;
+  keywords?: string[];
+  topics?: string[];
+  
+  // Flattened tags from database
+  tags_document_type?: string;
+  tags_sectors?: string[];
+  tags_regions?: string[];
+  tags_initiatives?: string[];
+  tags_authors?: string[];
+  tags_departments?: string[];
+  tags_priority?: string;
+  tags_status?: string;
+  tags_audience?: string[];
+  tags_content_type?: string;
+  
+  // Legacy format support
   tags?: {
     documentType?: string;
     sectors?: string[];
     regions?: string[];
     initiatives?: string[];
+    authors?: string[];
+    departments?: string[];
     priority?: string;
+    status?: string;
+    audience?: string[];
+    contentType?: string;
   };
+  
   sourceReference?: {
     originalUrl: string;
   };
+  source_original_url?: string;
+  
   metadata?: {
     readingTime?: number;
   };
+  metadata_reading_time?: number;
+  metadata_word_count?: number;
 }
 
 export default function WorldBankDocsPage() {
@@ -44,18 +72,48 @@ export default function WorldBankDocsPage() {
     if (searchQuery.trim()) {
       // Filter documents
       const query = searchQuery.toLowerCase();
-      const filtered = allDocuments.filter(doc =>
-        doc.title.toLowerCase().includes(query) ||
-        doc.summary.toLowerCase().includes(query) ||
-        doc.tags?.sectors?.some(s => s.toLowerCase().includes(query)) ||
-        doc.tags?.regions?.some(r => r.toLowerCase().includes(query)) ||
-        doc.tags?.initiatives?.some(i => i.toLowerCase().includes(query))
-      );
+      const filtered = allDocuments.filter(doc => {
+        // Search in all text fields
+        const titleMatch = doc.title?.toLowerCase().includes(query);
+        const summaryMatch = doc.summary?.toLowerCase().includes(query);
+        const contentMatch = doc.content?.toLowerCase().includes(query);
+        const typeMatch = doc.type?.toLowerCase().includes(query);
+        
+        // Search in keywords and topics arrays
+        const keywordsMatch = doc.keywords?.some((k: string) => 
+          k.toLowerCase().includes(query)
+        );
+        const topicsMatch = doc.topics?.some((t: string) => 
+          t.toLowerCase().includes(query)
+        );
+        
+        // Search in database flattened tags
+        const dbSectors = doc.tags_sectors?.some(s => s.toLowerCase().includes(query));
+        const dbRegions = doc.tags_regions?.some(r => r.toLowerCase().includes(query));
+        const dbInitiatives = doc.tags_initiatives?.some(i => i.toLowerCase().includes(query));
+        const dbAuthors = doc.tags_authors?.some(a => a.toLowerCase().includes(query));
+        const dbDepartments = doc.tags_departments?.some(d => d.toLowerCase().includes(query));
+        const dbDocType = doc.tags_document_type?.toLowerCase().includes(query);
+        const dbPriority = doc.tags_priority?.toLowerCase().includes(query);
+        
+        // Search in legacy nested tags (for JSON fallback)
+        const tagSectors = doc.tags?.sectors?.some(s => s.toLowerCase().includes(query));
+        const tagRegions = doc.tags?.regions?.some(r => r.toLowerCase().includes(query));
+        const tagInitiatives = doc.tags?.initiatives?.some(i => i.toLowerCase().includes(query));
+        const tagAuthors = doc.tags?.authors?.some(a => a.toLowerCase().includes(query));
+        const tagDocType = doc.tags?.documentType?.toLowerCase().includes(query);
+        
+        return titleMatch || summaryMatch || contentMatch || typeMatch ||
+               keywordsMatch || topicsMatch ||
+               dbSectors || dbRegions || dbInitiatives || dbAuthors || dbDepartments || dbDocType || dbPriority ||
+               tagSectors || tagRegions || tagInitiatives || tagAuthors || tagDocType;
+      });
+      
       setFilteredDocs(filtered);
 
       // Generate autocomplete suggestions
       const titleSuggestions = allDocuments
-        .filter(doc => doc.title.toLowerCase().includes(query))
+        .filter(doc => doc.title?.toLowerCase().includes(query))
         .slice(0, 5)
         .map(doc => doc.title);
       setSuggestions(titleSuggestions);
@@ -69,11 +127,28 @@ export default function WorldBankDocsPage() {
 
   const loadDocuments = async () => {
     try {
-      const response = await fetch('/data/worldbank-strategy/ajay-banga-documents-verified.json');
-      if (response.ok) {
-        const data = await response.json();
-        setAllDocuments(data);
-        setFilteredDocs(data);
+      // Load from Supabase database
+      const { createClient } = await import('@/lib/supabase');
+      const supabase = createClient();
+      
+      const { data: dbDocs, error } = await supabase
+        .from('worldbank_documents')
+        .select('*')
+        .order('date', { ascending: false });
+      
+      if (error) {
+        console.error('Error loading from database:', error);
+        // Fallback to JSON file
+        const response = await fetch('/data/worldbank-strategy/ajay-banga-documents-verified.json');
+        if (response.ok) {
+          const data = await response.json();
+          setAllDocuments(data);
+          setFilteredDocs(data);
+        }
+      } else {
+        console.log(`✅ Loaded ${dbDocs.length} documents from database`);
+        setAllDocuments(dbDocs);
+        setFilteredDocs(dbDocs);
       }
     } catch (error) {
       console.error('Error loading documents:', error);
@@ -158,20 +233,20 @@ export default function WorldBankDocsPage() {
                   <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                        {doc.tags?.documentType && (
+                        {(doc.tags_document_type || doc.tags?.documentType) && (
                           <Badge className="bg-stone-100 text-stone-700 border-stone-200">
-                            {doc.tags.documentType}
+                            {doc.tags_document_type || doc.tags?.documentType}
                           </Badge>
                         )}
-                        {doc.tags?.priority && (
+                        {(doc.tags_priority || doc.tags?.priority) && (
                       <Badge className={
-                            doc.tags.priority === 'high' 
+                            (doc.tags_priority || doc.tags?.priority) === 'high' 
                               ? 'bg-red-100 text-red-700 border-red-200' 
-                              : doc.tags.priority === 'medium'
+                              : (doc.tags_priority || doc.tags?.priority) === 'medium'
                               ? 'bg-yellow-100 text-yellow-700 border-yellow-200'
                               : 'bg-green-100 text-green-700 border-green-200'
                       }>
-                        {doc.tags.priority}
+                        {doc.tags_priority || doc.tags?.priority}
                       </Badge>
                         )}
                         <span className="text-sm text-stone-500">{doc.date}</span>

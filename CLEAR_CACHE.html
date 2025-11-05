@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Org Chart Cache</title>
+    <style>
+        body {
+            font-family: system-ui;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0071bc;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #0071bc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 0;
+            width: 100%;
+        }
+        button:hover {
+            background: #005a9c;
+        }
+        .success {
+            background: #10b981;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            display: none;
+        }
+        .info {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🔄 Clear Org Chart Cache</h1>
+        
+        <div class="info">
+            <strong>Why?</strong> The org chart page caches data for 30 minutes. 
+            IDA & MIGA were just added, so you need to clear the cache to see them.
+        </div>
+
+        <button onclick="clearCache()">
+            Clear Cache & Reload
+        </button>
+
+        <div id="success" class="success">
+            ✅ Cache cleared! Redirecting to org chart...
+        </div>
+
+        <div class="info" style="margin-top: 20px;">
+            <strong>After clearing:</strong><br>
+            You should see 6 departments (not 4):<br>
+            • Executive Leadership Team<br>
+            • Regional Leadership<br>
+            • Global Practices<br>
+            • Corporate Functions<br>
+            • <strong>IDA - International Development Association</strong> 🆕<br>
+            • <strong>MIGA - Multilateral Investment Guarantee Agency</strong> 🆕
+        </div>
+    </div>
+
+    <script>
+        function clearCache() {
+            // Clear the org chart cache
+            localStorage.removeItem('worldbank_orgchart_cache');
+            localStorage.removeItem('worldbank_orgchart_cache_time');
+            
+            // Show success message
+            document.getElementById('success').style.display = 'block';
+            
+            // Redirect to org chart page after 1 second
+            setTimeout(() => {
+                window.location.href = '/worldbank-orgchart';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
+

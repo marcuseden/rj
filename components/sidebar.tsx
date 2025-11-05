@@ -4,29 +4,27 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
-  Home, 
-  MessageSquare, 
+  Phone, 
   BookOpen, 
-  Search, 
   FileEdit,
   Building2,
   Eye,
   LogOut,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Globe
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { createClient } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 
 const navItems = [
-  { href: '/dashboard', icon: Home, label: 'Dashboard' },
-  { href: '/rj-agent', icon: MessageSquare, label: 'AI Agent' },
+  { href: '/vision', icon: Eye, label: 'Vision' },
+  { href: '/rj-agent', icon: Phone, label: 'AI Banga' },
   { href: '/rj-faq', icon: BookOpen, label: 'Knowledge Base' },
-  { href: '/worldbank-search', icon: Search, label: 'Document Search' },
   { href: '/rj-writing-assistant', icon: FileEdit, label: 'Writing Assistant' },
   { href: '/worldbank-orgchart', icon: Building2, label: 'Organization Chart' },
-  { href: '/vision', icon: Eye, label: 'Vision' },
+  { href: '/countries', icon: Globe, label: 'Countries' },
 ];
 
 export function Sidebar() {

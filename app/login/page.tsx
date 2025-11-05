@@ -26,7 +26,7 @@ export default function LoginPage() {
           email,
           password,
           options: {
-            emailRedirectTo: `${window.location.origin}/dashboard`,
+            emailRedirectTo: `${window.location.origin}/vision`,
           },
         });
         if (error) throw error;
@@ -37,7 +37,7 @@ export default function LoginPage() {
           password,
         });
         if (error) throw error;
-        router.push('/dashboard');
+        router.push('/vision');
       }
     } catch (error: any) {
       setError(error.message);

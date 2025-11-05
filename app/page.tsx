@@ -32,7 +32,7 @@ export default function LandingPage() {
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUser(user);
       if (user) {
-        router.push('/dashboard');
+        router.push('/vision');
       }
     });
 
@@ -96,7 +96,7 @@ export default function LandingPage() {
   ];
 
   if (user) {
-    return null; // Will redirect to dashboard
+    return null; // Will redirect to vision
   }
 
   return (

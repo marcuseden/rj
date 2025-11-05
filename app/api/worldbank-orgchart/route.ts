@@ -7,6 +7,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { WorldBankOrgChartDB } from '@/lib/worldbank-orgchart-db';
 
+// Enable caching for GET requests (30 minutes)
+export const revalidate = 1800; // 30 minutes in seconds
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -20,7 +23,12 @@ export async function GET(request: NextRequest) {
     switch (action) {
       case 'hierarchy':
         const hierarchy = await db.getOrgChartHierarchy();
-        return NextResponse.json({ hierarchy });
+        // Add cache headers
+        return NextResponse.json({ hierarchy }, {
+          headers: {
+            'Cache-Control': 'public, s-maxage=1800, stale-while-revalidate=3600'
+          }
+        });
 
       case 'level':
         if (!level) {

@@ -1,0 +1,836 @@
+======================================================================
+🏭 ECONOMIC STRUCTURE & RESOURCES DATA COLLECTION
+======================================================================
+Fetching: Sectors, Industries, Natural Resources, Trade
+Source: World Bank Indicators API (2020-2024 data)
+======================================================================
+
+Processing 211 countries...
+
+[1/211] Afghanistan (AF)
+  ✅ 16 indicators
+     Primary: Services
+[2/211] Albania (AL)
+  ✅ 17 indicators
+     Primary: Industry
+     Export-oriented economy
+[3/211] Algeria (DZ)
+  ✅ 15 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas
+[4/211] American Samoa (AS)
+  ✅ 9 indicators
+     Primary: Agriculture
+     Export-oriented economy
+[5/211] Andorra (AD)
+  ✅ 10 indicators
+     Primary: Services
+[6/211] Angola (AO)
+  ✅ 18 indicators
+     Primary: Industry
+     Resources: Oil, Natural Gas
+     Export-oriented economy
+[7/211] Antigua and Barbuda (AG)
+  ✅ 15 indicators
+     Primary: Services
+     Export-oriented economy
+[8/211] Argentina (AR)
+  ✅ 19 indicators
+     Primary: Services
+[9/211] Armenia (AM)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Minerals
+     Export-oriented economy
+[10/211] Aruba (AW)
+  ✅ 10 indicators
+     Primary: Agriculture
+     Export-oriented economy
+[11/211] Australia (AU)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Natural Gas
+[12/211] Austria (AT)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[13/211] Azerbaijan (AZ)
+  ✅ 19 indicators
+     Primary: Industry
+     Resources: Oil, Natural Gas
+     Export-oriented economy
+[14/211] Bahamas, The (BS)
+  ✅ 17 indicators
+     Primary: Services
+     Export-oriented economy
+[15/211] Bahrain (BH)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas
+     Export-oriented economy
+[16/211] Bangladesh (BD)
+  ✅ 16 indicators
+     Primary: Services
+[17/211] Barbados (BB)
+  ✅ 16 indicators
+     Primary: Services
+[18/211] Belarus (BY)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[19/211] Belgium (BE)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[20/211] Belize (BZ)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[21/211] Benin (BJ)
+  ✅ 18 indicators
+     Primary: Services
+[22/211] Bermuda (BM)
+  ✅ 15 indicators
+     Primary: Services
+     Export-oriented economy
+[23/211] Bhutan (BT)
+  ✅ 17 indicators
+     Primary: Services
+[24/211] Bolivia (BO)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Minerals, Oil, Natural Gas
+[25/211] Bosnia and Herzegovina (BA)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[26/211] Botswana (BW)
+  ✅ 18 indicators
+     Primary: Services
+[27/211] Brazil (BR)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Oil
+[28/211] British Virgin Islands (VG)
+  ✅ 1 indicators
+     Primary: Agriculture
+[29/211] Brunei Darussalam (BN)
+  ✅ 18 indicators
+     Primary: Industry
+     Resources: Oil, Natural Gas
+     Export-oriented economy
+[30/211] Bulgaria (BG)
+  ✅ 17 indicators
+     Primary: Services
+     Export-oriented economy
+[31/211] Burkina Faso (BF)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Forest Products
+[32/211] Burundi (BI)
+  ✅ 17 indicators
+     Primary: Services
+     Resources: Forest Products
+[33/211] Cabo Verde (CV)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Coal
+     Export-oriented economy
+[34/211] Cambodia (KH)
+  ✅ 18 indicators
+     Primary: Industry
+     Export-oriented economy
+[35/211] Cameroon (CM)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Oil, Forest Products
+[36/211] Canada (CA)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[37/211] Cayman Islands (KY)
+  ✅ 15 indicators
+     Primary: Services
+     Export-oriented economy
+[38/211] Central African Republic (CF)
+  ✅ 17 indicators
+     Primary: Services
+     Resources: Forest Products
+[39/211] Chad (TD)
+  ✅ 16 indicators
+     Primary: Agriculture
+     Resources: Oil, Forest Products
+[40/211] Chile (CL)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals
+     Export-oriented economy
+[41/211] China (CN)
+  ✅ 18 indicators
+     Primary: Services
+[42/211] Colombia (CO)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Oil
+[43/211] Comoros (KM)
+  ✅ 17 indicators
+     Primary: Services
+[44/211] Congo, Dem. Rep. (CD)
+  ✅ 18 indicators
+     Primary: Industry
+     Resources: Minerals, Forest Products
+     Export-oriented economy
+[45/211] Congo, Rep. (CG)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Oil, Forest Products
+     Export-oriented economy
+[46/211] Costa Rica (CR)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[47/211] Cote d'Ivoire (CI)
+  ✅ 17 indicators
+     Primary: Services
+[48/211] Croatia (HR)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[49/211] Cuba (CU)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[50/211] Curacao (CW)
+  ✅ 10 indicators
+     Primary: Services
+[51/211] Cyprus (CY)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[52/211] Czechia (CZ)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[53/211] Denmark (DK)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[54/211] Djibouti (DJ)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[55/211] Dominica (DM)
+  ✅ 13 indicators
+     Primary: Services
+[56/211] Dominican Republic (DO)
+  ✅ 18 indicators
+     Primary: Services
+[57/211] Ecuador (EC)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Oil
+     Export-oriented economy
+[58/211] Egypt, Arab Rep. (EG)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas
+[59/211] El Salvador (SV)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[60/211] Equatorial Guinea (GQ)
+  ✅ 17 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas, Forest Products
+     Export-oriented economy
+[61/211] Eritrea (ER)
+  ✅ 5 indicators
+     Primary: Agriculture
+[62/211] Estonia (EE)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[63/211] Eswatini (SZ)
+  ✅ 17 indicators
+     Primary: Services
+     Export-oriented economy
+[64/211] Ethiopia (ET)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Forest Products
+[65/211] Faroe Islands (FO)
+  ✅ 11 indicators
+     Primary: Services
+     Export-oriented economy
+[66/211] Fiji (FJ)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[67/211] Finland (FI)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[68/211] France (FR)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[69/211] French Polynesia (PF)
+  ✅ 17 indicators
+     Primary: Services
+[70/211] Gabon (GA)
+  ✅ 18 indicators
+     Primary: Industry
+     Resources: Oil, Forest Products
+     Export-oriented economy
+[71/211] Gambia, The (GM)
+  ✅ 18 indicators
+     Primary: Services
+[72/211] Georgia (GE)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[73/211] Germany (DE)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[74/211] Ghana (GH)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Minerals, Oil, Forest Products
+     Export-oriented economy
+[75/211] Greece (GR)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[76/211] Greenland (GL)
+  ✅ 13 indicators
+     Primary: Services
+     Export-oriented economy
+[77/211] Grenada (GD)
+  ✅ 13 indicators
+     Primary: Services
+[78/211] Guam (GU)
+  ✅ 11 indicators
+     Primary: Agriculture
+[79/211] Guatemala (GT)
+  ✅ 19 indicators
+     Primary: Services
+[80/211] Guinea (GN)
+  ✅ 17 indicators
+     Primary: Services
+     Export-oriented economy
+[81/211] Guinea-Bissau (GW)
+  ✅ 17 indicators
+     Primary: Services
+     Resources: Forest Products
+[82/211] Guyana (GY)
+  ✅ 15 indicators
+     Primary: Services
+     Resources: Minerals, Oil, Forest Products
+[83/211] Haiti (HT)
+  ✅ 17 indicators
+     Primary: Services
+[84/211] Honduras (HN)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[85/211] Hungary (HU)
+  ✅ 18 indicators
+     Primary: Industry
+     Export-oriented economy
+[86/211] Iceland (IS)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[87/211] India (IN)
+  ✅ 19 indicators
+     Primary: Services
+[88/211] Indonesia (ID)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Coal
+[89/211] Iran, Islamic Rep. (IR)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Oil, Natural Gas
+[90/211] Iraq (IQ)
+  ✅ 18 indicators
+     Primary: Industry
+     Resources: Oil
+     Export-oriented economy
+[91/211] Ireland (IE)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[92/211] Isle of Man (IM)
+  ✅ 4 indicators
+     Primary: Services
+[93/211] Italy (IT)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[94/211] Jamaica (JM)
+  ✅ 16 indicators
+     Primary: Services
+[95/211] Japan (JP)
+  ✅ 19 indicators
+     Primary: Services
+[96/211] Jordan (JO)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[97/211] Kazakhstan (KZ)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Oil, Natural Gas
+     Export-oriented economy
+[98/211] Kenya (KE)
+  ✅ 19 indicators
+     Primary: Services
+[99/211] Kiribati (KI)
+  ✅ 15 indicators
+     Primary: Services
+[100/211] Korea, Dem. People's Rep. (KP)
+  ✅ 4 indicators
+     Primary: Agriculture
+[101/211] Korea, Rep. (KR)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[102/211] Kosovo (XK)
+  ✅ 13 indicators
+     Primary: Services
+     Export-oriented economy
+[103/211] Kuwait (KW)
+  ✅ 19 indicators
+     Primary: Industry
+     Resources: Oil, Natural Gas
+     Export-oriented economy
+[104/211] Kyrgyz Republic (KG)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals
+     Export-oriented economy
+[105/211] Lao PDR (LA)
+  ✅ 15 indicators
+     Primary: Services
+     Resources: Minerals, Forest Products
+[106/211] Latvia (LV)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[107/211] Lebanon (LB)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[108/211] Lesotho (LS)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[109/211] Liberia (LR)
+  ✅ 15 indicators
+     Primary: Services
+     Resources: Minerals, Forest Products
+[110/211] Libya (LY)
+  ✅ 16 indicators
+     Primary: Industry
+     Resources: Oil, Natural Gas
+     Export-oriented economy
+[111/211] Liechtenstein (LI)
+  ✅ 7 indicators
+     Primary: Services
+[112/211] Lithuania (LT)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[113/211] Luxembourg (LU)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[114/211] Madagascar (MG)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Forest Products
+[115/211] Malawi (MW)
+  ✅ 16 indicators
+     Primary: Services
+[116/211] Malaysia (MY)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas, Forest Products
+     Export-oriented economy
+[117/211] Maldives (MV)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[118/211] Mali (ML)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Minerals, Forest Products
+[119/211] Malta (MT)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[120/211] Marshall Islands (MH)
+  ✅ 11 indicators
+     Primary: Services
+     Export-oriented economy
+[121/211] Mauritania (MR)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Minerals, Forest Products
+     Export-oriented economy
+[122/211] Mauritius (MU)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[123/211] Mexico (MX)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[124/211] Micronesia, Fed. Sts. (FM)
+  ✅ 11 indicators
+     Primary: Services
+[125/211] Moldova (MD)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[126/211] Monaco (MC)
+  ✅ 5 indicators
+     Primary: Services
+[127/211] Mongolia (MN)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Oil, Coal
+     Export-oriented economy
+[128/211] Montenegro (ME)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[129/211] Morocco (MA)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[130/211] Mozambique (MZ)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Natural Gas, Coal, Forest Products
+     Export-oriented economy
+[131/211] Myanmar (MM)
+  ✅ 17 indicators
+     Primary: Services
+     Resources: Minerals, Natural Gas, Forest Products
+[132/211] Namibia (NA)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[133/211] Nauru (NR)
+  ✅ 9 indicators
+     Primary: Agriculture
+     Export-oriented economy
+[134/211] Nepal (NP)
+  ✅ 18 indicators
+     Primary: Services
+[135/211] Netherlands (NL)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[136/211] New Caledonia (NC)
+  ✅ 11 indicators
+     Primary: Agriculture
+     Resources: Minerals
+[137/211] New Zealand (NZ)
+  ✅ 19 indicators
+     Primary: Services
+[138/211] Nicaragua (NI)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[139/211] Niger (NE)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Forest Products
+     Export-oriented economy
+[140/211] Nigeria (NG)
+  ✅ 16 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas, Forest Products
+[141/211] North Macedonia (MK)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[142/211] Northern Mariana Islands (MP)
+  ✅ 3 indicators
+     Primary: Agriculture
+[143/211] Norway (NO)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas
+     Export-oriented economy
+[144/211] Oman (OM)
+  ✅ 19 indicators
+     Primary: Industry
+     Resources: Oil, Natural Gas
+     Export-oriented economy
+[145/211] Pakistan (PK)
+  ✅ 19 indicators
+     Primary: Services
+[146/211] Palau (PW)
+  ✅ 11 indicators
+     Primary: Services
+[147/211] Panama (PA)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[148/211] Papua New Guinea (PG)
+  ✅ 16 indicators
+     Primary: Services
+     Resources: Minerals, Oil, Natural Gas, Forest Products
+[149/211] Paraguay (PY)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[150/211] Peru (PE)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals
+[151/211] Philippines (PH)
+  ✅ 18 indicators
+     Primary: Services
+[152/211] Poland (PL)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[153/211] Portugal (PT)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[154/211] Puerto Rico (US) (PR)
+  ✅ 15 indicators
+     Primary: Services
+     Export-oriented economy
+[155/211] Qatar (QA)
+  ✅ 19 indicators
+     Primary: Industry
+     Resources: Oil, Natural Gas
+     Export-oriented economy
+[156/211] Romania (RO)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[157/211] Russian Federation (RU)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Oil, Natural Gas
+[158/211] Rwanda (RW)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[159/211] Samoa (WS)
+  ✅ 18 indicators
+     Primary: Services
+[160/211] San Marino (SM)
+  ✅ 10 indicators
+     Primary: Services
+     Export-oriented economy
+[161/211] Sao Tome and Principe (ST)
+  ✅ 15 indicators
+     Primary: Services
+[162/211] Saudi Arabia (SA)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas
+[163/211] Senegal (SN)
+  ✅ 18 indicators
+     Primary: Services
+[164/211] Serbia (RS)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[165/211] Seychelles (SC)
+  ✅ 15 indicators
+     Primary: Services
+     Export-oriented economy
+[166/211] Sierra Leone (SL)
+  ✅ 16 indicators
+     Primary: Services
+     Resources: Forest Products
+[167/211] Singapore (SG)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[168/211] Sint Maarten (Dutch part) (SX)
+  ✅ 5 indicators
+     Primary: Services
+[169/211] Slovak Republic (SK)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[170/211] Slovenia (SI)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[171/211] Solomon Islands (SB)
+  ✅ 17 indicators
+     Primary: Services
+     Resources: Forest Products
+[172/211] Somalia, Fed. Rep. (SO)
+  ✅ 13 indicators
+     Primary: Agriculture
+     Resources: Forest Products
+[173/211] South Africa (ZA)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Coal
+     Export-oriented economy
+[174/211] South Sudan (SS)
+  ✅ 5 indicators
+     Primary: Agriculture
+[175/211] Spain (ES)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[176/211] Sri Lanka (LK)
+  ✅ 19 indicators
+     Primary: Services
+[177/211] St. Kitts and Nevis (KN)
+  ✅ 12 indicators
+     Primary: Services
+[178/211] St. Lucia (LC)
+  ✅ 16 indicators
+     Primary: Services
+[179/211] St. Martin (French part) (MF)
+  ✅ 1 indicators
+     Primary: Agriculture
+[180/211] St. Vincent and the Grenadines (VC)
+  ✅ 16 indicators
+     Primary: Services
+[181/211] Sudan (SD)
+  ✅ 16 indicators
+     Primary: Services
+     Resources: Minerals, Oil, Forest Products
+[182/211] Suriname (SR)
+  ✅ 16 indicators
+     Primary: Services
+     Resources: Oil, Forest Products
+[183/211] Sweden (SE)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[184/211] Switzerland (CH)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[185/211] Syrian Arab Republic (SY)
+  ✅ 16 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas
+[186/211] Tajikistan (TJ)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Forest Products
+[187/211] Tanzania (TZ)
+  ✅ 18 indicators
+     Primary: Industry
+     Resources: Minerals, Forest Products
+[188/211] Thailand (TH)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[189/211] Timor-Leste (TL)
+  ✅ 17 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas
+[190/211] Togo (TG)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Minerals, Forest Products
+[191/211] Tonga (TO)
+  ✅ 17 indicators
+     Primary: Services
+[192/211] Trinidad and Tobago (TT)
+  ✅ 17 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas
+[193/211] Tunisia (TN)
+  ✅ 18 indicators
+     Primary: Services
+     Export-oriented economy
+[194/211] Turkiye (TR)
+  ✅ 19 indicators
+     Primary: Services
+[195/211] Turkmenistan (TM)
+  ✅ 11 indicators
+     Primary: Services
+[196/211] Turks and Caicos Islands (TC)
+  ✅ 12 indicators
+     Primary: Services
+[197/211] Tuvalu (TV)
+  ✅ 6 indicators
+     Primary: Agriculture
+[198/211] Uganda (UG)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Forest Products
+[199/211] Ukraine (UA)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Natural Gas
+[200/211] United Arab Emirates (AE)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Oil, Natural Gas
+     Export-oriented economy
+[201/211] United Kingdom (GB)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[202/211] United States (US)
+  ✅ 19 indicators
+     Primary: Services
+[203/211] Uruguay (UY)
+  ✅ 19 indicators
+     Primary: Services
+[204/211] Uzbekistan (UZ)
+  ✅ 19 indicators
+     Primary: Services
+     Resources: Minerals, Natural Gas
+[205/211] Vanuatu (VU)
+  ✅ 17 indicators
+     Primary: Services
+[206/211] Venezuela, RB (VE)
+  ✅ 5 indicators
+     Primary: Agriculture
+[207/211] Viet Nam (VN)
+  ✅ 19 indicators
+     Primary: Services
+     Export-oriented economy
+[208/211] Virgin Islands (U.S.) (VI)
+  ✅ 11 indicators
+     Primary: Agriculture
+     Export-oriented economy
+[209/211] Yemen, Rep. (YE)
+  ✅ 4 indicators
+     Primary: Agriculture
+[210/211] Zambia (ZM)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Minerals, Forest Products
+     Export-oriented economy
+[211/211] Zimbabwe (ZW)
+  ✅ 18 indicators
+     Primary: Services
+     Resources: Minerals, Forest Products
+
+======================================================================
+📊 ECONOMIC STRUCTURE COLLECTION COMPLETE
+======================================================================
+Countries Processed: 211
+Countries Updated: 211
+Countries with Natural Resources: 71
+======================================================================
+
+✅ Economic structure data now in database!
+   Each country has: sector composition, natural resources, trade data
+   All data from World Bank Indicators API
+

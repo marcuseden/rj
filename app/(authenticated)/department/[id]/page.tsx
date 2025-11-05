@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { 
   ArrowLeft, 
+  ArrowRight,
   Users, 
   Target, 
   TrendingUp, 
@@ -20,7 +21,8 @@ import {
   ExternalLink,
   Calendar,
   DollarSign,
-  BarChart3
+  BarChart3,
+  Phone
 } from 'lucide-react';
 
 interface DepartmentData {
@@ -54,6 +56,8 @@ interface DepartmentData {
   sector_focus?: string[];
   recent_achievements?: string[];
   challenges?: string[];
+  countries_covered?: string[];
+  countries_count?: number;
   collaboration_partners?: string[];
   external_links?: {
     [key: string]: string;
@@ -98,18 +102,18 @@ function TeamMembersList({ departmentId }: { departmentId: string }) {
         return (
           <Link key={member.id} href={`/department/${member.id}`}>
             <Card className="bg-stone-50 border-stone-200 hover:shadow-md hover:border-[#0071bc] transition-all cursor-pointer">
-              <div className="p-4 flex items-center gap-3">
-                <Avatar className="w-12 h-12 ring-2 ring-stone-200">
+              <div className="p-4 flex flex-col items-center text-center gap-3">
+                <Avatar className="w-16 h-16 ring-2 ring-stone-200">
                   <AvatarImage src={member.avatar_url} alt={member.name} />
-                  <AvatarFallback className="bg-stone-200 text-stone-700 font-semibold">
+                  <AvatarFallback className="bg-stone-200 text-stone-700 font-semibold text-base">
                     {initials}
                   </AvatarFallback>
                 </Avatar>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-stone-900 text-sm truncate">{member.name}</h4>
-                  <p className="text-xs text-stone-600 truncate">{member.position}</p>
+                <div className="w-full">
+                  <h4 className="font-semibold text-stone-900 text-base">{member.name}</h4>
+                  <p className="text-sm text-stone-600 line-clamp-2 mb-2">{member.position}</p>
                   {member.country && (
-                    <Badge className="bg-stone-100 text-stone-600 border-stone-200 text-xs mt-1">
+                    <Badge className="bg-stone-100 text-stone-600 border-stone-200 text-xs">
                       {member.country}
                     </Badge>
                   )}
@@ -129,6 +133,7 @@ export default function DepartmentPage() {
   const id = params?.id as string;
   
   const [department, setDepartment] = useState<DepartmentData | null>(null);
+  const [teamMembers, setTeamMembers] = useState<DepartmentData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -146,6 +151,13 @@ export default function DepartmentPage() {
         
         const data = await response.json();
         setDepartment(data.member);
+
+        // Fetch team members if this is a group/team page
+        const childrenResponse = await fetch(`/api/worldbank-orgchart?action=children&id=${id}`);
+        if (childrenResponse.ok) {
+          const childrenData = await childrenResponse.json();
+          setTeamMembers(childrenData.children || []);
+        }
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -249,6 +261,21 @@ export default function DepartmentPage() {
                 </div>
               </div>
               
+              {/* Call AI Button */}
+              {id === 'ajay-banga' ? (
+                <Link href="/chat" className="inline-block mb-4">
+                  <Button className="bg-[#0071bc] hover:bg-[#005a99] text-white">
+                    <Phone className="w-4 h-4 mr-2" />
+                    Call AI Banga
+                  </Button>
+                </Link>
+              ) : (
+                <Button disabled className="bg-stone-200 text-stone-500 cursor-not-allowed mb-4">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call AI Agent (Coming Soon)
+                </Button>
+              )}
+
               {/* Personal Bio */}
               <div className="mb-4">
                 <h3 className="font-semibold text-stone-900 mb-2">Biography</h3>
@@ -271,6 +298,58 @@ export default function DepartmentPage() {
             </div>
           </div>
         </Card>
+
+        {/* Team Members Section */}
+        {teamMembers.length > 0 && (
+          <Card className="bg-white border-stone-200 p-6 mb-6">
+            <h2 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
+              <Users className="w-5 h-5 mr-2" />
+              Team Members ({teamMembers.length})
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {teamMembers.map((member) => {
+                const memberInitials = member.name
+                  .split(' ')
+                  .map(n => n[0])
+                  .join('')
+                  .toUpperCase()
+                  .slice(0, 2);
+                
+                return (
+                  <Link
+                    key={member.id}
+                    href={`/department/${member.id}`}
+                    className="block group"
+                  >
+                    <Card className="bg-stone-50 border-stone-200 hover:bg-white hover:shadow-md transition-all h-full">
+                      <div className="p-4 flex flex-col items-center text-center gap-3">
+                        <Avatar className="w-16 h-16 ring-2 ring-stone-200">
+                          <AvatarImage src={member.avatar_url} alt={member.name} />
+                          <AvatarFallback className="bg-stone-200 text-stone-700 font-semibold text-base">
+                            {memberInitials}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="w-full">
+                          <h3 className="font-semibold text-stone-900 text-base mb-1 group-hover:text-stone-700">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm text-stone-600 line-clamp-2 mb-2">
+                            {member.position}
+                          </p>
+                          {member.country && (
+                            <Badge className="bg-stone-100 text-stone-600 border-stone-200 text-xs">
+                              {member.country}
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+                    </Card>
+                  </Link>
+                );
+              })}
+            </div>
+          </Card>
+        )}
 
         {/* Strategy & Vision */}
           <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -458,6 +537,34 @@ export default function DepartmentPage() {
               Team Members ({department.children_count})
             </h2>
             <TeamMembersList departmentId={department.id} />
+          </Card>
+        )}
+
+        {/* Countries Coverage (for Regional VPs) */}
+        {department.countries_covered && department.countries_covered.length > 0 && (
+          <Card className="bg-white border-stone-200 p-6 mb-6">
+            <h2 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
+              <Globe className="w-5 h-5 mr-2" />
+              Countries Covered ({department.countries_count || department.countries_covered.length})
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {department.countries_covered.map((country, idx) => (
+                <Link
+                  key={idx}
+                  href={`/country/${encodeURIComponent(country)}`}
+                  className="group"
+                >
+                  <Badge className="bg-stone-100 text-stone-700 border-stone-200 hover:bg-stone-200 hover:border-stone-300 transition-all cursor-pointer px-3 py-1.5">
+                    <Globe className="w-3 h-3 mr-1.5" />
+                    {country}
+                    <ExternalLink className="w-3 h-3 ml-1.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Badge>
+                </Link>
+              ))}
+            </div>
+            <p className="text-xs text-stone-500 mt-4">
+              Click any country to see World Bank operations, active projects, and portfolio details
+            </p>
           </Card>
         )}
 

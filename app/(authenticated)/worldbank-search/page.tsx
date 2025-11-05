@@ -1,562 +1,461 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Search, FileText, Calendar, ExternalLink, User, Building2, Globe, Briefcase, Filter, ChevronDown, X } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { Search, Filter, ChevronDown, MapPin, Building2, FileText, Briefcase, Globe, Share2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import useSWR from 'swr';
+import { useVirtualizer } from '@tanstack/react-virtual';
+import { useRef } from 'react';
 
-interface WorldBankDocument {
-  id: string;
-  title: string;
-  url: string;
-  summary: string;
-  date: string;
-  type: string;
-  tags: {
-    documentType: string;
-    sectors: string[];
-    regions: string[];
-    initiatives: string[];
-    authors: string[];
-    priority: string;
-    departments?: string[];
-  };
-  sourceReference: {
-    originalUrl: string;
-    scrapedFrom: string;
-  };
-  metadata: {
-    wordCount: number;
-    readingTime: number;
-  };
-}
+import { fetchSearchResults, fetchSearchFilters, buildSearchCacheKey, getCachedFilters, setCachedFilters } from '@/lib/search-api';
+import { SearchDocument, SearchFilters, SearchParams } from '@/lib/search-types';
+import { SearchSkeleton } from '@/components/SearchSkeleton';
+
+type QuickFilterType = 'all' | 'rj-banga' | 'strategy' | 'departments' | 'geographic' | 'countries' | 'people' | 'projects';
 
 export default function WorldBankSearchPage() {
-  const [documents, setDocuments] = useState<WorldBankDocument[]>([]);
-  const [filteredDocs, setFilteredDocs] = useState<WorldBankDocument[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedDoc, setSelectedDoc] = useState<WorldBankDocument | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [debouncedQuery, setDebouncedQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
+  const [page, setPage] = useState(1);
+  
+  // Quick Filter Tabs
+  const [quickFilter, setQuickFilter] = useState<QuickFilterType>('all');
+  
+  // Advanced Filters
+  const [filterAuthor, setFilterAuthor] = useState('all');
+  const [filterDocType, setFilterDocType] = useState('all');
+  const [filterSector, setFilterSector] = useState('all');
+  const [filterRegion, setFilterRegion] = useState('all');
+  const [filterDepartment, setFilterDepartment] = useState('all');
 
-  // Filter states
-  const [selectedDocType, setSelectedDocType] = useState<string>('all');
-  const [selectedSector, setSelectedSector] = useState<string>('all');
-  const [selectedRegion, setSelectedRegion] = useState<string>('all');
-  const [selectedPriority, setSelectedPriority] = useState<string>('all');
-
-  // Unique values for filters
-  const [docTypes, setDocTypes] = useState<string[]>([]);
-  const [sectors, setSectors] = useState<string[]>([]);
-  const [regions, setRegions] = useState<string[]>([]);
-
+  // Debounce search query
   useEffect(() => {
-    loadDocuments();
-  }, []);
+    const timer = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+      setPage(1); // Reset to first page on new search
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
 
-  useEffect(() => {
-    applyFilters();
-  }, [searchQuery, selectedDocType, selectedSector, selectedRegion, selectedPriority, documents]);
-
-  const loadDocuments = async () => {
-    try {
-      const response = await fetch('/data/worldbank-strategy/documents.json');
-      if (response.ok) {
-        const data = await response.json();
-        setDocuments(data);
-        extractFilterOptions(data);
-      }
-      setLoading(false);
-    } catch (error) {
-      console.error('Error loading documents:', error);
-      setLoading(false);
-    }
-  };
-
-  const extractFilterOptions = (docs: WorldBankDocument[]) => {
-    const types = new Set<string>();
-    const secs = new Set<string>();
-    const regs = new Set<string>();
-
-    docs.forEach(doc => {
-      if (doc.tags) {
-        if (doc.tags.documentType) types.add(doc.tags.documentType);
-        if (doc.tags.sectors) doc.tags.sectors.forEach(s => secs.add(s));
-        if (doc.tags.regions) doc.tags.regions.forEach(r => regs.add(r));
-      }
-    });
-
-    setDocTypes(Array.from(types).sort());
-    setSectors(Array.from(secs).sort());
-    setRegions(Array.from(regs).sort());
-  };
-
-  const applyFilters = () => {
-    let filtered = documents;
-
-    // Text search
-    if (searchQuery.trim()) {
-      const queryLower = searchQuery.toLowerCase();
-      filtered = filtered.filter(doc =>
-        doc.title?.toLowerCase().includes(queryLower) ||
-        doc.summary?.toLowerCase().includes(queryLower) ||
-        doc.tags?.sectors?.some(s => s.toLowerCase().includes(queryLower)) ||
-        doc.tags?.initiatives?.some(i => i.toLowerCase().includes(queryLower)) ||
-        doc.tags?.authors?.some(a => a.toLowerCase().includes(queryLower)) ||
-        doc.tags?.regions?.some(r => r.toLowerCase().includes(queryLower)) ||
-        doc.tags?.documentType?.toLowerCase().includes(queryLower)
-      );
-    }
-
-    // Tag filters
-    if (selectedDocType !== 'all') {
-      filtered = filtered.filter(doc => doc.tags?.documentType === selectedDocType);
-    }
-
-    if (selectedSector !== 'all') {
-      filtered = filtered.filter(doc => doc.tags?.sectors?.includes(selectedSector));
-    }
-
-    if (selectedRegion !== 'all') {
-      filtered = filtered.filter(doc => doc.tags?.regions?.includes(selectedRegion));
-    }
-
-    if (selectedPriority !== 'all') {
-      filtered = filtered.filter(doc => doc.tags?.priority === selectedPriority);
-    }
-
-    setFilteredDocs(filtered);
-  };
-
-  const clearFilters = () => {
-    setSelectedDocType('all');
-    setSelectedSector('all');
-    setSelectedRegion('all');
-    setSelectedPriority('all');
-    setSearchQuery('');
-  };
-
-  const activeFiltersCount =
-    (selectedDocType !== 'all' ? 1 : 0) +
-    (selectedSector !== 'all' ? 1 : 0) +
-    (selectedRegion !== 'all' ? 1 : 0) +
-    (selectedPriority !== 'all' ? 1 : 0);
-
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high': return 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300';
-      case 'medium': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300';
-      case 'low': return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300';
-      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300';
-    }
-  };
-
-  const getTypeColor = (type: string) => {
-    const colors: Record<string, string> = {
-      'speech': 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
-      'strategy': 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300',
-      'article': 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300',
-      'report': 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300',
-      'initiative': 'bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300',
+  // Build search params
+  const searchParams: SearchParams = useMemo(() => {
+    const params: SearchParams = {
+      q: debouncedQuery,
+      page,
+      limit: 20
     };
-    return colors[type] || 'bg-gray-100 text-gray-800';
+
+    // Apply quick filter as type filter
+    if (quickFilter !== 'all') {
+      if (quickFilter === 'rj-banga') {
+        params.author = 'Ajay Banga';
+      } else {
+        params.type = quickFilter === 'geographic' ? 'geographic' : quickFilter.replace('-', '');
+      }
+    }
+
+    // Apply advanced filters
+    if (filterAuthor !== 'all') params.author = filterAuthor;
+    if (filterRegion !== 'all') params.region = filterRegion;
+    if (filterSector !== 'all') params.sector = filterSector;
+    if (filterDepartment !== 'all') params.department = filterDepartment;
+
+    return params;
+  }, [debouncedQuery, quickFilter, filterAuthor, filterRegion, filterSector, filterDepartment, page]);
+
+  // Fetch filters (cached)
+  const { data: filters, isLoading: filtersLoading } = useSWR<SearchFilters>(
+    'search-filters',
+    async () => {
+      const cached = getCachedFilters();
+      if (cached) return cached;
+      
+      const data = await fetchSearchFilters();
+      setCachedFilters(data);
+      return data;
+    },
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 900000 // 15 minutes
+    }
+  );
+
+  // Fetch search results with SWR
+  const cacheKey = buildSearchCacheKey(searchParams);
+  const { data: searchResponse, isLoading: resultsLoading, error } = useSWR(
+    cacheKey,
+    () => fetchSearchResults(searchParams),
+    {
+      revalidateOnFocus: false,
+      dedupingInterval: 60000, // 1 minute
+      keepPreviousData: true
+    }
+  );
+
+  const results = searchResponse?.results || [];
+  const pagination = searchResponse?.pagination;
+  const isLoading = resultsLoading && !searchResponse;
+
+  // Virtual scrolling setup
+  const parentRef = useRef<HTMLDivElement>(null);
+  const virtualizer = useVirtualizer({
+    count: results.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 150, // Estimated height per item
+    overscan: 5
+  });
+
+  const handleLoadMore = () => {
+    if (pagination && page < pagination.pages) {
+      setPage(p => p + 1);
+    }
   };
 
-  if (loading) {
+  // Reset page when filters change
+  useEffect(() => {
+    setPage(1);
+  }, [quickFilter, filterAuthor, filterRegion, filterSector, filterDepartment]);
+
+  if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading World Bank documents...</p>
-        </div>
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center">
+        <Card className="bg-white border-stone-200 p-8 text-center max-w-md">
+          <h3 className="text-lg font-semibold text-red-600 mb-2">Error Loading Search</h3>
+          <p className="text-stone-600">{error.message}</p>
+          <Button onClick={() => window.location.reload()} className="mt-4">
+            Retry
+          </Button>
+        </Card>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            RJ Banga Knowledge Base
-          </h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-400">
-            World Bank Strategy Documents & Speeches
-          </p>
-          <p className="text-sm text-gray-500 dark:text-gray-500">
-            {documents.length} documents from 2024+ • Search and explore
-          </p>
-        </div>
+      <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-stone-900 mb-2">
+          World Bank Knowledge Base
+        </h1>
+        <p className="text-stone-600">
+          {pagination ? `${pagination.total} items` : 'Loading...'} • Articles, strategies, people, countries, projects, and departments
+        </p>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Big Search Bar */}
-        <div className="mb-8">
-          <div className="relative">
-            <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
-            <Input
-              type="text"
-              placeholder="Search by topic, initiative, author, sector, region... (e.g., 'climate', 'Africa', 'Ajay Banga')"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-16 pr-6 py-8 text-xl w-full rounded-xl border-2 border-gray-200 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400"
-            />
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-8">
+        {/* Search Bar */}
+        <div className="mb-6">
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-stone-400 h-5 w-5 z-10" />
+              <Input
+                type="text"
+                placeholder="Search articles, strategies, people, countries, projects, departments..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-12 pr-4 py-6 text-lg bg-white border-stone-300 focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc] transition-all shadow-sm hover:shadow-md"
+              />
+            </div>
+
+            <Button
+              onClick={() => setShowFilters(!showFilters)}
+              variant="outline"
+              className={`px-4 py-6 border-stone-300 hover:bg-stone-50 transition-all shadow-sm hover:shadow-md ${
+                showFilters ? 'bg-stone-100 border-stone-400' : 'bg-white'
+              }`}
+            >
+              <Filter className="h-5 w-5 mr-2" />
+              <span className="hidden md:inline">Filters</span>
+              <ChevronDown className={`h-4 w-4 ml-2 transition-transform duration-200 ${showFilters ? 'rotate-180' : ''}`} />
+            </Button>
           </div>
         </div>
 
-        {/* Filter Toggle */}
+        {/* Quick Filter Tabs */}
         <div className="mb-6">
-          <Button
-            onClick={() => setShowFilters(!showFilters)}
-            variant="outline"
-            className="flex items-center gap-2"
-          >
-            <Filter className="h-4 w-4" />
-            Filters
-            {activeFiltersCount > 0 && (
-              <Badge className="bg-blue-500">{activeFiltersCount}</Badge>
-            )}
-            <ChevronDown className={`h-4 w-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
-          </Button>
-        </div>
-
-        {/* Filter Panel */}
-        {showFilters && (
-          <Card className="mb-8 p-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              {/* Document Type */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Document Type
-                </label>
-                <select
-                  value={selectedDocType}
-                  onChange={(e) => setSelectedDocType(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800"
-                >
-                  <option value="all">All Types</option>
-                  {docTypes.map(type => (
-                    <option key={type} value={type}>{type}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Sector */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Sector
-                </label>
-                <select
-                  value={selectedSector}
-                  onChange={(e) => setSelectedSector(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800"
-                >
-                  <option value="all">All Sectors</option>
-                  {sectors.map(sector => (
-                    <option key={sector} value={sector}>{sector}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Region */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Region
-                </label>
-                <select
-                  value={selectedRegion}
-                  onChange={(e) => setSelectedRegion(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800"
-                >
-                  <option value="all">All Regions</option>
-                  {regions.map(region => (
-                    <option key={region} value={region}>{region}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Priority */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Priority
-                </label>
-                <select
-                  value={selectedPriority}
-                  onChange={(e) => setSelectedPriority(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800"
-                >
-                  <option value="all">All Priorities</option>
-                  <option value="high">High</option>
-                  <option value="medium">Medium</option>
-                  <option value="low">Low</option>
-                </select>
-              </div>
-            </div>
-
-            {activeFiltersCount > 0 && (
-              <div className="mt-6 flex items-center gap-4">
-                <Button
-                  onClick={clearFilters}
-                  variant="outline"
-                  size="sm"
-                >
-                  <X className="h-4 w-4 mr-1" />
-                  Clear all filters
-                </Button>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {activeFiltersCount} filter{activeFiltersCount !== 1 ? 's' : ''} active
-                </span>
-              </div>
-            )}
-          </Card>
-        )}
-
-        {/* Results Count */}
-        <div className="mb-6 text-sm text-gray-600 dark:text-gray-400">
-          Showing {filteredDocs.length} of {documents.length} documents
-          {searchQuery && ` for "${searchQuery}"`}
-        </div>
-
-        {/* Search Results */}
-        <div className="grid grid-cols-1 gap-6">
-          {filteredDocs.map((doc) => (
-            <Card key={doc.id} className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedDoc(doc)}>
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Badge className={getTypeColor(doc.tags.documentType)}>
-                        {doc.tags.documentType}
-                      </Badge>
-                      <Badge className={getPriorityColor(doc.tags.priority)}>
-                        {doc.tags.priority}
-                      </Badge>
-                      <Badge variant="outline" className="text-xs">
-                        <Calendar className="h-3 w-3 mr-1" />
-                        {doc.date}
-                      </Badge>
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                      {doc.title}
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-                      {doc.summary}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Tags */}
-                <div className="space-y-3 mb-4">
-                  {doc.tags?.authors && doc.tags.authors.length > 0 && (
-                    <div className="flex items-center gap-2">
-                      <User className="h-4 w-4 text-gray-400" />
-                      <span className="text-sm text-gray-700 dark:text-gray-300">{doc.tags.authors.join(', ')}</span>
-                    </div>
-                  )}
-
-                  {doc.tags?.sectors && doc.tags.sectors.length > 0 && (
-                    <div className="flex items-start gap-2">
-                      <Building2 className="h-4 w-4 text-gray-400 mt-0.5" />
-                      <div className="flex flex-wrap gap-1">
-                        {doc.tags.sectors.map((sector, idx) => (
-                          <Badge key={idx} variant="secondary" className="text-xs">
-                            {sector}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {doc.tags?.regions && doc.tags.regions.length > 0 && (
-                    <div className="flex items-start gap-2">
-                      <Globe className="h-4 w-4 text-gray-400 mt-0.5" />
-                      <div className="flex flex-wrap gap-1">
-                        {doc.tags.regions.map((region, idx) => (
-                          <Badge key={idx} variant="secondary" className="text-xs">
-                            {region}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {doc.tags?.initiatives && doc.tags.initiatives.length > 0 && (
-                    <div className="flex items-start gap-2">
-                      <Briefcase className="h-4 w-4 text-gray-400 mt-0.5" />
-                      <div className="flex flex-wrap gap-1">
-                        {doc.tags.initiatives.map((initiative, idx) => (
-                          <Badge key={idx} className="bg-blue-100 text-blue-800 text-xs">
-                            {initiative}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Actions */}
-                <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    {doc.metadata.readingTime} min read
-                  </span>
-                  <Button variant="outline" size="sm">
-                    Read Full Document →
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-
-          {filteredDocs.length === 0 && (
-            <Card className="p-12 text-center">
-              <FileText className="h-16 w-16 mx-auto mb-4 text-gray-400" />
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                No documents found
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Try adjusting your search terms or filters
-              </p>
-              <Button onClick={clearFilters} variant="outline">
-                Clear all filters
-              </Button>
-            </Card>
-          )}
-        </div>
-
-        {/* Quick Search Tags */}
-        <div className="mt-12">
-          <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">
-            Quick Search Topics
-          </h3>
           <div className="flex flex-wrap gap-2">
             {[
-              'Ajay Banga',
-              'Climate Change',
-              'Evolution Roadmap',
-              'Africa Development',
-              'Agriculture',
-              'Poverty Reduction',
-              'Sustainable Development',
-              'Economic Growth'
-            ].map((topic) => (
-              <Button
-                key={topic}
-                onClick={() => setSearchQuery(topic)}
-                variant="outline"
-                size="sm"
-                className="rounded-full"
+              { key: 'all', label: 'All Documents', icon: null },
+              { key: 'rj-banga', label: 'RJ Banga', icon: FileText },
+              { key: 'strategy', label: 'Strategy Docs', icon: Briefcase },
+              { key: 'departments', label: 'Departments', icon: Building2 },
+              { key: 'geographic', label: 'Geographic', icon: MapPin },
+              { key: 'countries', label: 'Countries', icon: Globe },
+              { key: 'people', label: 'People', icon: Share2 },
+              { key: 'projects', label: 'Projects', icon: Briefcase }
+            ].map(({ key, label, icon: Icon }) => (
+              <button
+                key={key}
+                onClick={() => setQuickFilter(key as QuickFilterType)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
+                  quickFilter === key
+                    ? 'bg-[#0071bc] text-white shadow-md'
+                    : 'bg-white text-stone-700 border border-stone-300 hover:border-stone-400 hover:shadow-sm'
+                }`}
               >
-                {topic}
-              </Button>
+                {Icon && <Icon className="h-4 w-4" />}
+                {label}
+              </button>
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Document Detail Modal */}
-      {selectedDoc && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setSelectedDoc(null)}>
-          <Card className="max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex-1">
-                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
-                    {selectedDoc.title}
-                  </h2>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <Badge className={getTypeColor(selectedDoc.tags.documentType)}>
-                      {selectedDoc.tags.documentType}
-                    </Badge>
-                    <Badge className={getPriorityColor(selectedDoc.tags.priority)}>
-                      {selectedDoc.tags.priority}
-                    </Badge>
-                    <Badge variant="outline">{selectedDoc.date}</Badge>
-                  </div>
-                </div>
+        {/* Advanced Filters Panel */}
+        {showFilters && filters && (
+          <div className="mb-6 animate-in slide-in-from-top-2 duration-200">
+            <Card className="bg-white border-stone-200 p-4 md:p-6 shadow-lg">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-stone-900">Advanced Filters</h3>
                 <Button
-                  onClick={() => setSelectedDoc(null)}
                   variant="ghost"
                   size="sm"
+                  onClick={() => {
+                    setFilterAuthor('all');
+                    setFilterDocType('all');
+                    setFilterSector('all');
+                    setFilterRegion('all');
+                    setFilterDepartment('all');
+                  }}
+                  className="text-[#0071bc] hover:text-[#005a99]"
                 >
-                  <X className="h-5 w-5" />
+                  Clear All
                 </Button>
               </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 mb-2">Author</label>
+                  <select
+                    value={filterAuthor}
+                    onChange={(e) => setFilterAuthor(e.target.value)}
+                    className="w-full px-3 py-2 border border-stone-300 rounded-lg bg-white text-sm hover:border-stone-400 focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc] transition-all"
+                  >
+                    <option value="all">All Authors</option>
+                    {filters.authors?.map(author => (
+                      <option key={author} value={author}>{author}</option>
+                    ))}
+                  </select>
+                </div>
 
-              <div className="prose max-w-none mb-6">
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                  {selectedDoc.summary}
-                </p>
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 mb-2">Sector</label>
+                  <select
+                    value={filterSector}
+                    onChange={(e) => setFilterSector(e.target.value)}
+                    className="w-full px-3 py-2 border border-stone-300 rounded-lg bg-white text-sm hover:border-stone-400 focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc] transition-all"
+                  >
+                    <option value="all">All Sectors</option>
+                    {filters.sectors?.map(sector => (
+                      <option key={sector} value={sector}>{sector}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 mb-2">Region</label>
+                  <select
+                    value={filterRegion}
+                    onChange={(e) => setFilterRegion(e.target.value)}
+                    className="w-full px-3 py-2 border border-stone-300 rounded-lg bg-white text-sm hover:border-stone-400 focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc] transition-all"
+                  >
+                    <option value="all">All Regions</option>
+                    {filters.regions?.map(region => (
+                      <option key={region} value={region}>{region}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 mb-2">Department</label>
+                  <select
+                    value={filterDepartment}
+                    onChange={(e) => setFilterDepartment(e.target.value)}
+                    className="w-full px-3 py-2 border border-stone-300 rounded-lg bg-white text-sm hover:border-stone-400 focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc] transition-all"
+                  >
+                    <option value="all">All Departments</option>
+                    {filters.departments?.map(dept => (
+                      <option key={dept} value={dept}>{dept}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
+            </Card>
+          </div>
+        )}
 
-              {/* All Tags */}
-              <div className="space-y-4 mb-6">
-                {selectedDoc.tags?.authors && selectedDoc.tags.authors.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Authors</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedDoc.tags.authors.map((author, idx) => (
-                        <Badge key={idx} variant="secondary">{author}</Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
+        {/* Results */}
+        {pagination && (
+          <div className="mb-4 text-sm text-stone-600">
+            Showing {results.length} of {pagination.total} items
+            {page > 1 && ` (page ${page} of ${pagination.pages})`}
+          </div>
+        )}
 
-                {selectedDoc.tags?.sectors && selectedDoc.tags.sectors.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Sectors</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedDoc.tags.sectors.map((sector, idx) => (
-                        <Badge key={idx} variant="secondary">{sector}</Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {selectedDoc.tags?.regions && selectedDoc.tags.regions.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Regions</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedDoc.tags.regions.map((region, idx) => (
-                        <Badge key={idx} variant="secondary">{region}</Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {selectedDoc.tags?.initiatives && selectedDoc.tags.initiatives.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Initiatives & Projects</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedDoc.tags.initiatives.map((initiative, idx) => (
-                        <Badge key={idx} className="bg-blue-100 text-blue-800">{initiative}</Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="flex items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-700">
-                <span className="text-sm text-gray-500 dark:text-gray-400">
-                  {selectedDoc.metadata.wordCount.toLocaleString()} words • {selectedDoc.metadata.readingTime} min read
-                </span>
-                <a
-                  href={selectedDoc.sourceReference.originalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Read Full Document
-                </a>
-              </div>
-            </div>
+        {/* Document List with Virtual Scrolling */}
+        {isLoading ? (
+          <SearchSkeleton count={5} />
+        ) : results.length === 0 ? (
+          <Card className="bg-white border-stone-200 p-12 text-center">
+            <h3 className="text-lg font-semibold text-stone-900 mb-2">No results found</h3>
+            <p className="text-stone-600">Try adjusting your search or filters</p>
           </Card>
-        </div>
-      )}
+        ) : (
+          <>
+            <div className="grid grid-cols-1 gap-4">
+              {results.map((doc) => (
+                <DocumentCard key={doc.id} doc={doc} />
+              ))}
+            </div>
+
+            {/* Load More Button */}
+            {pagination && page < pagination.pages && (
+              <div className="mt-8 text-center">
+                <Button
+                  onClick={handleLoadMore}
+                  disabled={resultsLoading}
+                  className="bg-[#0071bc] hover:bg-[#005a99] text-white px-8 py-3"
+                >
+                  {resultsLoading ? 'Loading...' : `Load More (${pagination.total - results.length} remaining)`}
+                </Button>
+              </div>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }
 
+// Document Card Component
+function DocumentCard({ doc }: { doc: SearchDocument }) {
+  // Smart routing based on source type
+  const getLink = () => {
+    if (doc.sourceType === 'country') return `/country/${encodeURIComponent(doc.title)}`;
+    if (doc.sourceType === 'person') return `/worldbank-orgchart#${doc.id}`;
+    if (doc.sourceType === 'project') return `/project/${doc.id}`;
+    return `/document/${doc.id}`;
+  };
+  
+  return (
+    <Link href={getLink()}>
+      <Card className="bg-white border-stone-200 hover:shadow-lg hover:border-[#0071bc] transition-all cursor-pointer group">
+        <CardContent className="p-4 md:p-6">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                {/* Source Type Badge */}
+                <Badge className={`text-xs font-medium ${
+                  doc.sourceType === 'speech' 
+                    ? 'bg-blue-100 text-blue-700 border-blue-200'
+                    : doc.sourceType === 'strategy'
+                    ? 'bg-purple-100 text-purple-700 border-purple-200'
+                    : doc.sourceType === 'department'
+                    ? 'bg-green-100 text-green-700 border-green-200'
+                    : doc.sourceType === 'geographic'
+                    ? 'bg-orange-100 text-orange-700 border-orange-200'
+                    : doc.sourceType === 'country'
+                    ? 'bg-teal-100 text-teal-700 border-teal-200'
+                    : doc.sourceType === 'person'
+                    ? 'bg-pink-100 text-pink-700 border-pink-200'
+                    : doc.sourceType === 'project'
+                    ? 'bg-indigo-100 text-indigo-700 border-indigo-200'
+                    : 'bg-stone-100 text-stone-700 border-stone-200'
+                }`}>
+                  {getSourceIcon(doc.sourceType)}
+                  {doc.sourceType}
+                </Badge>
+                
+                {doc.tags?.documentType && (
+                  <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
+                    {doc.tags.documentType}
+                  </Badge>
+                )}
+                
+                {doc.tags?.priority && (
+                  <Badge className={
+                    doc.tags.priority === 'high' 
+                      ? 'bg-red-100 text-red-700 border-red-200 text-xs font-medium' 
+                      : 'bg-stone-100 text-stone-600 border-stone-200 text-xs'
+                  }>
+                    {doc.tags.priority}
+                  </Badge>
+                )}
+                
+                <span className="text-xs text-stone-500">{doc.date}</span>
+              </div>
+              
+              <h3 className="text-base md:text-lg font-semibold text-stone-900 mb-2 group-hover:text-[#0071bc] transition-colors">
+                {doc.title}
+              </h3>
+              
+              <p className="text-sm text-stone-600 line-clamp-2 md:line-clamp-3 mb-3">
+                {doc.summary}
+              </p>
+
+              {/* Tags Row */}
+              <div className="flex flex-wrap gap-2">
+                {doc.tags?.authors?.map((author, idx) => (
+                  <Badge key={`author-${idx}`} variant="secondary" className="bg-blue-50 text-[#0071bc] border-blue-200 text-xs">
+                    {author}
+                  </Badge>
+                ))}
+                
+                {doc.tags?.regions?.slice(0, 2).map((region, idx) => (
+                  <Badge key={`region-${idx}`} variant="outline" className="text-xs">
+                    <MapPin className="h-3 w-3 mr-1" />
+                    {region}
+                  </Badge>
+                ))}
+                
+                {doc.tags?.departments?.slice(0, 2).map((dept, idx) => (
+                  <Badge key={`dept-${idx}`} variant="outline" className="text-xs">
+                    <Building2 className="h-3 w-3 mr-1" />
+                    {dept}
+                  </Badge>
+                ))}
+                
+                {doc.tags?.sectors?.slice(0, 2).map((sector, idx) => (
+                  <Badge key={`sector-${idx}`} variant="outline" className="text-xs text-stone-600">
+                    {sector}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {doc.metadata?.readingTime && (
+              <div className="flex flex-col items-end gap-1">
+                <div className="text-xs text-stone-500 whitespace-nowrap">
+                  {doc.metadata.readingTime} min
+                </div>
+                {doc.metadata?.wordCount && (
+                  <div className="text-xs text-stone-400 whitespace-nowrap">
+                    {doc.metadata.wordCount.toLocaleString()} words
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
+  );
+}
+
+function getSourceIcon(sourceType: string) {
+  switch (sourceType) {
+    case 'speech': return <FileText className="h-3 w-3 mr-1 inline" />;
+    case 'strategy': return <Briefcase className="h-3 w-3 mr-1 inline" />;
+    case 'department': return <Building2 className="h-3 w-3 mr-1 inline" />;
+    case 'geographic': return <MapPin className="h-3 w-3 mr-1 inline" />;
+    case 'country': return <Globe className="h-3 w-3 mr-1 inline" />;
+    case 'person': return <Share2 className="h-3 w-3 mr-1 inline" />;
+    case 'project': return <Briefcase className="h-3 w-3 mr-1 inline" />;
+    default: return null;
+  }
+}

@@ -9,7 +9,6 @@ const nextConfig: NextConfig = {
     // Disable type checking during production builds
     ignoreBuildErrors: true,
   },
-  output: 'standalone',
 };
 
 export default nextConfig;
