@@ -104,7 +104,7 @@ export default function ContactsPage() {
                 </div>
               </Link>
               
-              {/* Call Button - iPhone Style */}
+              {/* Call Button - iPhone Style (all show phone icon) */}
               {isIndividual && hasAIAgent ? (
                 <Link href="/rj-agent">
                   <button 
@@ -114,7 +114,7 @@ export default function ContactsPage() {
                     <Phone className="h-5 w-5 text-white fill-white" />
                   </button>
                 </Link>
-              ) : isIndividual ? (
+              ) : (
                 <button 
                   disabled 
                   className="w-10 h-10 rounded-full bg-stone-200 flex items-center justify-center opacity-40"
@@ -122,10 +122,6 @@ export default function ContactsPage() {
                 >
                   <Phone className="h-5 w-5 text-stone-500" />
                 </button>
-              ) : (
-                <Link href={`/department/${member.id}`}>
-                  <ChevronRight className="h-6 w-6 text-stone-400" />
-                </Link>
               )}
             </div>
           );
