@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -13,6 +13,9 @@ import { OrgMember } from '@/lib/search-types';
 import { OrgChartSkeleton } from '@/components/SearchSkeleton';
 
 export default function OrgChartPage() {
+  const [viewMode, setViewMode] = useState<'chart' | 'contacts'>('chart');
+  const [searchQuery, setSearchQuery] = useState('');
+  
   // Load top 2 levels immediately
   const { data: topLevels, isLoading: topLoading } = useSWR(
     'orgchart-top',
@@ -42,6 +45,17 @@ export default function OrgChartPage() {
   const isDepartment = (member: OrgMember) => {
     return member.children_count && member.children_count > 0;
   };
+  
+  // Filter contacts based on search
+  const filteredContacts = hierarchy.filter((member: OrgMember) => {
+    if (!searchQuery) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      member.name.toLowerCase().includes(query) ||
+      member.position.toLowerCase().includes(query) ||
+      member.department?.toLowerCase().includes(query)
+    );
+  });
 
   if (topLoading) {
     return (
@@ -64,19 +78,93 @@ export default function OrgChartPage() {
   const executiveTeam = getLevelMembers(2);
 
   return (
-    <div className="min-h-screen bg-stone-50 p-6">
+    <div className="min-h-screen bg-stone-50 p-4 md:p-6">
       {/* Header */}
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-stone-900 mb-2">
-          World Bank Group Organization
-        </h1>
-        <p className="text-stone-600">
-          Interactive organization chart with {hierarchy.length} leadership positions
-        </p>
+      <div className="mb-6 md:mb-8">
+        {/* Mobile: Show search and title */}
+        <div className="md:hidden">
+          <h1 className="text-2xl font-bold text-stone-900 mb-4">
+            Leadership Directory
+          </h1>
+          <div className="relative mb-4">
+            <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-stone-400 h-5 w-5" />
+            <input
+              type="text"
+              placeholder="Search by name, position, or department..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 border border-stone-300 rounded-lg bg-white text-sm focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc]"
+            />
+          </div>
+          <p className="text-sm text-stone-600 mb-2">
+            {filteredContacts.length} {filteredContacts.length === 1 ? 'contact' : 'contacts'}
+          </p>
+        </div>
+        
+        {/* Desktop: Traditional header */}
+        <div className="hidden md:block text-center">
+          <h1 className="text-3xl font-bold text-stone-900 mb-2">
+            World Bank Group Organization
+          </h1>
+          <p className="text-stone-600">
+            Interactive organization chart with {hierarchy.length} leadership positions
+          </p>
+        </div>
       </div>
 
-      {/* Org Chart - Node Based Design */}
-      <div className="max-w-7xl mx-auto">
+      {/* Mobile Contact List */}
+      <div className="md:hidden space-y-3">
+        {filteredContacts.length === 0 ? (
+          <Card className="bg-white border-stone-200 p-8 text-center">
+            <Users className="h-12 w-12 text-stone-300 mx-auto mb-3" />
+            <h3 className="text-lg font-semibold text-stone-900 mb-1">No contacts found</h3>
+            <p className="text-sm text-stone-600">Try adjusting your search</p>
+          </Card>
+        ) : (
+          filteredContacts.map((member) => (
+            <Link key={member.id} href={`/department/${member.id}`}>
+              <Card className="bg-white border-stone-200 hover:shadow-md hover:border-[#0071bc] transition-all">
+                <CardContent className="p-4">
+                  <div className="flex items-start gap-3">
+                    <Avatar className="w-14 h-14 ring-2 ring-stone-200 flex-shrink-0">
+                      <AvatarImage src={member.avatar_url} alt={member.name} />
+                      <AvatarFallback className="bg-[#0071bc] text-white font-bold text-sm">
+                        {getInitials(member.name)}
+                      </AvatarFallback>
+                    </Avatar>
+                    
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-stone-900 text-base mb-1 line-clamp-2">
+                        {member.name}
+                      </h3>
+                      <p className="text-sm text-stone-600 mb-2 line-clamp-2">
+                        {member.position}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs px-2 py-0.5">
+                          <Building2 className="h-3 w-3 mr-1" />
+                          {member.department}
+                        </Badge>
+                        {member.children_count && member.children_count > 0 && (
+                          <Badge className="bg-blue-50 text-blue-700 border-blue-200 text-xs px-2 py-0.5">
+                            <Users className="h-3 w-3 mr-1" />
+                            {member.children_count} reports
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                    
+                    <ChevronRight className="h-5 w-5 text-stone-400 flex-shrink-0 mt-2" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))
+        )}
+      </div>
+
+      {/* Desktop Org Chart - Node Based Design */}
+      <div className="hidden md:block max-w-7xl mx-auto">
         {/* Level 1 - President (Department Card Style) */}
         {president && (
           <div className="flex justify-center mb-12">

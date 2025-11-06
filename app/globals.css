@@ -136,4 +136,23 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    /* Ensure text remains readable on mobile */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    
+    /* Improve touch targets */
+    button, a, input, select, textarea {
+      min-height: 44px;
+    }
+    
+    /* Prevent horizontal scroll */
+    body {
+      overflow-x: hidden;
+    }
+  }
 }

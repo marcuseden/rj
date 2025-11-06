@@ -173,13 +173,13 @@ export default function WorldBankSearchPage() {
             <h1 className="text-2xl md:text-3xl font-bold text-stone-900 mb-2">
               Knowledge Base
             </h1>
-            <p className="text-stone-600">
+            <p className="text-sm md:text-base text-stone-600">
               {pagination ? `${pagination.total} results` : 'Loading...'} • Search across 5,000+ projects, 211 countries, 53+ documents, and leadership
             </p>
           </div>
           
-          {/* KPI & Comparison Views Dropdown */}
-          <div className="relative">
+          {/* KPI & Comparison Views Dropdown - Hidden on Mobile */}
+          <div className="hidden md:block relative">
             <Button
               onClick={() => setShowKpiDropdown(!showKpiDropdown)}
               className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-md"
@@ -322,29 +322,27 @@ export default function WorldBankSearchPage() {
                   />
                 </div>
 
+                {/* Filters button - Hidden on mobile */}
                 <Button
                   onClick={() => setShowFilters(!showFilters)}
                   variant="outline"
-                  className={`px-4 py-6 border-stone-300 hover:bg-stone-50 transition-all shadow-sm hover:shadow-md ${
+                  className={`hidden md:flex px-4 py-6 border-stone-300 hover:bg-stone-50 transition-all shadow-sm hover:shadow-md ${
                     showFilters ? 'bg-stone-100 border-stone-400' : 'bg-white'
                   }`}
                 >
                   <Filter className="h-5 w-5 mr-2" />
-                  <span className="hidden md:inline">Filters</span>
+                  <span>Filters</span>
                   <ChevronDown className={`h-4 w-4 ml-2 transition-transform duration-200 ${showFilters ? 'rotate-180' : ''}`} />
                 </Button>
               </div>
             </div>
 
-            {/* Quick Filter Tabs */}
+            {/* Quick Filter Tabs - Simplified on Mobile */}
             <div className="mb-6">
               <div className="flex flex-wrap gap-2">
                 {[
                   { key: 'all', label: 'All', icon: null },
                   { key: 'rj-banga', label: 'RJ Banga', icon: FileText },
-                  { key: 'strategy', label: 'Strategy Docs', icon: Briefcase },
-                  { key: 'departments', label: 'Departments', icon: Building2 },
-                  { key: 'geographic', label: 'Geographic', icon: MapPin },
                   { key: 'countries', label: 'Countries', icon: Globe },
                   { key: 'people', label: 'People', icon: Share2 },
                   { key: 'projects', label: 'Projects', icon: Briefcase }
@@ -352,14 +350,15 @@ export default function WorldBankSearchPage() {
                   <button
                     key={key}
                     onClick={() => setQuickFilter(key as QuickFilterType)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
+                    className={`px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium transition-all flex items-center gap-1.5 md:gap-2 ${
                       quickFilter === key
                         ? 'bg-[#0071bc] text-white shadow-md'
                         : 'bg-white text-stone-700 border border-stone-300 hover:border-stone-400 hover:shadow-sm'
                     }`}
                   >
-                    {Icon && <Icon className="h-4 w-4" />}
-                    {label}
+                    {Icon && <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />}
+                    <span className="hidden sm:inline">{label}</span>
+                    <span className="sm:hidden">{label.split(' ')[0]}</span>
                   </button>
                 ))}
               </div>
@@ -367,9 +366,9 @@ export default function WorldBankSearchPage() {
           </>
         )}
 
-        {/* Advanced Filters Panel - Only show in search mode */}
+        {/* Advanced Filters Panel - Hidden on Mobile, only show in search mode on desktop */}
         {viewMode === 'search' && showFilters && filters && (
-          <div className="mb-6 animate-in slide-in-from-top-2 duration-200">
+          <div className="hidden md:block mb-6 animate-in slide-in-from-top-2 duration-200">
             <Card className="bg-white border-stone-200 p-4 md:p-6 shadow-lg">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold text-stone-900">Advanced Filters</h3>
@@ -469,9 +468,9 @@ export default function WorldBankSearchPage() {
           <>
             {/* Results */}
             {pagination && (
-              <div className="mb-4 text-sm text-stone-600">
+              <div className="mb-4 text-xs md:text-sm text-stone-600">
                 Showing {results.length} of {pagination.total} items
-                {page > 1 && ` (page ${page} of ${pagination.pages})`}
+                {page > 1 && <span className="hidden sm:inline"> (page {page} of {pagination.pages})</span>}
               </div>
             )}
 
