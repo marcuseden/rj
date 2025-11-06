@@ -1014,26 +1014,26 @@ export default function CountryPage() {
               
               {/* Hide on mobile - show on desktop */}
               <div className="hidden md:block">
-                {countryData.gdpTotal && (
-                  <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
-                    <p className="text-xs text-stone-600 mb-1">GDP (TOTAL)</p>
-                    <p className="text-lg font-bold text-stone-900">{countryData.gdpTotal}</p>
-                  </div>
-                )}
-                
-                {countryData.gni && (
-                  <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
+              {countryData.gdpTotal && (
+                <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
+                  <p className="text-xs text-stone-600 mb-1">GDP (TOTAL)</p>
+                  <p className="text-lg font-bold text-stone-900">{countryData.gdpTotal}</p>
+                </div>
+              )}
+              
+              {countryData.gni && (
+                <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
                     <p className="text-xs text-stone-600 mb-1">GNI</p>
-                    <p className="text-lg font-bold text-stone-900">{countryData.gni}</p>
-                  </div>
-                )}
-                
-                {countryData.povertyRate && (
-                  <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
-                    <p className="text-xs text-stone-600 mb-1">POVERTY RATE</p>
-                    <p className="text-lg font-bold text-stone-900">{countryData.povertyRate}</p>
-                  </div>
-                )}
+                  <p className="text-lg font-bold text-stone-900">{countryData.gni}</p>
+                </div>
+              )}
+              
+              {countryData.povertyRate && (
+                <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
+                  <p className="text-xs text-stone-600 mb-1">POVERTY RATE</p>
+                  <p className="text-lg font-bold text-stone-900">{countryData.povertyRate}</p>
+                </div>
+              )}
               </div>
             </div>
           </div>
@@ -1514,10 +1514,10 @@ export default function CountryPage() {
                   <div className="mb-3 md:mb-4">
                     <div className="flex flex-wrap gap-1.5 md:gap-2">
                       {project.sectors.slice(0, 3).map((sector, i) => (
-                        <Badge key={i} className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
+                          <Badge key={i} className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
                           {typeof sector === 'string' ? sector : sector.name || sector}
-                        </Badge>
-                      ))}
+                          </Badge>
+                        ))}
                       {project.sectors.length > 3 && (
                         <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
                           +{project.sectors.length - 3}

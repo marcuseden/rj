@@ -27,3 +27,4 @@ BEGIN
   RAISE NOTICE '   • Both anon and authenticated users can SELECT';
 END $$;
 
+

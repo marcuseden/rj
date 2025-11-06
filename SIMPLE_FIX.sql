@@ -32,3 +32,4 @@ SELECT 'Policy created!' as status,
 FROM pg_policies 
 WHERE tablename = 'worldbank_countries';
 
+

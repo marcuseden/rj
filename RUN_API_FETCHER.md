@@ -152,3 +152,4 @@ ORDER BY active_projects_count DESC;
 
 **Ready to run!** Apply the migration first, then run the fetcher script. 🚀
 
+

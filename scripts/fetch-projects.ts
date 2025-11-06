@@ -171,3 +171,4 @@ async function fetchAndSaveProjects() {
 
 fetchAndSaveProjects();
 
+

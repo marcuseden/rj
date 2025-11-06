@@ -207,3 +207,4 @@ FROM worldbank_documents_deleted_backup
 GROUP BY deletion_reason
 ORDER BY COUNT(*) DESC;
 
+

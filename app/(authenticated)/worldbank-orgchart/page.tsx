@@ -110,12 +110,12 @@ export default function OrgChartPage() {
         
         {/* Desktop: Traditional header */}
         <div className="hidden md:block text-center">
-          <h1 className="text-3xl font-bold text-stone-900 mb-2">
-            World Bank Group Organization
-          </h1>
-          <p className="text-stone-600">
-            Interactive organization chart with {hierarchy.length} leadership positions
-          </p>
+        <h1 className="text-3xl font-bold text-stone-900 mb-2">
+          World Bank Group Organization
+        </h1>
+        <p className="text-stone-600">
+          Interactive organization chart with {hierarchy.length} leadership positions
+        </p>
         </div>
       </div>
 
@@ -166,8 +166,8 @@ export default function OrgChartPage() {
                           </Badge>
                         )}
                       </div>
-                    </div>
-                    
+      </div>
+
                     {/* Apple-style round call button */}
                     {isIndividual && hasAIAgent ? (
                       <Link href="/rj-agent">

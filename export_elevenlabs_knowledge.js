@@ -265,3 +265,4 @@ exportKnowledgeBase()
     process.exit(1);
   });
 
+

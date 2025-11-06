@@ -54,3 +54,4 @@ async function createUser(email: string, password: string) {
 // Create the user
 createUser('mirjasjoblom@gmail.com', 'ABC123');
 
+

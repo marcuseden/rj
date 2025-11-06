@@ -259,3 +259,4 @@ The countries page was not loading because RLS policies were blocking anonymous 
 
 Server running at: http://localhost:3000
 
+

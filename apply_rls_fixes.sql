@@ -36,3 +36,4 @@ END $$;
 
 SELECT '✅ All RLS policies fixed! Pages should now load correctly.' as status;
 
+

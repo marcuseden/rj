@@ -187,3 +187,4 @@ Run any of the SQL queries above in Supabase Dashboard.
 If you get errors, share the message and I'll help fix it!
 
 
+

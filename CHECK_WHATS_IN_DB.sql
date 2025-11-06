@@ -26,3 +26,4 @@ SELECT COUNT(*) as countries_with_data
 FROM worldbank_countries
 WHERE population IS NOT NULL;
 
+

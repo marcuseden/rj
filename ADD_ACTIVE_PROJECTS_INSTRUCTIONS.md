@@ -69,3 +69,4 @@ status: "active_projects column added successfully!"
 **Estimated time:** 30 seconds  
 **Risk level:** Low (safe operation)
 
+

@@ -19,6 +19,9 @@ export async function GET(request: NextRequest) {
     const query = searchParams.get('q');
 
     const db = new WorldBankOrgChartDB();
+    
+    // Valid avatar URLs to prevent 404 errors
+    const validAvatars = ['ajay-banga-avatar.jpg', '/ajay-banga-avatar.jpg'];
 
     switch (action) {
       case 'hierarchy':
@@ -28,7 +31,6 @@ export async function GET(request: NextRequest) {
         const cleanedHierarchy = hierarchy.map(member => {
           // Only keep avatar_url if it's the Ajay Banga one or if it exists in public folder
           // For now, remove all avatar_url except for known good ones
-          const validAvatars = ['ajay-banga-avatar.jpg', '/ajay-banga-avatar.jpg'];
           const hasValidAvatar = member.avatar_url && validAvatars.some(valid => 
             member.avatar_url?.includes(valid)
           );
@@ -60,7 +62,6 @@ export async function GET(request: NextRequest) {
         const children = await db.getMemberChildren(id);
         
         // Clean avatar URLs
-        const validAvatars = ['ajay-banga-avatar.jpg', '/ajay-banga-avatar.jpg'];
         const cleanedChildren = children.map(child => ({
           ...child,
           avatar_url: child.avatar_url && validAvatars.some(valid => child.avatar_url?.includes(valid)) 
@@ -80,7 +81,6 @@ export async function GET(request: NextRequest) {
         }
         
         // Clean avatar URL
-        const validAvatars = ['ajay-banga-avatar.jpg', '/ajay-banga-avatar.jpg'];
         const hasValidAvatar = member.avatar_url && validAvatars.some(valid => 
           member.avatar_url?.includes(valid)
         );

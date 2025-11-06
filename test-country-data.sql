@@ -45,3 +45,4 @@ SELECT
   COUNT(literacy_rate) as with_literacy_rate
 FROM worldbank_countries;
 
+

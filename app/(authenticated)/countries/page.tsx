@@ -473,7 +473,7 @@ export default function CountriesPage() {
             <div className="mt-3 md:mt-4 text-xs md:text-sm text-stone-600">
               Showing {displayedCountries.length} of {filteredCountries.length} countries
               <span className="hidden md:inline">
-                {filteredCountries.length < countries.length && ` (filtered from ${countries.length} total)`}
+              {filteredCountries.length < countries.length && ` (filtered from ${countries.length} total)`}
               </span>
             </div>
           </CardContent>
