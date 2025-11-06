@@ -61,7 +61,7 @@ export function Sidebar() {
   return (
     <>
       {/* Mobile Header with Hamburger */}
-      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-stone-200 z-50 flex items-center justify-between px-4">
+      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-stone-200 z-[90] flex items-center justify-between px-4 shadow-sm">
         <div>
           <h2 className="text-base font-bold text-stone-900">Strategic Alignment</h2>
           <p className="text-xs text-stone-600">World Bank</p>
@@ -82,13 +82,13 @@ export function Sidebar() {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-black/50 z-40 backdrop-blur-sm"
+          className="md:hidden fixed inset-0 bg-black/60 z-[100] backdrop-blur-sm"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
 
       {/* Mobile Sliding Menu */}
-      <aside className={`md:hidden fixed top-16 right-0 bottom-0 w-64 bg-white border-l border-stone-200 flex flex-col transition-transform duration-300 ease-in-out z-40 ${
+      <aside className={`md:hidden fixed top-16 right-0 bottom-0 w-64 bg-white border-l border-stone-200 flex flex-col transition-transform duration-300 ease-in-out z-[110] shadow-2xl ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         {/* Navigation */}

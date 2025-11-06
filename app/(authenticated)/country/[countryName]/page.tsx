@@ -826,33 +826,33 @@ export default function CountryPage() {
     <main className="min-h-screen bg-stone-50">
       {/* Header with Search */}
       <header className="bg-white border-b border-stone-200 sticky top-0 z-20">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between gap-4 mb-3">
+        <div className="max-w-7xl mx-auto px-4 py-3 md:py-4">
+          <div className="flex items-center justify-between gap-4 mb-2 md:mb-3">
             <Button
               variant="ghost"
               onClick={() => router.back()}
-              className="text-stone-600 hover:text-stone-900 flex-shrink-0"
+              className="text-stone-600 hover:text-stone-900 flex-shrink-0 text-sm"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="w-4 h-4 mr-1 md:mr-2" />
               Back
             </Button>
             
-            <div className="flex items-center gap-2">
+            <div className="hidden md:flex items-center gap-2">
               {countryData.dataVerified && (
-                <Badge className="bg-stone-100 text-stone-700 border-stone-200">
+                <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
                   <CheckCircle className="w-3 h-3 mr-1" />
-                  100% Verified
+                  Verified
                 </Badge>
               )}
-              <Badge className="bg-stone-100 text-stone-700 border-stone-200">
+              <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
                 <Clock className="w-3 h-3 mr-1" />
                 2023-Present
               </Badge>
             </div>
           </div>
 
-          {/* Integrated Search Bar */}
-          <div className="relative" ref={searchRef}>
+          {/* Integrated Search Bar - Hidden on Mobile */}
+          <div className="hidden md:block relative" ref={searchRef}>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-stone-400 h-4 w-4 z-10" />
               <Input
@@ -951,15 +951,15 @@ export default function CountryPage() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 py-4 md:py-8">
         {/* Map Section */}
-        <Card className="bg-white border-stone-200 p-6 mb-6">
-          <h1 className="text-3xl font-bold text-stone-900 mb-6 flex items-center gap-3">
+        <Card className="bg-white border-stone-200 p-4 md:p-6 mb-4 md:mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-stone-900 mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
             {countryData.iso2Code && (
               <img 
                 src={`https://flagcdn.com/w80/${countryData.iso2Code.toLowerCase()}.png`}
                 alt={`${countryData.name} flag`}
-                className="w-12 h-8 object-cover rounded shadow-sm border border-stone-200"
+                className="w-10 h-7 md:w-12 md:h-8 object-cover rounded shadow-sm border border-stone-200"
                 onError={(e) => {
                   // Fallback if flag image fails to load
                   e.currentTarget.style.display = 'none';
@@ -969,9 +969,9 @@ export default function CountryPage() {
             {countryData.name}
           </h1>
           
-          <div className="grid lg:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-3 gap-4 md:gap-6">
             {/* Map */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 order-1">
               {countryData.latitude !== 0 && countryData.longitude !== 0 ? (
                 <CountryMap
                   countryName={countryData.name}
@@ -994,56 +994,54 @@ export default function CountryPage() {
             </div>
             
             {/* Key Stats */}
-            <div className="space-y-4">
-              <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
-                <p className="text-xs text-stone-600 mb-1">COUNTRY</p>
-                <p className="text-xl font-bold text-stone-900">{countryData.name}</p>
-              </div>
-              
-              <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
+            <div className="space-y-3 md:space-y-4 order-2">
+              <div className="bg-stone-50 rounded-lg p-3 md:p-4 border border-stone-200">
                 <p className="text-xs text-stone-600 mb-1">CAPITAL</p>
-                <p className="text-lg font-bold text-stone-900">{countryData.capitalCity}</p>
+                <p className="text-base md:text-lg font-bold text-stone-900">{countryData.capitalCity}</p>
               </div>
               
-              <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
+              <div className="bg-stone-50 rounded-lg p-3 md:p-4 border border-stone-200">
                 <p className="text-xs text-stone-600 mb-1">POPULATION</p>
-                <p className="text-lg font-bold text-stone-900">{countryData.population}</p>
+                <p className="text-base md:text-lg font-bold text-stone-900">{countryData.population}</p>
               </div>
-              
-              {countryData.gdpTotal && (
-                <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
-                  <p className="text-xs text-stone-600 mb-1">GDP (TOTAL)</p>
-                  <p className="text-lg font-bold text-stone-900">{countryData.gdpTotal}</p>
-                </div>
-              )}
               
               {countryData.gdpPerCapita && (
-                <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
+                <div className="bg-stone-50 rounded-lg p-3 md:p-4 border border-stone-200">
                   <p className="text-xs text-stone-600 mb-1">GDP PER CAPITA</p>
-                  <p className="text-lg font-bold text-stone-900">{countryData.gdpPerCapita}</p>
+                  <p className="text-base md:text-lg font-bold text-stone-900">{countryData.gdpPerCapita}</p>
                 </div>
               )}
               
-              {countryData.gni && (
-                <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
-                  <p className="text-xs text-stone-600 mb-1">GNI (GROSS NATIONAL INCOME)</p>
-                  <p className="text-lg font-bold text-stone-900">{countryData.gni}</p>
-                </div>
-              )}
-              
-              {countryData.povertyRate && (
-                <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
-                  <p className="text-xs text-stone-600 mb-1">POVERTY RATE</p>
-                  <p className="text-lg font-bold text-stone-900">{countryData.povertyRate}</p>
-                </div>
-              )}
+              {/* Hide on mobile - show on desktop */}
+              <div className="hidden md:block">
+                {countryData.gdpTotal && (
+                  <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
+                    <p className="text-xs text-stone-600 mb-1">GDP (TOTAL)</p>
+                    <p className="text-lg font-bold text-stone-900">{countryData.gdpTotal}</p>
+                  </div>
+                )}
+                
+                {countryData.gni && (
+                  <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
+                    <p className="text-xs text-stone-600 mb-1">GNI</p>
+                    <p className="text-lg font-bold text-stone-900">{countryData.gni}</p>
+                  </div>
+                )}
+                
+                {countryData.povertyRate && (
+                  <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
+                    <p className="text-xs text-stone-600 mb-1">POVERTY RATE</p>
+                    <p className="text-lg font-bold text-stone-900">{countryData.povertyRate}</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </Card>
 
-        {/* Demographics & Development Indicators */}
+        {/* Demographics & Development Indicators - Hidden on Mobile */}
         {(countryData.lifeExpectancy || countryData.literacyRate || countryData.unemploymentRate) && (
-          <Card className="bg-white border-stone-200 p-6 mb-6">
+          <Card className="hidden md:block bg-white border-stone-200 p-6 mb-6">
             <h2 className="text-2xl font-bold text-stone-900 mb-4 flex items-center">
               <Heart className="w-6 h-6 mr-2 text-red-500" />
               Demographics & Development Indicators
@@ -1123,9 +1121,9 @@ export default function CountryPage() {
           </Card>
         )}
 
-        {/* Economic Structure */}
+        {/* Economic Structure - Hidden on Mobile */}
         {(countryData.primarySector || countryData.agriculturePctGdp || countryData.naturalResources) && (
-          <Card className="bg-white border-stone-200 p-6 mb-6">
+          <Card className="hidden md:block bg-white border-stone-200 p-6 mb-6">
             <h2 className="text-2xl font-bold text-stone-900 mb-4 flex items-center">
               <Factory className="w-6 h-6 mr-2 text-blue-600" />
               Economic Structure
@@ -1231,8 +1229,8 @@ export default function CountryPage() {
           </Card>
         )}
 
-        {/* Country Header */}
-        <Card className="bg-gradient-to-br from-stone-900 to-stone-800 text-white p-8 mb-6">
+        {/* Country Header - Hidden on Mobile */}
+        <Card className="hidden md:block bg-gradient-to-br from-stone-900 to-stone-800 text-white p-8 mb-6">
           <div className="flex items-start justify-between gap-6">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
@@ -1312,33 +1310,34 @@ export default function CountryPage() {
         </Card>
 
         {/* Portfolio Overview */}
-        <Card className="bg-white border-stone-200 p-6 mb-6">
-          <h2 className="text-2xl font-bold text-stone-900 mb-4 flex items-center">
-            <BarChart3 className="w-6 h-6 mr-2" />
-            Portfolio Overview (2023-Present)
+        <Card className="bg-white border-stone-200 p-4 md:p-6 mb-4 md:mb-6">
+          <h2 className="text-xl md:text-2xl font-bold text-stone-900 mb-3 md:mb-4 flex items-center">
+            <BarChart3 className="w-5 h-5 md:w-6 md:h-6 mr-2" />
+            <span className="md:hidden">Portfolio Stats</span>
+            <span className="hidden md:inline">Portfolio Overview (2023-Present)</span>
           </h2>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <div className="bg-stone-50 rounded-lg p-4">
-              <p className="text-sm text-stone-600 mb-1">Total Portfolio Value</p>
-              <p className="text-3xl font-bold text-stone-900">{countryData.portfolioValue}</p>
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-4 md:mb-6">
+            <div className="bg-stone-50 rounded-lg p-3 md:p-4">
+              <p className="text-xs md:text-sm text-stone-600 mb-1">Portfolio Value</p>
+              <p className="text-xl md:text-3xl font-bold text-stone-900">{countryData.portfolioValue}</p>
             </div>
-            <div className="bg-stone-50 rounded-lg p-4">
-              <p className="text-sm text-stone-600 mb-1">Active Projects</p>
-              <p className="text-3xl font-bold text-stone-900">{countryData.activeProjects}</p>
+            <div className="bg-stone-50 rounded-lg p-3 md:p-4">
+              <p className="text-xs md:text-sm text-stone-600 mb-1">Active Projects</p>
+              <p className="text-xl md:text-3xl font-bold text-stone-900">{countryData.activeProjects}</p>
             </div>
-            <div className="bg-stone-50 rounded-lg p-4">
+            <div className="hidden md:block bg-stone-50 rounded-lg p-4">
               <p className="text-sm text-stone-600 mb-1">IBRD Commitments</p>
               <p className="text-2xl font-bold text-stone-900">{countryData.ibrdCommitments}</p>
             </div>
-            <div className="bg-stone-50 rounded-lg p-4">
+            <div className="hidden md:block bg-stone-50 rounded-lg p-4">
               <p className="text-sm text-stone-600 mb-1">IDA Commitments</p>
               <p className="text-2xl font-bold text-stone-900">{countryData.idaCommitments || 'N/A'}</p>
             </div>
           </div>
 
-          {/* Sector Breakdown */}
-          <div>
+          {/* Sector Breakdown - Hidden on Mobile */}
+          <div className="hidden md:block">
             <h3 className="font-semibold text-stone-900 mb-3">Portfolio by Sector</h3>
             <div className="space-y-3">
               {countryData.sectorBreakdown.map((sector, idx) => (
@@ -1361,8 +1360,8 @@ export default function CountryPage() {
           </div>
         </Card>
 
-        {/* Country Partnership Framework */}
-        <Card className="bg-white border-stone-200 p-6 mb-6">
+        {/* Country Partnership Framework - Hidden on Mobile */}
+        <Card className="hidden md:block bg-white border-stone-200 p-6 mb-6">
           <h2 className="text-2xl font-bold text-stone-900 mb-4 flex items-center">
             <FileText className="w-6 h-6 mr-2" />
             Country Partnership Framework ({countryData.countryPartnershipFramework.period})
@@ -1402,9 +1401,9 @@ export default function CountryPage() {
           </div>
         </Card>
 
-        {/* Current Affairs (2023-Present) */}
+        {/* Current Affairs (2023-Present) - Hidden on Mobile */}
         {countryData.currentAffairs.length > 0 && (
-          <Card className="bg-white border-stone-200 p-6 mb-6">
+          <Card className="hidden md:block bg-white border-stone-200 p-6 mb-6">
             <h2 className="text-2xl font-bold text-stone-900 mb-4 flex items-center">
               <Clock className="w-6 h-6 mr-2" />
               Recent Project Activity
@@ -1455,9 +1454,9 @@ export default function CountryPage() {
         )}
 
         {/* Recent Projects (2023+) */}
-        <Card className="bg-white border-stone-200 p-6 mb-6">
-          <h2 className="text-2xl font-bold text-stone-900 mb-4 flex items-center">
-            <Briefcase className="w-6 h-6 mr-2" />
+        <Card className="bg-white border-stone-200 p-4 md:p-6 mb-4 md:mb-6">
+          <h2 className="text-xl md:text-2xl font-bold text-stone-900 mb-3 md:mb-4 flex items-center">
+            <Briefcase className="w-5 h-5 md:w-6 md:h-6 mr-2" />
             Active Projects
           </h2>
           
@@ -1473,39 +1472,33 @@ export default function CountryPage() {
               </p>
             </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-3 md:space-y-6">
               {countryData.recentProjects.map((project, idx) => (
               <Link key={idx} href={`/project/${project.id}`} className="block">
                 <Card className="bg-stone-50 border-stone-200 hover:shadow-lg hover:border-blue-400 transition-all cursor-pointer group">
-                  <div className="p-6">
+                  <div className="p-4 md:p-6">
                   {/* Project Header */}
-                  <div className="flex items-start justify-between gap-4 mb-4">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-stone-900 group-hover:text-blue-600 transition-colors mb-2">{project.title}</h3>
-                      <div className="flex flex-wrap items-center gap-2 mb-3">
-                        <Badge className="bg-green-50 text-green-700 border-green-200">
+                  <div className="flex flex-col md:flex-row items-start justify-between gap-3 md:gap-4 mb-3 md:mb-4">
+                    <div className="flex-1 w-full">
+                      <h3 className="text-base md:text-lg font-bold text-stone-900 group-hover:text-blue-600 transition-colors mb-2">{project.title}</h3>
+                      <div className="flex flex-wrap items-center gap-1.5 md:gap-2 mb-2 md:mb-3">
+                        <Badge className="bg-green-50 text-green-700 border-green-200 text-xs">
                           {project.status}
                         </Badge>
-                        <span className="text-sm text-stone-600">Approved: {project.approvalDate}</span>
-                        <span className="text-sm text-stone-600">ID: {project.id}</span>
+                        <span className="text-xs md:text-sm text-stone-600">{new Date(project.approvalDate).toLocaleDateString()}</span>
+                        <span className="hidden md:inline text-sm text-stone-600">ID: {project.id}</span>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-2xl font-bold text-stone-900">{project.totalAmount}</p>
-                      {project.verified && (
-                        <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs mt-1">
-                          <CheckCircle className="w-3 h-3 mr-1" />
-                          Verified
-                        </Badge>
-                      )}
+                    <div className="text-left md:text-right w-full md:w-auto">
+                      <p className="text-xl md:text-2xl font-bold text-stone-900">{project.totalAmount}</p>
                     </div>
                   </div>
                   
-                  {/* Description */}
-                  <p className="text-stone-700 leading-relaxed mb-4">{project.description}</p>
+                  {/* Description - Hidden on mobile */}
+                  <p className="hidden md:block text-stone-700 leading-relaxed mb-4">{project.description}</p>
                   
-                  {/* Objectives */}
-                  <div className="mb-4">
+                  {/* Objectives - Hidden on mobile */}
+                  <div className="hidden md:block mb-4">
                     <h4 className="font-semibold text-stone-900 mb-2 text-sm">Project Objectives:</h4>
                     <ul className="space-y-1">
                       {project.objectives.map((obj, i) => (
@@ -1517,28 +1510,27 @@ export default function CountryPage() {
                     </ul>
                   </div>
                   
-                  {/* Sectors & Beneficiaries */}
-                  <div className="grid sm:grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <h4 className="font-semibold text-stone-900 mb-2 text-sm">Sectors:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.sectors.map((sector, i) => (
-                          <Badge key={i} className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
-                            {sector}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-stone-900 mb-2 text-sm">Beneficiaries:</h4>
-                      <p className="text-sm text-stone-700">{project.beneficiaries}</p>
+                  {/* Sectors - Simplified on mobile */}
+                  <div className="mb-3 md:mb-4">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                      {project.sectors.slice(0, 3).map((sector, i) => (
+                        <Badge key={i} className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
+                          {typeof sector === 'string' ? sector : sector.name || sector}
+                        </Badge>
+                      ))}
+                      {project.sectors.length > 3 && (
+                        <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs">
+                          +{project.sectors.length - 3}
+                        </Badge>
+                      )}
                     </div>
                   </div>
                   
                   {/* Project Link */}
-                  <div className="flex items-center justify-between pt-3 border-t border-stone-200">
-                    <span className="text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors flex items-center gap-1">
-                      View full project details →
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between pt-3 border-t border-stone-200 gap-2">
+                    <span className="text-xs md:text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors flex items-center gap-1">
+                      <span className="hidden md:inline">View full project details →</span>
+                      <span className="md:hidden">Tap for details →</span>
                     </span>
                     <button
                       onClick={(e) => {
@@ -1546,10 +1538,11 @@ export default function CountryPage() {
                         e.stopPropagation();
                         window.open(project.sourceUrl, '_blank', 'noopener,noreferrer');
                       }}
-                      className="inline-flex items-center gap-2 text-stone-600 hover:text-stone-900 text-sm hover:underline"
+                      className="inline-flex items-center gap-1.5 md:gap-2 text-stone-600 hover:text-stone-900 text-xs md:text-sm hover:underline"
                     >
-                      <ExternalLink className="w-4 h-4" />
-                      World Bank Site
+                      <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
+                      <span className="hidden md:inline">World Bank Site</span>
+                      <span className="md:hidden">Source</span>
                     </button>
                   </div>
                 </div>
@@ -1560,9 +1553,9 @@ export default function CountryPage() {
           )}
         </Card>
 
-        {/* Development Priorities */}
+        {/* Development Priorities - Hidden on Mobile */}
         {countryData.developmentPriorities.length > 0 && (
-          <Card className="bg-white border-stone-200 p-6 mb-6">
+          <Card className="hidden md:block bg-white border-stone-200 p-6 mb-6">
             <h2 className="text-2xl font-bold text-stone-900 mb-4 flex items-center">
               <Target className="w-6 h-6 mr-2" />
               Development Priorities
@@ -1583,9 +1576,9 @@ export default function CountryPage() {
           </Card>
         )}
 
-        {/* Key Results & Impact */}
+        {/* Key Results & Impact - Hidden on Mobile */}
         {countryData.keyResults.length > 0 && (
-          <Card className="bg-white border-stone-200 p-6 mb-6">
+          <Card className="hidden md:block bg-white border-stone-200 p-6 mb-6">
             <h2 className="text-2xl font-bold text-stone-900 mb-4 flex items-center">
               <TrendingUp className="w-6 h-6 mr-2" />
               Key Results & Impact
@@ -1618,8 +1611,8 @@ export default function CountryPage() {
           </Card>
         )}
 
-        {/* Sources & Verification */}
-        <Card className="bg-stone-50 border-stone-200 p-6">
+        {/* Sources & Verification - Hidden on Mobile */}
+        <Card className="hidden md:block bg-stone-50 border-stone-200 p-6">
           <h2 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
             <FileText className="w-5 h-5 mr-2" />
             Data Sources & Verification
@@ -1668,25 +1661,29 @@ export default function CountryPage() {
         </Card>
 
         {/* External Links */}
-        <div className="flex justify-center gap-4">
+        <div className="flex flex-col md:flex-row justify-center gap-3 md:gap-4">
           <a
             href={`https://www.worldbank.org/en/country/${countryData.name.toLowerCase().replace(/ /g, '')}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="flex-1 md:flex-initial"
           >
-            <Button className="bg-stone-900 hover:bg-stone-800 text-white">
+            <Button className="w-full md:w-auto bg-stone-900 hover:bg-stone-800 text-white text-sm">
               <ExternalLink className="w-4 h-4 mr-2" />
-              Official World Bank Page
+              <span className="hidden md:inline">Official World Bank Page</span>
+              <span className="md:hidden">Official Page</span>
             </Button>
           </a>
           <a
             href={`https://projects.worldbank.org/en/projects-operations/projects-list?countrycode_exact=${countryData.iso2Code}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="flex-1 md:flex-initial"
           >
-            <Button variant="outline" className="border-stone-300 text-stone-700 hover:bg-stone-50">
+            <Button variant="outline" className="w-full md:w-auto border-stone-300 text-stone-700 hover:bg-stone-50 text-sm">
               <Briefcase className="w-4 h-4 mr-2" />
-              View All Projects
+              <span className="hidden md:inline">View All Projects</span>
+              <span className="md:hidden">All Projects</span>
             </Button>
           </a>
         </div>

@@ -257,23 +257,24 @@ export default function CountriesPage() {
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-6">
+      <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-4 md:py-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-start justify-between gap-4 mb-2">
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2">
-                <Globe className="h-8 w-8 text-[#0071bc]" />
-                <h1 className="text-2xl md:text-3xl font-bold text-stone-900">
-                  World Bank Countries
+              <div className="flex items-center gap-2 md:gap-3 mb-2">
+                <Globe className="h-6 w-6 md:h-8 md:w-8 text-[#0071bc]" />
+                <h1 className="text-xl md:text-3xl font-bold text-stone-900">
+                  Countries
                 </h1>
               </div>
-              <p className="text-stone-600">
-                Explore {stats.totalCountries} countries across {stats.regions} regions with {stats.totalProjects} active projects
+              <p className="text-sm md:text-base text-stone-600">
+                {stats.totalCountries} countries
+                <span className="hidden md:inline"> across {stats.regions} regions with {stats.totalProjects.toLocaleString()} active projects</span>
               </p>
             </div>
             
-            {/* Analytics & Views Dropdown */}
-            <div className="relative">
+            {/* Analytics & Views Dropdown - Hidden on Mobile */}
+            <div className="hidden md:block relative">
               <Button
                 onClick={() => setShowKpiDropdown(!showKpiDropdown)}
                 className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-md"
@@ -353,9 +354,9 @@ export default function CountriesPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-8">
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-8">
+        {/* Stats Cards - Hidden on Mobile */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <Card className="bg-white border-stone-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -396,8 +397,8 @@ export default function CountriesPage() {
         </div>
       </div>
 
-      {/* Full Width Interactive World Map Section */}
-      <div className="bg-white border-y border-stone-200 mb-8 overflow-hidden">
+      {/* Full Width Interactive World Map Section - Hidden on Mobile */}
+      <div className="hidden md:block bg-white border-y border-stone-200 mb-8 overflow-hidden">
         <div className="max-w-[1600px] mx-auto">
           <div className="px-4 md:px-6 py-6">
             <div className="flex items-center justify-between mb-6">
@@ -413,11 +414,6 @@ export default function CountriesPage() {
             
             {/* Interactive Map */}
             <div className="relative">
-              {/* Mobile instructions */}
-              <div className="lg:hidden absolute top-4 right-4 z-10 bg-stone-900/90 text-white px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 shadow-lg">
-                <span>👆 Tap countries • 🤏 Pinch to zoom</span>
-              </div>
-              
               <div className="bg-gradient-to-br from-blue-50 via-teal-50 to-blue-50 rounded-xl border-2 border-stone-200 shadow-lg overflow-hidden">
                 <InteractiveWorldMap
                   countries={countries}
@@ -431,28 +427,28 @@ export default function CountriesPage() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Search Section */}
-        <Card className="bg-white border-stone-200 mb-8">
-          <CardContent className="p-6">
+        <Card className="bg-white border-stone-200 mb-6 md:mb-8">
+          <CardContent className="p-4 md:p-6">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-stone-400 h-5 w-5 z-10" />
+              <Search className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 text-stone-400 h-4 w-4 md:h-5 md:w-5 z-10" />
               <Input
                 type="text"
-                placeholder="Search by country name, capital, or region..."
+                placeholder="Search countries..."
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 onFocus={() => searchQuery && updateSuggestions(searchQuery)}
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                className="pl-12 pr-4 py-6 text-lg bg-white border-stone-300 focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc] transition-all shadow-sm hover:shadow-md"
+                className="pl-10 md:pl-12 pr-4 py-4 md:py-6 text-base md:text-lg bg-white border-stone-300 focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc] transition-all shadow-sm hover:shadow-md"
               />
 
               {/* Autocomplete Suggestions */}
               {showSuggestions && suggestions.length > 0 && (
                 <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-stone-200 rounded-lg shadow-xl z-50 overflow-hidden max-h-96 overflow-y-auto">
                   {suggestions.map((country) => (
-                    <button
+                    <Link
                       key={country.id}
-                      onClick={() => selectCountry(country)}
-                      className="w-full text-left px-4 py-3 hover:bg-stone-50 transition-colors border-b border-stone-100 last:border-b-0"
+                      href={`/country/${encodeURIComponent(country.name)}`}
+                      className="block w-full text-left px-4 py-3 hover:bg-stone-50 transition-colors border-b border-stone-100 last:border-b-0"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
@@ -468,24 +464,50 @@ export default function CountriesPage() {
                           </Badge>
                         )}
                       </div>
-                    </button>
+                    </Link>
                   ))}
                 </div>
               )}
             </div>
 
-            <div className="mt-4 text-sm text-stone-600">
+            <div className="mt-3 md:mt-4 text-xs md:text-sm text-stone-600">
               Showing {displayedCountries.length} of {filteredCountries.length} countries
-              {filteredCountries.length < countries.length && ` (filtered from ${countries.length} total)`}
+              <span className="hidden md:inline">
+                {filteredCountries.length < countries.length && ` (filtered from ${countries.length} total)`}
+              </span>
             </div>
           </CardContent>
         </Card>
 
-        {/* Country Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Country List - Simplified on Mobile, Grid on Desktop */}
+        <div className="space-y-2 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-4">
           {displayedCountries.map((country) => (
             <Link key={country.id} href={`/country/${encodeURIComponent(country.name)}`}>
-              <Card className="bg-white border-stone-200 hover:shadow-lg hover:border-[#0071bc] transition-all cursor-pointer group h-full">
+              {/* Mobile: Simple List Cards */}
+              <Card className="md:hidden bg-white border-stone-200 hover:shadow-md hover:border-[#0071bc] transition-all">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3 flex-1">
+                      <Globe className="w-5 h-5 text-[#0071bc] flex-shrink-0" />
+                      <div className="min-w-0 flex-1">
+                        <h3 className="font-semibold text-stone-900 text-base truncate">
+                          {country.name}
+                        </h3>
+                        <p className="text-xs text-stone-600 truncate">{country.region}</p>
+                      </div>
+                    </div>
+                    {country.active_projects && country.active_projects > 0 && (
+                      <Badge className="bg-blue-50 text-[#0071bc] border-blue-200 text-xs flex-shrink-0">
+                        {country.active_projects}
+                      </Badge>
+                    )}
+                    <ChevronRight className="w-5 h-5 text-stone-400 flex-shrink-0 ml-2" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              {/* Desktop: Detailed Grid Cards */}
+              <Card className="hidden md:block bg-white border-stone-200 hover:shadow-lg hover:border-[#0071bc] transition-all cursor-pointer group h-full">
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -520,19 +542,6 @@ export default function CountriesPage() {
                       <div className="flex items-center gap-2 text-stone-600">
                         <Users className="h-4 w-4" />
                         <span>{country.population}</span>
-                      </div>
-                    )}
-
-                    {country.life_expectancy && (
-                      <div className="flex items-center gap-2 text-stone-600">
-                        <span className="text-xs">Life Expectancy: {country.life_expectancy.toFixed(1)} yrs</span>
-                      </div>
-                    )}
-
-                    {country.primary_sector && (
-                      <div className="flex items-center gap-2 text-stone-600">
-                        <DollarSign className="h-4 w-4" />
-                        <span className="text-xs">Primary: {country.primary_sector}</span>
                       </div>
                     )}
 
