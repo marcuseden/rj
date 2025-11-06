@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Building2, Users, ChevronRight } from 'lucide-react';
+import { Building2, Users, ChevronRight, Phone } from 'lucide-react';
 import Link from 'next/link';
 import useSWR from 'swr';
 
@@ -46,16 +46,24 @@ export default function OrgChartPage() {
     return member.children_count && member.children_count > 0;
   };
   
-  // Filter contacts based on search
-  const filteredContacts = hierarchy.filter((member: OrgMember) => {
-    if (!searchQuery) return true;
-    const query = searchQuery.toLowerCase();
-    return (
-      member.name.toLowerCase().includes(query) ||
-      member.position.toLowerCase().includes(query) ||
-      member.department?.toLowerCase().includes(query)
-    );
-  });
+  // Filter contacts based on search and sort with RJ Banga at the top
+  const filteredContacts = hierarchy
+    .filter((member: OrgMember) => {
+      if (!searchQuery) return true;
+      const query = searchQuery.toLowerCase();
+      return (
+        member.name.toLowerCase().includes(query) ||
+        member.position.toLowerCase().includes(query) ||
+        member.department?.toLowerCase().includes(query)
+      );
+    })
+    .sort((a, b) => {
+      // Always put Ajay Banga (RJ) at the top
+      if (a.id === 'ajay-banga') return -1;
+      if (b.id === 'ajay-banga') return 1;
+      // Then sort alphabetically by name
+      return a.name.localeCompare(b.name);
+    });
 
   if (topLoading) {
     return (
@@ -121,9 +129,12 @@ export default function OrgChartPage() {
             <p className="text-sm text-stone-600">Try adjusting your search</p>
           </Card>
         ) : (
-          filteredContacts.map((member) => (
-            <Link key={member.id} href={`/department/${member.id}`}>
-              <Card className="bg-white border-stone-200 hover:shadow-md hover:border-[#0071bc] transition-all">
+          filteredContacts.map((member) => {
+            const hasAIAgent = member.id === 'ajay-banga';
+            const isIndividual = !member.children_count || member.children_count === 0;
+            
+            return (
+              <Card key={member.id} className="bg-white border-stone-200 hover:shadow-md transition-all">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-3">
                     <Avatar className="w-14 h-14 ring-2 ring-stone-200 flex-shrink-0">
@@ -134,13 +145,15 @@ export default function OrgChartPage() {
                     </Avatar>
                     
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-stone-900 text-base mb-1 line-clamp-2">
-                        {member.name}
-                      </h3>
+                      <Link href={`/department/${member.id}`}>
+                        <h3 className="font-semibold text-stone-900 text-base mb-1 line-clamp-2 hover:text-[#0071bc]">
+                          {member.name}
+                        </h3>
+                      </Link>
                       <p className="text-sm text-stone-600 mb-2 line-clamp-2">
                         {member.position}
                       </p>
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap gap-1.5 mb-3">
                         <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs px-2 py-0.5">
                           <Building2 className="h-3 w-3 mr-1" />
                           {member.department}
@@ -152,14 +165,48 @@ export default function OrgChartPage() {
                           </Badge>
                         )}
                       </div>
+                      
+                      {/* Action Buttons */}
+                      <div className="flex gap-2">
+                        {isIndividual && hasAIAgent ? (
+                          // Green button for RJ Banga - AI Agent Available
+                          <Link href="/rj-agent" className="flex-1">
+                            <button className="w-full bg-green-500 hover:bg-green-600 active:bg-green-700 text-white text-sm font-semibold py-2.5 px-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95">
+                              <Phone className="h-4 w-4" />
+                              Call AI Agent
+                            </button>
+                          </Link>
+                        ) : isIndividual ? (
+                          // Gray button for others - Coming Soon
+                          <button 
+                            disabled 
+                            className="flex-1 bg-stone-200 text-stone-500 text-sm font-medium py-2.5 px-3 rounded-lg flex items-center justify-center gap-2 cursor-not-allowed opacity-60"
+                          >
+                            <Phone className="h-4 w-4" />
+                            Coming Soon
+                          </button>
+                        ) : (
+                          // Blue button for departments/teams
+                          <Link href={`/department/${member.id}#team-section`} className="flex-1">
+                            <button className="w-full bg-[#0071bc] hover:bg-[#005a99] text-white text-sm font-medium py-2.5 px-3 rounded-lg flex items-center justify-center gap-2 transition-colors active:scale-95">
+                              <Users className="h-4 w-4" />
+                              View Team
+                            </button>
+                          </Link>
+                        )}
+                        
+                        <Link href={`/department/${member.id}`}>
+                          <button className="bg-stone-100 hover:bg-stone-200 text-stone-700 p-2.5 rounded-lg transition-colors active:scale-95">
+                            <ChevronRight className="h-5 w-5" />
+                          </button>
+                        </Link>
+                      </div>
                     </div>
-                    
-                    <ChevronRight className="h-5 w-5 text-stone-400 flex-shrink-0 mt-2" />
                   </div>
                 </CardContent>
               </Card>
-            </Link>
-          ))
+            );
+          })
         )}
       </div>
 
