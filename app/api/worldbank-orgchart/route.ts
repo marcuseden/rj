@@ -23,8 +23,24 @@ export async function GET(request: NextRequest) {
     switch (action) {
       case 'hierarchy':
         const hierarchy = await db.getOrgChartHierarchy();
+        
+        // Clean up avatar URLs - remove non-existent images to prevent 404 errors
+        const cleanedHierarchy = hierarchy.map(member => {
+          // Only keep avatar_url if it's the Ajay Banga one or if it exists in public folder
+          // For now, remove all avatar_url except for known good ones
+          const validAvatars = ['ajay-banga-avatar.jpg', '/ajay-banga-avatar.jpg'];
+          const hasValidAvatar = member.avatar_url && validAvatars.some(valid => 
+            member.avatar_url?.includes(valid)
+          );
+          
+          return {
+            ...member,
+            avatar_url: hasValidAvatar ? member.avatar_url : undefined
+          };
+        });
+        
         // Add cache headers
-        return NextResponse.json({ hierarchy }, {
+        return NextResponse.json({ hierarchy: cleanedHierarchy }, {
           headers: {
             'Cache-Control': 'public, s-maxage=1800, stale-while-revalidate=3600'
           }
@@ -42,7 +58,17 @@ export async function GET(request: NextRequest) {
           return NextResponse.json({ error: 'ID parameter required' }, { status: 400 });
         }
         const children = await db.getMemberChildren(id);
-        return NextResponse.json({ children });
+        
+        // Clean avatar URLs
+        const validAvatars = ['ajay-banga-avatar.jpg', '/ajay-banga-avatar.jpg'];
+        const cleanedChildren = children.map(child => ({
+          ...child,
+          avatar_url: child.avatar_url && validAvatars.some(valid => child.avatar_url?.includes(valid)) 
+            ? child.avatar_url 
+            : undefined
+        }));
+        
+        return NextResponse.json({ children: cleanedChildren });
 
       case 'member':
         if (!id) {
@@ -52,7 +78,19 @@ export async function GET(request: NextRequest) {
         if (!member) {
           return NextResponse.json({ error: 'Member not found' }, { status: 404 });
         }
-        return NextResponse.json({ member });
+        
+        // Clean avatar URL
+        const validAvatars = ['ajay-banga-avatar.jpg', '/ajay-banga-avatar.jpg'];
+        const hasValidAvatar = member.avatar_url && validAvatars.some(valid => 
+          member.avatar_url?.includes(valid)
+        );
+        
+        return NextResponse.json({ 
+          member: {
+            ...member,
+            avatar_url: hasValidAvatar ? member.avatar_url : undefined
+          }
+        });
 
       case 'search':
         if (!query) {

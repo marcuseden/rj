@@ -13,7 +13,6 @@ import { OrgMember } from '@/lib/search-types';
 import { OrgChartSkeleton } from '@/components/SearchSkeleton';
 
 export default function OrgChartPage() {
-  const [viewMode, setViewMode] = useState<'chart' | 'contacts'>('chart');
   const [searchQuery, setSearchQuery] = useState('');
   
   // Load top 2 levels immediately
@@ -137,12 +136,14 @@ export default function OrgChartPage() {
               <Card key={member.id} className="bg-white border-stone-200 hover:shadow-md transition-all">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-3">
-                    <Avatar className="w-14 h-14 ring-2 ring-stone-200 flex-shrink-0">
-                      <AvatarImage src={member.avatar_url} alt={member.name} />
-                      <AvatarFallback className="bg-[#0071bc] text-white font-bold text-sm">
-                        {getInitials(member.name)}
-                      </AvatarFallback>
-                    </Avatar>
+                    <Link href={`/department/${member.id}`}>
+                      <Avatar className="w-14 h-14 ring-2 ring-stone-200 flex-shrink-0">
+                        <AvatarImage src={member.avatar_url} alt={member.name} />
+                        <AvatarFallback className="bg-[#0071bc] text-white font-bold text-sm">
+                          {getInitials(member.name)}
+                        </AvatarFallback>
+                      </Avatar>
+                    </Link>
                     
                     <div className="flex-1 min-w-0">
                       <Link href={`/department/${member.id}`}>
@@ -153,7 +154,7 @@ export default function OrgChartPage() {
                       <p className="text-sm text-stone-600 mb-2 line-clamp-2">
                         {member.position}
                       </p>
-                      <div className="flex flex-wrap gap-1.5 mb-3">
+                      <div className="flex flex-wrap gap-1.5">
                         <Badge className="bg-stone-100 text-stone-700 border-stone-200 text-xs px-2 py-0.5">
                           <Building2 className="h-3 w-3 mr-1" />
                           {member.department}
@@ -165,43 +166,29 @@ export default function OrgChartPage() {
                           </Badge>
                         )}
                       </div>
-                      
-                      {/* Action Buttons */}
-                      <div className="flex gap-2">
-                        {isIndividual && hasAIAgent ? (
-                          // Green button for RJ Banga - AI Agent Available
-                          <Link href="/rj-agent" className="flex-1">
-                            <button className="w-full bg-green-500 hover:bg-green-600 active:bg-green-700 text-white text-sm font-semibold py-2.5 px-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95">
-                              <Phone className="h-4 w-4" />
-                              Call AI Agent
-                            </button>
-                          </Link>
-                        ) : isIndividual ? (
-                          // Gray button for others - Coming Soon
-                          <button 
-                            disabled 
-                            className="flex-1 bg-stone-200 text-stone-500 text-sm font-medium py-2.5 px-3 rounded-lg flex items-center justify-center gap-2 cursor-not-allowed opacity-60"
-                          >
-                            <Phone className="h-4 w-4" />
-                            Coming Soon
-                          </button>
-                        ) : (
-                          // Blue button for departments/teams
-                          <Link href={`/department/${member.id}#team-section`} className="flex-1">
-                            <button className="w-full bg-[#0071bc] hover:bg-[#005a99] text-white text-sm font-medium py-2.5 px-3 rounded-lg flex items-center justify-center gap-2 transition-colors active:scale-95">
-                              <Users className="h-4 w-4" />
-                              View Team
-                            </button>
-                          </Link>
-                        )}
-                        
-                        <Link href={`/department/${member.id}`}>
-                          <button className="bg-stone-100 hover:bg-stone-200 text-stone-700 p-2.5 rounded-lg transition-colors active:scale-95">
-                            <ChevronRight className="h-5 w-5" />
-                          </button>
-                        </Link>
-                      </div>
                     </div>
+                    
+                    {/* Apple-style round call button */}
+                    {isIndividual && hasAIAgent ? (
+                      <Link href="/rj-agent">
+                        <button className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 active:bg-green-700 flex items-center justify-center shadow-lg transition-all active:scale-95">
+                          <Phone className="h-5 w-5 text-white" />
+                        </button>
+                      </Link>
+                    ) : isIndividual ? (
+                      <button 
+                        disabled 
+                        className="w-12 h-12 rounded-full bg-stone-200 flex items-center justify-center cursor-not-allowed opacity-50"
+                      >
+                        <Phone className="h-5 w-5 text-stone-400" />
+                      </button>
+                    ) : (
+                      <Link href={`/department/${member.id}`}>
+                        <button className="w-12 h-12 rounded-full bg-stone-100 hover:bg-stone-200 flex items-center justify-center transition-all active:scale-95">
+                          <ChevronRight className="h-5 w-5 text-stone-600" />
+                        </button>
+                      </Link>
+                    )}
                   </div>
                 </CardContent>
               </Card>
