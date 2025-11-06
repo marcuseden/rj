@@ -231,20 +231,25 @@ export default function DepartmentPage() {
                   <div className="flex items-center gap-4 mb-1">
                     <h1 className="text-3xl font-semibold text-stone-900">{department.name}</h1>
                     
-                    {/* Call AI Agent Button */}
-                    {id === 'ajay-banga' ? (
+                    {/* Call AI Agent Button - Only for individuals, not departments */}
+                    {department.children_count && department.children_count > 0 ? (
+                      // This is a department/team - show team info instead
+                      <Button 
+                        onClick={() => document.getElementById('team-section')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="bg-[#0071bc] hover:bg-[#005a99] text-white"
+                      >
+                        <Users className="w-4 h-4 mr-2" />
+                        View Team ({department.children_count})
+                      </Button>
+                    ) : id === 'ajay-banga' ? (
+                      // This is an individual person with AI agent
                       <Link href="/rj-agent">
                         <Button className="bg-green-500 hover:bg-green-600 text-white">
                           <Phone className="w-4 h-4 mr-2" />
                           Call AI Agent
                         </Button>
                       </Link>
-                    ) : (
-                      <Button disabled className="bg-stone-200 text-stone-500 cursor-not-allowed">
-                        <Phone className="w-4 h-4 mr-2" />
-                        Coming Soon
-                      </Button>
-                    )}
+                    ) : null}
                   </div>
                   <p className="text-lg text-stone-600 mb-2">{department.position}</p>
                   <div className="flex flex-wrap gap-2">
@@ -292,7 +297,7 @@ export default function DepartmentPage() {
 
         {/* Team Members - Moved to top */}
         {department.children_count && department.children_count > 0 && (
-          <Card className="bg-white border-stone-200 p-6 mb-6">
+          <Card id="team-section" className="bg-white border-stone-200 p-6 mb-6 scroll-mt-20">
             <div className="mb-4">
               <h2 className="text-2xl font-bold text-stone-900 mb-2 flex items-center">
                 <Users className="w-6 h-6 mr-2" />
