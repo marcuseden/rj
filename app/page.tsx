@@ -21,9 +21,10 @@ import Link from 'next/link';
 export default function LandingPage() {
   const [user, setUser] = useState<any>(null);
   const [stats, setStats] = useState({
+    projects: 0,
+    countries: 0,
     documents: 0,
-    speeches: 0,
-    departments: 0,
+    leadership: 0,
   });
   const router = useRouter();
   const supabase = createClient();
@@ -42,26 +43,29 @@ export default function LandingPage() {
 
   const fetchStats = async () => {
     try {
+      // Get projects count
+      const { count: projectsCount } = await supabase
+        .from('worldbank_projects')
+        .select('*', { count: 'exact', head: true });
+      setStats(prev => ({ ...prev, projects: projectsCount || 0 }));
+
+      // Get countries count
+      const { count: countriesCount } = await supabase
+        .from('worldbank_countries')
+        .select('*', { count: 'exact', head: true });
+      setStats(prev => ({ ...prev, countries: countriesCount || 0 }));
+
       // Get documents count
-      const docsRes = await fetch('/data/worldbank-strategy/ajay-banga-documents-verified.json');
-      if (docsRes.ok) {
-        const docs = await docsRes.json();
-        setStats(prev => ({ ...prev, documents: docs.length }));
-      }
+      const { count: docsCount } = await supabase
+        .from('worldbank_documents')
+        .select('*', { count: 'exact', head: true });
+      setStats(prev => ({ ...prev, documents: docsCount || 0 }));
 
-      // Get speeches count
-      const speechesRes = await fetch('/speeches_database.json');
-      if (speechesRes.ok) {
-        const speeches = await speechesRes.json();
-        setStats(prev => ({ ...prev, speeches: speeches.length }));
-      }
-
-      // Get departments count
-      const depsRes = await fetch('/api/worldbank-orgchart');
-      if (depsRes.ok) {
-        const deps = await depsRes.json();
-        setStats(prev => ({ ...prev, departments: deps.hierarchy?.length || 0 }));
-      }
+      // Get leadership count
+      const { count: leadershipCount } = await supabase
+        .from('worldbank_orgchart')
+        .select('*', { count: 'exact', head: true });
+      setStats(prev => ({ ...prev, leadership: leadershipCount || 0 }));
     } catch (error) {
       console.error('Error fetching stats:', error);
     }
@@ -71,27 +75,27 @@ export default function LandingPage() {
     {
       icon: MessageSquare,
       title: 'AI Agent',
-      description: 'Chat with RJ Banga AI assistant trained on speeches and World Bank strategy',
+      description: 'Voice conversations with AI assistant trained on global development strategies',
     },
     {
       icon: BookOpen,
       title: 'Knowledge Base',
-      description: 'Browse comprehensive World Bank documents and strategic papers',
+      description: 'Browse comprehensive strategic documents and policy papers',
     },
     {
       icon: Search,
       title: 'Document Search',
-      description: 'Search through extensive World Bank documentation',
+      description: 'Search through extensive global development documentation',
     },
     {
       icon: FileEdit,
       title: 'Writing Assistant',
-      description: 'Align your writing with RJ Banga\'s communication style',
+      description: 'Align your writing with professional leadership communication style',
     },
     {
       icon: Building2,
       title: 'Organization Chart',
-      description: 'Explore World Bank departments and leadership structure',
+      description: 'Explore departments and leadership structure',
     },
   ];
 
@@ -100,42 +104,78 @@ export default function LandingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-stone-50 via-white to-stone-100">
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="text-center mb-16">
-          <Badge className="mb-6 bg-[#0071bc] text-white border-0">
-            World Bank AI Assistant
-          </Badge>
-          <h1 className="text-5xl md:text-6xl font-bold text-stone-900 mb-6">
-            Strategic Alignment Platform
-          </h1>
-          <p className="text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto mb-4">
-            AI-powered insights into World Bank strategy and Ajay Banga's leadership vision
-          </p>
-          <div className="flex items-center justify-center gap-6 mb-8 text-stone-600">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-[#0071bc]">{stats.documents}+</div>
-              <div className="text-sm">Documents</div>
+    <main className="min-h-screen bg-stone-50">
+      {/* Hero Section with Full-Width Image */}
+      <div className="relative h-[600px] overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop"
+            alt="Global Network" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0071bc]/90 via-[#0071bc]/80 to-[#005a99]/90"></div>
+        </div>
+        
+        {/* Hero Content */}
+        <div className="relative h-full flex items-center">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center text-white">
+              <Badge className="mb-6 bg-white/20 backdrop-blur-sm text-white border-white/30">
+                AI Assistant
+              </Badge>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-2xl">
+                Strategic Alignment Platform
+              </h1>
+              <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8 drop-shadow-lg">
+                AI-powered insights into global development strategy and leadership
+              </p>
+              
+              {/* Stats */}
+              <div className="flex items-center justify-center gap-6 md:gap-10 mb-10 flex-wrap">
+                <div className="text-center">
+                  <div className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+                    {stats.projects > 0 ? stats.projects.toLocaleString() : '5,000'}+
+                  </div>
+                  <div className="text-sm md:text-base text-blue-100">Projects</div>
+                </div>
+                <div className="w-px h-12 bg-white/30"></div>
+                <div className="text-center">
+                  <div className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+                    {stats.countries > 0 ? stats.countries : '211'}
+                  </div>
+                  <div className="text-sm md:text-base text-blue-100">Countries</div>
+                </div>
+                <div className="w-px h-12 bg-white/30"></div>
+                <div className="text-center">
+                  <div className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+                    {stats.documents > 0 ? stats.documents : '50'}+
+                  </div>
+                  <div className="text-sm md:text-base text-blue-100">Documents</div>
+                </div>
+                <div className="w-px h-12 bg-white/30"></div>
+                <div className="text-center">
+                  <div className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+                    {stats.leadership > 0 ? stats.leadership : '35'}+
+                  </div>
+                  <div className="text-sm md:text-base text-blue-100">Leadership</div>
+                </div>
+              </div>
+              
+              {/* CTA Button */}
+              <Link href="/login">
+                <Button className="bg-white text-[#0071bc] hover:bg-blue-50 px-10 py-7 text-lg font-semibold shadow-2xl">
+                  Log In
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
             </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-[#0071bc]">{stats.speeches}+</div>
-              <div className="text-sm">Speeches</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-[#0071bc]">{stats.departments}+</div>
-              <div className="text-sm">Departments</div>
-            </div>
-          </div>
-          <div className="flex items-center justify-center gap-4">
-            <Link href="/login">
-              <Button className="bg-[#0071bc] hover:bg-[#005a99] text-white px-8 py-6 text-lg">
-                Get Started
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
           </div>
         </div>
+      </div>
+
+      {/* Content Section */}
+      <div className="container mx-auto px-4 py-20">
 
         {/* Features Grid */}
         <div className="mb-20">
@@ -170,8 +210,8 @@ export default function LandingPage() {
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                'AI-powered analysis of World Bank strategy',
-                'Voice conversations with RJ Banga agent',
+                'AI-powered analysis of global development strategy',
+                'Voice conversations with AI leadership agent',
                 'Comprehensive document search',
                 'Writing style alignment tools',
                 'Organization structure insights',
@@ -194,7 +234,7 @@ export default function LandingPage() {
               Ready to explore?
             </h2>
             <p className="text-blue-100 text-lg mb-8">
-              Sign up now to access AI-powered World Bank insights
+              Sign up now to access AI-powered strategic insights
             </p>
             <Link href="/login">
               <Button className="bg-white text-[#0071bc] hover:bg-stone-50 px-8 py-6 text-lg">
@@ -209,7 +249,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-stone-200 py-8">
         <div className="container mx-auto px-4 text-center text-stone-600">
-          <p>© 2024 Strategic Alignment Platform. World Bank AI Assistant.</p>
+          <p>© 2024 Strategic Alignment Platform. AI Assistant.</p>
         </div>
       </footer>
     </main>

@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { createClient } from '@/lib/supabase';
 import Link from 'next/link';
-import { InteractiveWorldMap } from '@/components/InteractiveWorldMap';
+import { InteractiveWorldMap } from '@/components/InteractiveWorldMapWrapper';
 
 interface Country {
   id: string;

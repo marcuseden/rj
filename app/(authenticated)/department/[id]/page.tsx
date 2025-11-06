@@ -272,6 +272,22 @@ export default function DepartmentPage() {
           </div>
         </Card>
 
+        {/* Team Members - Moved to top */}
+        {department.children_count && department.children_count > 0 && (
+          <Card className="bg-white border-stone-200 p-6 mb-6">
+            <div className="mb-4">
+              <h2 className="text-2xl font-bold text-stone-900 mb-2 flex items-center">
+                <Users className="w-6 h-6 mr-2" />
+                Team Members
+              </h2>
+              <p className="text-stone-600">
+                Meet the {department.children_count} professionals on this team
+              </p>
+            </div>
+            <TeamMembersList departmentId={department.id} />
+          </Card>
+        )}
+
         {/* Strategy & Vision */}
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             {department.department_mission && (
@@ -448,16 +464,6 @@ export default function DepartmentPage() {
           <Card className="bg-stone-900 text-white border-stone-700 p-6 mb-6">
             <h2 className="text-xl font-semibold mb-3">Future Direction & Strategy</h2>
             <p className="text-stone-200 leading-relaxed">{department.future_direction}</p>
-          </Card>
-        )}
-
-        {/* Team Members */}
-        {department.children_count && department.children_count > 0 && (
-          <Card className="bg-white border-stone-200 p-6 mb-6">
-            <h2 className="text-xl font-semibold text-stone-900 mb-4">
-              Team Members ({department.children_count})
-            </h2>
-            <TeamMembersList departmentId={department.id} />
           </Card>
         )}
 
