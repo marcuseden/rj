@@ -43,11 +43,24 @@ export async function GET(request: NextRequest) {
       );
     }
     
-    console.log(`✅ Orgchart loaded: ${data?.length || 0} members`);
+    // Fix avatar URLs - ensure they point to /avatars/ directory
+    const fixedData = data?.map(member => {
+      if (member.avatar_url && !member.avatar_url.startsWith('/avatars/')) {
+        // Extract filename and fix path
+        const filename = member.avatar_url.split('/').pop();
+        return {
+          ...member,
+          avatar_url: `/avatars/${filename}`
+        };
+      }
+      return member;
+    });
+    
+    console.log(`✅ Orgchart loaded: ${fixedData?.length || 0} members`);
     
     return NextResponse.json({
-      hierarchy: data || [],
-      count: data?.length || 0
+      hierarchy: fixedData || [],
+      count: fixedData?.length || 0
     }, {
       headers: {
         'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',

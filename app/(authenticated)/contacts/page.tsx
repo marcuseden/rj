@@ -32,8 +32,12 @@ export default function ContactsPage() {
       .slice(0, 2);
   };
 
-  // Filter and sort contacts
-  const filteredContacts = hierarchy
+  // Remove duplicates, filter, and sort contacts
+  const uniqueContacts = Array.from(
+    new Map(hierarchy.map((member: OrgMember) => [member.name, member])).values()
+  );
+
+  const filteredContacts = uniqueContacts
     .filter((member: OrgMember) => {
       if (!searchQuery) return true;
       const query = searchQuery.toLowerCase();
@@ -44,6 +48,7 @@ export default function ContactsPage() {
       );
     })
     .sort((a, b) => {
+      // Put Ajay Banga (RJ Banga) at the top
       if (a.id === 'ajay-banga') return -1;
       if (b.id === 'ajay-banga') return 1;
       return a.name.localeCompare(b.name);
@@ -58,9 +63,9 @@ export default function ContactsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-stone-50 pt-16 md:pt-0">
       {/* Search Header */}
-      <div className="bg-white border-b border-stone-200 sticky top-16 z-10">
+      <div className="bg-white border-b border-stone-200 sticky top-16 md:top-0 z-10">
         <div className="p-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-stone-400 h-5 w-5" />

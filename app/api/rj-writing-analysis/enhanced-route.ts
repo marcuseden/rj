@@ -27,65 +27,28 @@ async function fetchDatabaseContext() {
     
     // Fetch strategic documents
     const { data: documents, error: docsError } = await supabase
-      .table('worldbank_documents')
+      .table('documents')
       .select('title, doc_type, date, summary, content')
       .order('date', { ascending: false })
       .limit(20);
     
+    // Fetch priorities
+    const { data: priorities, error: prioritiesError } = await supabase
+      .table('priorities')
+      .select('title, description, targets, status')
+      .order('order_index');
+    
     // Fetch projects (for concrete examples)
     const { data: projects, error: projectsError } = await supabase
-      .table('worldbank_projects')
-      .select('project_name, country, sector1_name, status, project_abstract_en, total_amt')
-      .order('boardapprovaldate', { ascending: false })
+      .table('projects')
+      .select('project_name, country, sector, status, description, total_commitment')
+      .order('approval_date', { ascending: false })
       .limit(15);
-    
-    // Note: priorities table doesn't exist, will use hardcoded ones
-    const priorities: any[] = [];
-    
-    // Build hardcoded priorities from RJ's verified speeches
-    const hardcodedPriorities = [
-      {
-        title: 'Job Creation',
-        description: '1.2 billion young people entering workforce by 2035, need to create 800M+ jobs',
-        targets: '420 million jobs projected; need 800 million more',
-        status: 'In Progress'
-      },
-      {
-        title: 'Mission 300 - Energy Access',
-        description: 'Bringing electricity to 300 million Africans by 2030',
-        targets: '90 million connections in first phase by 2030',
-        status: 'In Progress'
-      },
-      {
-        title: 'Climate Finance',
-        description: '45% of World Bank funding toward climate projects',
-        targets: '$40+ billion annually by 2025',
-        status: 'On Track'
-      },
-      {
-        title: 'IDA Replenishment',
-        description: 'Record funding for poorest countries',
-        targets: '$100+ billion secured (IDA21: $93B)',
-        status: 'Achieved'
-      },
-      {
-        title: 'Private Capital Mobilization',
-        description: 'Using guarantees and de-risking to attract investment',
-        targets: '$150+ billion in commitments',
-        status: 'On Track'
-      },
-      {
-        title: 'Healthcare Access',
-        description: 'Quality primary healthcare for 1.5 billion people',
-        targets: '1.5 billion people by 2030',
-        status: 'In Progress'
-      }
-    ];
     
     return {
       speeches: speeches || [],
       documents: documents || [],
-      priorities: hardcodedPriorities,
+      priorities: priorities || [],
       projects: projects || []
     };
   } catch (error) {
@@ -118,9 +81,7 @@ function buildEnhancedContext(dbData: any, localData: any) {
   
   // Extract project examples
   const projectExamples = projects.slice(0, 5).map((p: any) => {
-    const amount = p.total_amt || p.total_commitment || 0;
-    const sector = p.sector1_name || p.sector || 'Development';
-    return `- ${p.project_name} (${p.country}): ${sector} - $${amount.toLocaleString()}`;
+    return `- ${p.project_name} (${p.country}): ${p.sector} - $${(p.total_commitment || 0).toLocaleString()}`;
   }).join('\n');
   
   // Build priorities list

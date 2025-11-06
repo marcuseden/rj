@@ -81,7 +81,7 @@ export default function RJAgentPage() {
           <Avatar className={`w-48 h-48 mx-auto border-4 transition-all duration-300 ${
             isConnected ? 'border-green-500 shadow-2xl shadow-green-500/50' : 'border-stone-600'
           }`}>
-            <AvatarImage src="/ajay-banga-avatar.jpg" alt="Ajay Banga" />
+            <AvatarImage src="/avatars/ajay-banga.jpg" alt="Ajay Banga" />
             <AvatarFallback className="text-6xl font-bold bg-[#0071bc] text-white">
               AB
             </AvatarFallback>

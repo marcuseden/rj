@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Sparkles, Copy, Check, Upload, CheckCircle, AlertCircle, TrendingUp, Info, ChevronDown } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Sparkles, Copy, Check, Upload, CheckCircle, AlertCircle, TrendingUp, Info, ChevronDown, FileText, X } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -27,6 +27,9 @@ export default function RJWritingAssistantPage() {
   const [copied, setCopied] = useState(false);
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [showInfo, setShowInfo] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const analyzeText = async () => {
     if (!inputText.trim()) return;
@@ -71,12 +74,62 @@ export default function RJWritingAssistantPage() {
     return 'bg-red-50 border-red-200';
   };
 
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const validTypes = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+      'application/msword', // .doc
+      'text/plain'
+    ];
+
+    if (!validTypes.includes(file.type)) {
+      alert('Please upload a PDF, Word document (.doc, .docx), or text file.');
+      return;
+    }
+
+    setUploading(true);
+    setUploadedFile(file);
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch('/api/extract-text', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error('Failed to extract text');
+
+      const data = await response.json();
+      setInputText(data.text);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Failed to extract text from file. Please try again or paste the text manually.');
+      setUploadedFile(null);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeFile = () => {
+    setUploadedFile(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-stone-50 pt-16 md:pt-0">
       {/* Header */}
-      <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-4">
-        <h1 className="text-xl md:text-2xl font-semibold text-stone-900 mt-2 md:mt-0">Strategic Alignment Checker</h1>
-        <p className="text-xs md:text-sm text-stone-600 mt-1">Compare your text with RJ Banga's verified strategic vision</p>
+      <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-6">
+        <div className="max-w-5xl mx-auto">
+          <h1 className="text-2xl md:text-4xl font-bold text-stone-900 mb-2">Writing Assistant</h1>
+          <p className="text-sm md:text-base text-stone-600">Compare your text with RJ Banga's verified strategic vision</p>
+        </div>
       </div>
 
       <div className="max-w-5xl mx-auto px-4 md:px-6 py-6 md:py-8">
@@ -117,13 +170,63 @@ export default function RJWritingAssistantPage() {
         {/* Input Section */}
         <Card className="bg-white border-stone-200 mb-6">
           <CardContent className="p-4 md:p-6">
-            <label className="block text-sm font-medium text-stone-700 mb-2">
-              Your Text or Document
-            </label>
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-sm font-medium text-stone-700">
+                Your Text or Document
+              </label>
+              <div className="flex items-center gap-2">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".pdf,.doc,.docx,.txt"
+                  onChange={handleFileUpload}
+                  className="hidden"
+                  id="file-upload"
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading}
+                  className="text-xs"
+                >
+                  {uploading ? (
+                    <>
+                      <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-stone-600 mr-1"></div>
+                      Processing...
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="h-3 w-3 mr-1" />
+                      Upload File
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+
+            {/* Uploaded File Badge */}
+            {uploadedFile && (
+              <div className="mb-2 flex items-center gap-2 p-2 bg-blue-50 border border-blue-200 rounded-lg">
+                <FileText className="h-4 w-4 text-[#0071bc]" />
+                <span className="text-sm text-stone-700 flex-1 truncate">{uploadedFile.name}</span>
+                <button
+                  onClick={removeFile}
+                  className="text-stone-500 hover:text-stone-700"
+                  type="button"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            )}
+
             <textarea
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Paste your speech, statement, strategy document, or any text here...
+
+Or click 'Upload File' to upload a PDF or Word document.
 
 Example: 'Our organization is working on renewable energy projects to address climate change and create sustainable growth opportunities.'"
               className="w-full h-48 md:h-64 px-3 md:px-4 py-3 border border-stone-300 rounded-lg resize-none focus:ring-2 focus:ring-[#0071bc] focus:border-transparent text-sm"

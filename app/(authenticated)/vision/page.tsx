@@ -46,7 +46,7 @@ export default function VisionPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-stone-50 pt-16 md:pt-0">
       {/* Header */}
       <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-6">
         <div className="max-w-6xl mx-auto">

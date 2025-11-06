@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { createClient } from '@/lib/supabase';
 import Link from 'next/link';
 import { InteractiveWorldMap } from '@/components/InteractiveWorldMapWrapper';
@@ -238,6 +239,21 @@ export default function CountriesPage() {
     return `rgba(${r}, ${g}, ${b}, ${opacity})`;
   };
 
+  const getFlagUrl = (iso2Code: string) => {
+    if (!iso2Code) return null;
+    // Use flagcdn.com for high-quality SVG flags
+    return `https://flagcdn.com/w80/${iso2Code.toLowerCase()}.png`;
+  };
+
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
   const uniqueRegions = Array.from(new Set(countries.map(c => c.region))).filter(Boolean).sort();
 
   const stats = {
@@ -255,7 +271,7 @@ export default function CountriesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-stone-50 pt-16 md:pt-0">
       {/* Header */}
       <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-4 md:py-6">
         <div className="max-w-7xl mx-auto">
@@ -488,12 +504,21 @@ export default function CountriesPage() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3 flex-1">
-                      <Globe className="w-5 h-5 text-[#0071bc] flex-shrink-0" />
+                      <Avatar className="w-10 h-10 flex-shrink-0">
+                        <AvatarImage 
+                          src={getFlagUrl(country.iso2_code) || undefined} 
+                          alt={`${country.name} flag`}
+                          className="object-cover"
+                        />
+                        <AvatarFallback className="bg-gradient-to-br from-[#0071bc] to-[#005a99] text-white text-xs font-semibold">
+                          {getInitials(country.name)}
+                        </AvatarFallback>
+                      </Avatar>
                       <div className="min-w-0 flex-1">
                         <h3 className="font-semibold text-stone-900 text-base truncate">
                           {country.name}
                         </h3>
-                        <p className="text-xs text-stone-600 truncate">{country.region}</p>
+                        <p className="text-xs text-stone-600 truncate">{country.capital_city || country.region}</p>
                       </div>
                     </div>
                     {country.active_projects && country.active_projects > 0 && (
@@ -510,8 +535,17 @@ export default function CountriesPage() {
               <Card className="hidden md:block bg-white border-stone-200 hover:shadow-lg hover:border-[#0071bc] transition-all cursor-pointer group h-full">
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <Globe className="w-4 h-4 text-[#0071bc]" />
+                    <div className="flex items-center gap-3">
+                      <Avatar className="w-10 h-10 flex-shrink-0 border-2 border-stone-200 group-hover:border-[#0071bc] transition-colors">
+                        <AvatarImage 
+                          src={getFlagUrl(country.iso2_code) || undefined} 
+                          alt={`${country.name} flag`}
+                          className="object-cover"
+                        />
+                        <AvatarFallback className="bg-gradient-to-br from-[#0071bc] to-[#005a99] text-white text-xs font-semibold">
+                          {getInitials(country.name)}
+                        </AvatarFallback>
+                      </Avatar>
                       <h3 className="font-semibold text-stone-900 group-hover:text-[#0071bc] transition-colors">
                         {country.name}
                       </h3>

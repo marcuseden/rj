@@ -1,0 +1,216 @@
+# RJ BANGA KNOWLEDGE BASE - PART 3: ORGANIZATION & DATA
+Generated: 2025-11-06T11:56:04.529656
+
+
+
+================================================================================
+COUNTRIES DATABASE
+================================================================================
+
+=== COUNTRIES DATABASE (50 countries) ===
+
+World Bank country data and partnerships.
+
+
+--- AFGHANISTAN ---
+Region: Middle East, North Africa, Afghanistan & Pakistan
+Income Level: Low income
+Population: 42,647,492
+
+
+--- ALBANIA ---
+Region: Europe & Central Asia
+Income Level: Upper middle income
+Population: 2,714,617
+
+
+--- ALGERIA ---
+Region: Middle East, North Africa, Afghanistan & Pakistan
+Income Level: Upper middle income
+Population: 46,814,308
+
+
+--- AMERICAN SAMOA ---
+Region: East Asia & Pacific
+Income Level: High income
+Population: 46,765
+
+
+--- ANDORRA ---
+Region: Europe & Central Asia
+Income Level: High income
+Population: 81,938
+
+
+--- ANGOLA ---
+Region: Sub-Saharan Africa 
+Income Level: Lower middle income
+Population: 37,885,849
+
+
+--- ANTIGUA AND BARBUDA ---
+Region: Latin America & Caribbean 
+Income Level: High income
+Population: 93,772
+
+
+--- ARGENTINA ---
+Region: Latin America & Caribbean 
+Income Level: Upper middle income
+Population: 45,696,159
+
+
+--- ARMENIA ---
+Region: Europe & Central Asia
+Income Level: Upper middle income
+Population: 3,033,500
+
+
+--- ARUBA ---
+Region: Latin America & Caribbean 
+Income Level: High income
+Population: 107,624
+
+
+--- AUSTRALIA ---
+Region: East Asia & Pacific
+Income Level: High income
+Population: 27,204,809
+
+
+--- AUSTRIA ---
+Region: Europe & Central Asia
+Income Level: High income
+Population: 9,178,482
+
+
+--- AZERBAIJAN ---
+Region: Europe & Central Asia
+Income Level: Upper middle income
+Population: 10,202,850
+
+
+--- BAHAMAS, THE ---
+Region: Latin America & Caribbean 
+Income Level: High income
+Population: 401,283
+
+
+--- BAHRAIN ---
+Region: Middle East, North Africa, Afghanistan & Pakistan
+Income Level: High income
+Population: 1,588,670
+
+
+--- BANGLADESH ---
+Region: South Asia
+Income Level: Lower middle income
+Population: 173,562,364
+
+
+--- BARBADOS ---
+Region: Latin America & Caribbean 
+Income Level: High income
+Population: 282,467
+
+
+--- BELARUS ---
+Region: Europe & Central Asia
+Income Level: Upper middle income
+Population: 9,133,712
+
+
+--- BELGIUM ---
+Region: Europe & Central Asia
+Income Level: High income
+Population: 11,876,844
+
+
+--- BELIZE ---
+Region: Latin America & Caribbean 
+Income Level: Upper middle income
+Population: 417,072
+
+
+--- BENIN ---
+Region: Sub-Saharan Africa 
+Income Level: Lower middle income
+
+
+--- BERMUDA ---
+Region: North America
+Income Level: High income
+Population: 64,636
+
+
+--- BHUTAN ---
+Region: South Asia
+Income Level: Lower middle income
+Population: 791,524
+
+
+--- BOLIVIA ---
+Region: Latin America & Caribbean 
+Income Level: Lower middle income
+Population: 12,413,315
+
+
+--- BOSNIA AND HERZEGOVINA ---
+Region: Europe & Central Asia
+Income Level: Upper middle income
+Population: 3,164,253
+
+
+--- BOTSWANA ---
+Region: Sub-Saharan Africa 
+Income Level: Upper middle income
+Population: 2,521,139
+
+
+--- BRAZIL ---
+Region: Latin America & Caribbean 
+Income Level: Upper middle income
+Population: 211,998,573
+
+
+--- BRITISH VIRGIN ISLANDS ---
+Region: Latin America & Caribbean 
+Income Level: High income
+Population: 39,471
+
+
+--- BRUNEI DARUSSALAM ---
+Region: East Asia & Pacific
+Income Level: High income
+Population: 462,721
+
+
+--- BULGARIA ---
+Region: Europe & Central Asia
+Income Level: High income
+Population: 6,444,366
+
+
+
+================================================================================
+WORLD BANK LEADERSHIP TEAM
+================================================================================
+
+=== WORLD BANK LEADERSHIP TEAM (0 members) ===
+
+
+
+================================================================================
+STRATEGIC PRIORITIES
+================================================================================
+
+=== STRATEGIC PRIORITIES (0 priorities) ===
+
+
+
+================================================================================
+WORLD BANK DEPARTMENTS
+================================================================================
+
+=== WORLD BANK DEPARTMENTS (0 departments) ===
+

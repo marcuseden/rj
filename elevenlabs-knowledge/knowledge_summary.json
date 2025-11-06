@@ -1,0 +1,47 @@
+{
+  "generated_at": "2025-11-06T11:56:04.529656",
+  "total_sections": 8,
+  "files_created": [
+    "knowledge_base_full.txt",
+    "knowledge_base_full.json",
+    "knowledge_part1_profile_speeches.txt",
+    "knowledge_part2_documents_projects.txt",
+    "knowledge_part3_organization.txt"
+  ],
+  "sections": [
+    {
+      "title": "AJAY BANGA (RJ BANGA) - PROFILE & SPEAKING STYLE",
+      "size": 4451
+    },
+    {
+      "title": "RJ BANGA SPEECHES COLLECTION",
+      "size": 19511
+    },
+    {
+      "title": "WORLD BANK STRATEGIC DOCUMENTS",
+      "size": 48036
+    },
+    {
+      "title": "WORLD BANK PROJECTS DATABASE",
+      "size": 119
+    },
+    {
+      "title": "COUNTRIES DATABASE",
+      "size": 3209
+    },
+    {
+      "title": "WORLD BANK LEADERSHIP TEAM",
+      "size": 49
+    },
+    {
+      "title": "STRATEGIC PRIORITIES",
+      "size": 46
+    },
+    {
+      "title": "WORLD BANK DEPARTMENTS",
+      "size": 49
+    }
+  ],
+  "total_size_kb": 76.3017578125,
+  "total_characters": 77954
+}
