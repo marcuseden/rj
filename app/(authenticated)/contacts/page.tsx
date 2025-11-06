@@ -82,7 +82,6 @@ export default function ContactsPage() {
       <div className="divide-y divide-stone-200 bg-white">
         {filteredContacts.map((member) => {
           const hasAIAgent = member.id === 'ajay-banga';
-          const isIndividual = !member.children_count || member.children_count === 0;
           
           return (
             <div key={member.id} className="flex items-center gap-3 p-4 active:bg-stone-50">
@@ -104,8 +103,8 @@ export default function ContactsPage() {
                 </div>
               </Link>
               
-              {/* Call Button - iPhone Style (all show phone icon) */}
-              {isIndividual && hasAIAgent ? (
+              {/* Call Button - iPhone Style */}
+              {hasAIAgent ? (
                 <Link href="/rj-agent">
                   <button 
                     className="w-10 h-10 rounded-full bg-green-500 active:bg-green-600 flex items-center justify-center shadow-md active:scale-95 transition-transform"
