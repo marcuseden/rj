@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@elevenlabs/react": "^0.4.0",
+    "@elevenlabs/react": "^0.9.1",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.1",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
