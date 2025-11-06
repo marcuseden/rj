@@ -388,14 +388,28 @@ TASK: Provide TRUTHFUL, SPECIFIC, DATABASE-BACKED analysis:
    - Each with a CONCRETE, SPECIFIC suggestion
 
 4. IMPROVED VERSION:
-   Rewrite the text to match RJ's style using DATABASE PATTERNS:
-   - Add specific numbers and targets (like those in database projects/priorities)
-   - Emphasize partnership and collaboration (use his phrases)
-   - Focus on jobs and human outcomes (cite project examples)
-   - Make it action-oriented (what WILL be done, with timelines)
-   - Add urgency (use his communication patterns)
-   - Use direct, clear language (match his vocabulary)
-   - Include concrete examples from World Bank work
+   Rewrite the text to match RJ's style - BUT DO NOT FABRICATE DATA:
+   
+   CRITICAL RULES:
+   - KEEP the user's original facts and message - do NOT invent new data
+   - If user mentions "job creation", do NOT add fake numbers like "800 million jobs"
+   - Only use numbers/examples from DATABASE if they're relevant AND the user's text mentions that topic
+   - Transform STYLE, not content - make it sound like RJ without changing the facts
+   
+   STYLE TRANSFORMATIONS (what to change):
+   - Make language more direct and action-oriented
+   - Add RJ's communication patterns (urgency, partnership emphasis)
+   - Use RJ's vocabulary and phrasing
+   - Strengthen calls to action
+   - Add appropriate signature phrases if they fit naturally
+   
+   WHAT NOT TO CHANGE:
+   - User's core message and intent
+   - User's specific facts and numbers (unless clearly wrong)
+   - Don't add examples user didn't mention
+   - Don't invent statistics
+   
+   If user's text is generic and would benefit from specifics, SUGGEST adding them in the improvements section, don't fabricate them in the rewrite.
 
 5. KEY CHANGES MADE:
    List the main improvements and WHY each aligns with RJ's verified approach
