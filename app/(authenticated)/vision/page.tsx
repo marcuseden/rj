@@ -48,21 +48,21 @@ export default function VisionPage() {
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <div className="bg-white border-b border-stone-200 px-6 py-6">
+      <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-6">
         <div className="max-w-6xl mx-auto">
-          <Badge className="mb-4 bg-[#0071bc] text-white border-0">
+          <Badge className="mb-3 md:mb-4 bg-[#0071bc] text-white border-0">
             Leadership Vision
           </Badge>
-          <h1 className="text-4xl font-bold text-stone-900 mb-2">
+          <h1 className="text-2xl md:text-4xl font-bold text-stone-900 mb-2 mt-2 md:mt-0">
             Ajay Banga's Strategic Vision
           </h1>
-          <p className="text-lg text-stone-600">
+          <p className="text-base md:text-lg text-stone-600">
             President, World Bank Group
           </p>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-12">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-12">
         {/* Vision Statement */}
         <Card className="bg-gradient-to-br from-[#0071bc] to-[#005a99] border-0 mb-12">
           <CardContent className="p-8">
