@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Sparkles, Copy, Check, Upload, CheckCircle, AlertCircle, TrendingUp } from 'lucide-react';
+import { Sparkles, Copy, Check, Upload, CheckCircle, AlertCircle, TrendingUp, Info, ChevronDown } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -26,6 +26,7 @@ export default function RJWritingAssistantPage() {
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
+  const [showInfo, setShowInfo] = useState(false);
 
   const analyzeText = async () => {
     if (!inputText.trim()) return;
@@ -73,32 +74,49 @@ export default function RJWritingAssistantPage() {
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <div className="bg-white border-b border-stone-200 px-6 py-4">
-        <h1 className="text-2xl font-semibold text-stone-900">Strategic Alignment Checker</h1>
-        <p className="text-sm text-stone-600 mt-1">Compare your text with RJ Banga's verified strategic vision</p>
+      <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-4">
+        <h1 className="text-xl md:text-2xl font-semibold text-stone-900 mt-2 md:mt-0">Strategic Alignment Checker</h1>
+        <p className="text-xs md:text-sm text-stone-600 mt-1">Compare your text with RJ Banga's verified strategic vision</p>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-8">
-        {/* Info Banner */}
-        <Card className="bg-blue-50 border-blue-200 mb-6">
-          <CardContent className="p-4">
-            <div className="flex items-start gap-3">
-              <Sparkles className="h-5 w-5 text-[#0071bc] mt-0.5 flex-shrink-0" />
-              <div className="text-sm">
-                <p className="text-stone-900 font-semibold mb-1">
-                  Powered by AI Analysis of 18,653+ Words from Real RJ Banga Speeches
-                </p>
-                <p className="text-stone-700">
-                  Trained on 14 verified presidential speeches + World Bank strategic documents • 100% fact-based analysis with zero hallucination • Compare against authentic leadership voice & vision
-                </p>
-              </div>
+      <div className="max-w-5xl mx-auto px-4 md:px-6 py-6 md:py-8">
+        {/* Info Banner - Collapsible on Mobile */}
+        <div className="mb-6">
+          {/* Info Icon Button - Mobile Only */}
+          <button
+            onClick={() => setShowInfo(!showInfo)}
+            className="md:hidden w-full flex items-center justify-between p-4 bg-blue-50 border border-blue-200 rounded-lg mb-2 active:bg-blue-100 transition-colors"
+          >
+            <div className="flex items-center gap-2">
+              <Info className="h-5 w-5 text-[#0071bc]" />
+              <span className="text-sm font-medium text-stone-900">
+                About this tool
+              </span>
             </div>
-          </CardContent>
-        </Card>
+            <ChevronDown className={`h-5 w-5 text-stone-600 transition-transform ${showInfo ? 'rotate-180' : ''}`} />
+          </button>
+          
+          {/* Info Content - Always visible on desktop, collapsible on mobile */}
+          <Card className={`bg-blue-50 border-blue-200 ${showInfo ? 'block' : 'hidden md:block'}`}>
+            <CardContent className="p-4">
+              <div className="flex items-start gap-3">
+                <Sparkles className="hidden md:block h-5 w-5 text-[#0071bc] mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <p className="text-stone-900 font-semibold mb-1">
+                    Powered by AI Analysis of 18,653+ Words from Real RJ Banga Speeches
+                  </p>
+                  <p className="text-stone-700">
+                    Trained on 14 verified presidential speeches + World Bank strategic documents • 100% fact-based analysis with zero hallucination • Compare against authentic leadership voice & vision
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Input Section */}
         <Card className="bg-white border-stone-200 mb-6">
-          <CardContent className="p-6">
+          <CardContent className="p-4 md:p-6">
             <label className="block text-sm font-medium text-stone-700 mb-2">
               Your Text or Document
             </label>
@@ -108,16 +126,16 @@ export default function RJWritingAssistantPage() {
               placeholder="Paste your speech, statement, strategy document, or any text here...
 
 Example: 'Our organization is working on renewable energy projects to address climate change and create sustainable growth opportunities.'"
-              className="w-full h-64 px-4 py-3 border border-stone-300 rounded-lg resize-none focus:ring-2 focus:ring-[#0071bc] focus:border-transparent text-sm"
+              className="w-full h-48 md:h-64 px-3 md:px-4 py-3 border border-stone-300 rounded-lg resize-none focus:ring-2 focus:ring-[#0071bc] focus:border-transparent text-sm"
             />
-            <div className="mt-3 flex items-center justify-between">
-              <span className="text-sm text-stone-500">
+            <div className="mt-3 flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
+              <span className="text-xs md:text-sm text-stone-500">
                 {inputText.split(/\s+/).filter(w => w).length} words • {inputText.length} characters
               </span>
               <Button
                 onClick={analyzeText}
                 disabled={!inputText.trim() || loading}
-                className="bg-[#0071bc] hover:bg-[#005a99] text-white"
+                className="w-full md:w-auto bg-[#0071bc] hover:bg-[#005a99] text-white"
               >
                 {loading ? (
                   <>
