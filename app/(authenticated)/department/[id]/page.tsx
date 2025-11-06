@@ -20,7 +20,8 @@ import {
   ExternalLink,
   Calendar,
   DollarSign,
-  BarChart3
+  BarChart3,
+  Phone
 } from 'lucide-react';
 
 interface DepartmentData {
@@ -226,8 +227,25 @@ export default function DepartmentPage() {
             
             <div className="flex-1">
               <div className="flex items-start justify-between gap-4 mb-4">
-                <div>
-                  <h1 className="text-3xl font-semibold text-stone-900 mb-1">{department.name}</h1>
+                <div className="flex-1">
+                  <div className="flex items-center gap-4 mb-1">
+                    <h1 className="text-3xl font-semibold text-stone-900">{department.name}</h1>
+                    
+                    {/* Call AI Agent Button */}
+                    {id === 'ajay-banga' ? (
+                      <Link href="/rj-agent">
+                        <Button className="bg-green-500 hover:bg-green-600 text-white">
+                          <Phone className="w-4 h-4 mr-2" />
+                          Call AI Agent
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button disabled className="bg-stone-200 text-stone-500 cursor-not-allowed">
+                        <Phone className="w-4 h-4 mr-2" />
+                        Coming Soon
+                      </Button>
+                    )}
+                  </div>
                   <p className="text-lg text-stone-600 mb-2">{department.position}</p>
                   <div className="flex flex-wrap gap-2">
                     {department.country && (
