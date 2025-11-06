@@ -27,33 +27,131 @@ export default function RJWritingAssistantPage() {
   const [copied, setCopied] = useState(false);
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [showInfo, setShowInfo] = useState(false);
+  const [chunkProgress, setChunkProgress] = useState<{ current: number; total: number } | null>(null);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Smart text chunking - splits by paragraphs, respects boundaries
+  const smartChunkText = (text: string, maxChunkSize: number = 2000): string[] => {
+    const words = text.split(/\s+/);
+    
+    // If text is short enough, return as single chunk
+    if (words.length <= maxChunkSize) {
+      return [text];
+    }
+
+    const chunks: string[] = [];
+    const paragraphs = text.split(/\n\n+/); // Split by double newlines (paragraphs)
+    
+    let currentChunk = '';
+    
+    for (const paragraph of paragraphs) {
+      const paragraphWords = paragraph.split(/\s+/).length;
+      const currentWords = currentChunk.split(/\s+/).length;
+      
+      // If adding this paragraph would exceed chunk size, start new chunk
+      if (currentWords + paragraphWords > maxChunkSize && currentChunk) {
+        chunks.push(currentChunk.trim());
+        currentChunk = paragraph;
+      } else {
+        currentChunk += (currentChunk ? '\n\n' : '') + paragraph;
+      }
+    }
+    
+    // Add remaining text
+    if (currentChunk) {
+      chunks.push(currentChunk.trim());
+    }
+    
+    return chunks;
+  };
 
   const analyzeText = async () => {
     if (!inputText.trim()) return;
 
     setLoading(true);
     setAnalysis(null);
+    setChunkProgress(null);
 
     try {
-      const response = await fetch('/api/rj-writing-analysis', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: inputText })
-      });
+      const wordCount = inputText.split(/\s+/).filter(w => w).length;
+      
+      // If text is long (>2000 words), use chunking
+      if (wordCount > 2000) {
+        const chunks = smartChunkText(inputText, 2000);
+        const chunkResults: any[] = [];
+        
+        // Analyze each chunk with progress tracking
+        for (let i = 0; i < chunks.length; i++) {
+          setChunkProgress({ current: i + 1, total: chunks.length });
+          
+          const response = await fetch('/api/rj-writing-analysis', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: chunks[i], isChunk: true, chunkIndex: i + 1 })
+          });
 
-      if (!response.ok) throw new Error('Analysis failed');
+          if (!response.ok) throw new Error(`Analysis failed for chunk ${i + 1}`);
+          
+          const result = await response.json();
+          chunkResults.push(result);
+        }
+        
+        // Combine results
+        const combinedResult = combineChunkResults(chunkResults);
+        setAnalysis(combinedResult);
+        setChunkProgress(null);
+      } else {
+        // Single analysis for shorter text
+        const response = await fetch('/api/rj-writing-analysis', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: inputText })
+        });
 
-      const result = await response.json();
-      setAnalysis(result);
+        if (!response.ok) throw new Error('Analysis failed');
+
+        const result = await response.json();
+        setAnalysis(result);
+      }
     } catch (error) {
       console.error('Error analyzing text:', error);
       alert('Failed to analyze text. Please try again.');
     } finally {
       setLoading(false);
+      setChunkProgress(null);
     }
+  };
+
+  // Combine results from multiple chunks
+  const combineChunkResults = (chunkResults: any[]): AnalysisResult => {
+    // Average alignment scores
+    const avgScore = Math.round(
+      chunkResults.reduce((sum, r) => sum + (r.alignmentScore || 0), 0) / chunkResults.length
+    );
+
+    // Combine aligned points (deduplicate similar ones)
+    const allAligned = chunkResults.flatMap(r => r.aligned || []);
+    
+    // Combine improvements (deduplicate similar ones)
+    const allImprovements = chunkResults.flatMap(r => r.improvements || []);
+
+    // Combine improved texts with section markers
+    const improvedText = chunkResults
+      .map((r, i) => `Section ${i + 1}:\n${r.improvedText}`)
+      .join('\n\n---\n\n');
+
+    // Combine key changes
+    const allKeyChanges = chunkResults.flatMap(r => r.keyChanges || []);
+
+    return {
+      alignmentScore: avgScore,
+      aligned: allAligned.slice(0, 5), // Top 5
+      improvements: allImprovements.slice(0, 5), // Top 5
+      improvedText,
+      keyChanges: [...new Set(allKeyChanges)].slice(0, 8), // Unique, top 8
+    };
   };
 
   const copyToClipboard = (text: string) => {
@@ -242,8 +340,17 @@ Example: 'Our organization is working on renewable energy projects to address cl
               >
                 {loading ? (
                   <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Analyzing...
+                    <div className="flex items-center gap-2">
+                      <svg className="animate-pulse h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                      <span>
+                        {chunkProgress 
+                          ? `Analyzing section ${chunkProgress.current}/${chunkProgress.total}...`
+                          : 'Thinking...'
+                        }
+                      </span>
+                    </div>
                   </>
                 ) : (
                   <>
@@ -255,6 +362,33 @@ Example: 'Our organization is working on renewable energy projects to address cl
             </div>
           </CardContent>
         </Card>
+
+        {/* Progress Bar for Chunked Analysis */}
+        {chunkProgress && (
+          <Card className="bg-blue-50 border-blue-200 mb-6">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <svg className="animate-pulse h-8 w-8 text-[#0071bc]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-stone-900 mb-2">
+                    Analyzing section {chunkProgress.current} of {chunkProgress.total}...
+                  </p>
+                  <div className="w-full bg-stone-200 rounded-full h-2">
+                    <div 
+                      className="bg-[#0071bc] h-2 rounded-full transition-all duration-300"
+                      style={{ width: `${(chunkProgress.current / chunkProgress.total) * 100}%` }}
+                    />
+                  </div>
+                  <p className="text-xs text-stone-600 mt-1">
+                    Large document detected - analyzing in sections for best results
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Analysis Results */}
         {analysis && (

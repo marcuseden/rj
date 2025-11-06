@@ -10,11 +10,22 @@ function getOpenAI() {
   });
 }
 
+// Cache to avoid fetching from DB every time
+let cachedContext: any = null;
+let cacheTime = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 async function fetchDatabaseContext() {
   /**
    * Fetch REAL content from Supabase database for analysis
-   * This gives us the most up-to-date and comprehensive knowledge
+   * Cached for 5 minutes to improve performance
    */
+  
+  // Return cached data if still valid
+  if (cachedContext && Date.now() - cacheTime < CACHE_DURATION) {
+    return cachedContext;
+  }
+  
   // Create server-side Supabase client for API route
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -32,26 +43,30 @@ async function fetchDatabaseContext() {
   const supabase = createClient(supabaseUrl, supabaseKey);
   
   try {
-    // Fetch recent speeches
-    const { data: speeches, error: speechesError } = await supabase
-      .from('speeches')
-      .select('title, date, location, full_text, content')
-      .order('date', { ascending: false })
-      .limit(20);
+    // Fetch in parallel for speed - REDUCED LIMITS for faster response
+    const [speechesResult, documentsResult, projectsResult] = await Promise.all([
+      supabase
+        .from('speeches')
+        .select('title, date, full_text')
+        .order('date', { ascending: false })
+        .limit(10), // Reduced from 20
+      
+      supabase
+        .from('worldbank_documents')
+        .select('title, doc_type, summary')
+        .order('date', { ascending: false })
+        .limit(10), // Reduced from 20
+      
+      supabase
+        .from('worldbank_projects')
+        .select('project_name, country, sector1_name')
+        .order('boardapprovaldate', { ascending: false })
+        .limit(5) // Reduced from 15
+    ]);
     
-    // Fetch strategic documents
-    const { data: documents, error: docsError } = await supabase
-      .from('worldbank_documents')
-      .select('title, doc_type, date, summary, content')
-      .order('date', { ascending: false })
-      .limit(20);
-    
-    // Fetch projects (for concrete examples)
-    const { data: projects, error: projectsError } = await supabase
-      .from('worldbank_projects')
-      .select('project_name, country, sector1_name, status, project_abstract_en, total_amt')
-      .order('boardapprovaldate', { ascending: false })
-      .limit(15);
+    const speeches = speechesResult.data;
+    const documents = documentsResult.data;
+    const projects = projectsResult.data;
     
     // Note: priorities table doesn't exist, will use hardcoded ones
     const priorities: any[] = [];
@@ -96,12 +111,18 @@ async function fetchDatabaseContext() {
       }
     ];
     
-    return {
+    const result = {
       speeches: speeches || [],
       documents: documents || [],
       priorities: hardcodedPriorities,
       projects: projects || []
     };
+    
+    // Cache the result
+    cachedContext = result;
+    cacheTime = Date.now();
+    
+    return result;
   } catch (error) {
     console.error('Error fetching database context:', error);
     return {
@@ -123,18 +144,17 @@ function buildEnhancedContext(dbData: any, localData: any) {
   const priorities = dbData.priorities || [];
   const projects = dbData.projects || [];
   
-  // Extract key quotes from speeches
-  const speechQuotes = speeches.slice(0, 10).map((s: any) => {
+  // Extract key quotes from speeches - REDUCED for speed
+  const speechQuotes = speeches.slice(0, 5).map((s: any) => {
     const text = s.full_text || s.content || '';
-    const excerpt = text.substring(0, 500);
-    return `"${excerpt}..." - ${s.title} (${s.date})`;
+    const excerpt = text.substring(0, 300); // Reduced from 500
+    return `"${excerpt}..." - ${s.title}`;
   }).join('\n\n');
   
-  // Extract project examples
-  const projectExamples = projects.slice(0, 5).map((p: any) => {
-    const amount = p.total_amt || p.total_commitment || 0;
-    const sector = p.sector1_name || p.sector || 'Development';
-    return `- ${p.project_name} (${p.country}): ${sector} - $${amount.toLocaleString()}`;
+  // Extract project examples - REDUCED
+  const projectExamples = projects.slice(0, 3).map((p: any) => {
+    const sector = p.sector1_name || 'Development';
+    return `- ${p.project_name} (${p.country}): ${sector}`;
   }).join('\n');
   
   // Build priorities list
@@ -448,7 +468,7 @@ Return JSON:
 }`;
 
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4o',
+      model: 'gpt-4o-mini', // Using mini for 2-3x faster response
       messages: [
         {
           role: 'system',
@@ -461,6 +481,7 @@ Return JSON:
       ],
       response_format: { type: 'json_object' },
       temperature: 0.3, // Lower for more factual accuracy
+      max_tokens: 2000, // Limit response size for speed
     });
 
     const analysis = JSON.parse(completion.choices[0].message.content || '{}');
