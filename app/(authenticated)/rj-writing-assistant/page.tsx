@@ -127,8 +127,8 @@ export default function RJWritingAssistantPage() {
       {/* Header */}
       <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-6">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-2xl md:text-4xl font-bold text-stone-900 mb-2">Writing Assistant</h1>
-          <p className="text-sm md:text-base text-stone-600">Compare your text with RJ Banga's verified strategic vision</p>
+          <h1 className="text-2xl md:text-4xl font-bold text-stone-900 mb-2">RJ Banga Voice Alignment Tool</h1>
+          <p className="text-sm md:text-base text-stone-600">Align your writing with President Ajay Banga's personal communication style and vision</p>
         </div>
       </div>
 
@@ -156,10 +156,10 @@ export default function RJWritingAssistantPage() {
                 <Sparkles className="hidden md:block h-5 w-5 text-[#0071bc] mt-0.5 flex-shrink-0" />
                 <div className="text-sm">
                   <p className="text-stone-900 font-semibold mb-1">
-                    Powered by AI Analysis of 18,653+ Words from Real RJ Banga Speeches
+                    Align with CEO Ajay Banga's Personal Voice & Vision
                   </p>
                   <p className="text-stone-700">
-                    Trained on 14 verified presidential speeches + World Bank strategic documents • 100% fact-based analysis with zero hallucination • Compare against authentic leadership voice & vision
+                    Analyzes your text against President Banga's authentic speaking style from 13 speeches, 53 documents • Uses his personal communication patterns: specific numbers, concrete examples, urgency, signature phrases • Not generic institutional language - this is RJ's unique CEO voice
                   </p>
                 </div>
               </div>
@@ -264,8 +264,8 @@ Example: 'Our organization is working on renewable energy projects to address cl
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-lg font-semibold text-stone-900 mb-1">Alignment Score</h2>
-                    <p className="text-sm text-stone-600">How well your text aligns with RJ Banga's strategic vision</p>
+                    <h2 className="text-lg font-semibold text-stone-900 mb-1">Voice Alignment Score</h2>
+                    <p className="text-sm text-stone-600">How closely your text matches President Banga's personal communication style</p>
                   </div>
                   <div className={`text-6xl font-bold ${getScoreColor(analysis.alignmentScore)}`}>
                     {analysis.alignmentScore}%
@@ -331,7 +331,7 @@ Example: 'Our organization is working on renewable energy projects to address cl
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-semibold text-stone-900">
-                    RJ-Aligned Version
+                    Rewritten in RJ Banga's Voice
                   </h2>
                   <Button
                     onClick={() => copyToClipboard(analysis.improvedText)}
@@ -385,16 +385,16 @@ Example: 'Our organization is working on renewable energy projects to address cl
             <CardContent className="p-12 text-center">
               <Sparkles className="h-16 w-16 mx-auto mb-4 text-stone-400" />
               <h3 className="text-lg font-semibold text-stone-900 mb-2">
-                Ready to Analyze
+                Match President Banga's Communication Style
               </h3>
               <p className="text-stone-600 mb-6">
-                Enter your text and click "Analyze Alignment" to get AI-powered feedback based on RJ Banga's verified strategic vision
+                Get AI-powered analysis comparing your text to RJ Banga's authentic CEO voice - not generic institutional language, but his personal way of communicating vision and driving action
               </p>
               <div className="flex flex-wrap gap-2 justify-center">
-                <Badge variant="outline">Partnership Focus</Badge>
-                <Badge variant="outline">Measurable Outcomes</Badge>
-                <Badge variant="outline">Job Creation</Badge>
-                <Badge variant="outline">Climate Action</Badge>
+                <Badge variant="outline">Specific Numbers</Badge>
+                <Badge variant="outline">Concrete Examples</Badge>
+                <Badge variant="outline">Urgency & Action</Badge>
+                <Badge variant="outline">Signature Phrases</Badge>
                 <Badge variant="outline">Data-Driven</Badge>
               </div>
             </CardContent>
