@@ -2,7 +2,7 @@
 
 ## ✅ What Was Fixed
 
-The voice agent now uses the **official ElevenLabs React `Conversation` component** which properly handles:
+The voice agent now uses the **official ElevenLabs React `useConversation` hook** which properly handles:
 - ✅ Audio input/output
 - ✅ WebRTC connection
 - ✅ Automatic microphone permissions
@@ -36,19 +36,21 @@ npm run dev
 The implementation now uses:
 
 ```tsx
-<Conversation
-  agentId={agentId}
-  onConnect={handleConnect}
-  onDisconnect={handleDisconnect}
-  onError={handleError}
->
-  {({ conversation, status }) => (
-    // Your UI here
-  )}
-</Conversation>
+const conversation = useConversation({
+  onConnect: () => { /* handle connection */ },
+  onDisconnect: () => { /* handle disconnection */ },
+  onError: (error) => { /* handle errors */ },
+  onMessage: (message) => { /* handle messages */ },
+});
+
+// Start the conversation
+await conversation.startSession({ agentId });
+
+// End the conversation
+await conversation.endSession();
 ```
 
-This component:
+This hook:
 - Automatically handles microphone access
 - Manages WebRTC connections
 - Processes audio input/output

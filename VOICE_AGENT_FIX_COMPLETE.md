@@ -10,19 +10,21 @@ Implemented the **official ElevenLabs React `Conversation` component** with prop
 
 ### Key Changes Made
 
-1. **Replaced `useConversation` with `Conversation` component**
+1. **Using `useConversation` hook correctly**
    ```tsx
-   // Before: ❌ No audio handling
-   const conversation = useConversation({ ... });
+   const conversation = useConversation({
+     onConnect: () => { /* handle connection */ },
+     onDisconnect: () => { /* handle disconnection */ },
+     onError: (error) => { /* handle errors */ },
+     onMessage: (message) => { /* handle messages */ },
+   });
    
-   // After: ✅ Full audio support
-   <Conversation agentId={agentId} onConnect={...} onDisconnect={...}>
-     {({ conversation, status }) => ( /* UI */ )}
-   </Conversation>
+   // Then call startSession with agentId
+   await conversation.startSession({ agentId });
    ```
 
 2. **Proper audio I/O handling**
-   - ✅ Microphone input automatically managed
+   - ✅ Microphone input automatically managed by the hook
    - ✅ Audio output (speaker) automatically handled
    - ✅ WebRTC connection properly established
    - ✅ Greeting message will play on connect
@@ -59,9 +61,9 @@ Visit: http://localhost:3001/rj-agent
 
 ## 🔧 Technical Details
 
-### What the Conversation Component Does
+### What the useConversation Hook Does
 
-The `Conversation` component from `@elevenlabs/react` handles:
+The `useConversation` hook from `@elevenlabs/react` handles:
 
 - **Audio Input**: Captures microphone audio via WebRTC
 - **Audio Output**: Plays agent responses through speakers
@@ -127,15 +129,12 @@ The `Conversation` component from `@elevenlabs/react` handles:
 ## 📁 Files Modified
 
 1. **`app/(authenticated)/rj-agent/page.tsx`**
-   - Changed from `useConversation` hook to `Conversation` component
-   - Added proper render props pattern
+   - Using `useConversation` hook correctly with proper callbacks
+   - Added onMessage handler for real-time message processing
    - Maintained exact same UI design
+   - Proper error handling and connection management
 
-2. **`components/ui/conversation-bar.tsx`** (created)
-   - Reusable conversation component wrapper
-   - Can be used in other parts of the app if needed
-
-3. **`package.json`**
+2. **`package.json`**
    - Updated to `@elevenlabs/react@0.9.1`
 
 ## ✅ Test Checklist
