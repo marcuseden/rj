@@ -21,7 +21,7 @@ import { useRouter } from 'next/navigation';
 const navItems = [
   { href: '/vision', icon: Eye, label: 'Vision' },
   { href: '/rj-agent', icon: Phone, label: 'AI Banga' },
-  { href: '/rj-faq', icon: BookOpen, label: 'Knowledge Base' },
+  { href: '/worldbank-search', icon: BookOpen, label: 'Knowledge Base' },
   { href: '/rj-writing-assistant', icon: FileEdit, label: 'Writing Assistant' },
   { href: '/worldbank-orgchart', icon: Building2, label: 'Organization Chart' },
   { href: '/countries', icon: Globe, label: 'Countries' },

@@ -14,11 +14,13 @@ export async function GET() {
     const [
       { data: documents },
       { data: countries },
-      { data: people }
+      { data: people },
+      { data: projects }
     ] = await Promise.all([
-      supabase.from('worldbank_documents').select('tags_authors, tags_document_type, tags_sectors, tags_regions, tags_departments'),
+      supabase.from('worldbank_documents').select('tags_authors, tags_document_type, tags_sectors, tags_regions, tags_departments').limit(1000).catch(() => ({ data: [] })),
       supabase.from('worldbank_countries').select('region, sector_focus'),
-      supabase.from('worldbank_orgchart').select('department, region').eq('is_active', true)
+      supabase.from('worldbank_orgchart').select('department, region').eq('is_active', true),
+      supabase.from('worldbank_projects').select('sectors, themes, region_name, tagged_departments').limit(1000)
     ]);
     
     // Extract unique values
@@ -46,18 +48,31 @@ export async function GET() {
       if (p.region) regions.add(p.region);
     });
     
+    projects?.forEach((p: any) => {
+      if (p.region_name) regions.add(p.region_name);
+      if (Array.isArray(p.sectors)) {
+        p.sectors.forEach((s: string) => sectors.add(s));
+      } else if (p.sectors) {
+        sectors.add(p.sectors);
+      }
+      if (Array.isArray(p.themes)) {
+        p.themes.forEach((t: string) => sectors.add(t));
+      }
+      p.tagged_departments?.forEach((d: string) => departments.add(d));
+    });
+    
     const filters = {
       authors: Array.from(authors).sort(),
       documentTypes: Array.from(documentTypes).sort(),
-      sectors: Array.from(sectors).sort(),
-      regions: Array.from(regions).sort(),
-      departments: Array.from(departments).sort(),
+      sectors: Array.from(sectors).filter(s => s).sort(),
+      regions: Array.from(regions).filter(r => r).sort(),
+      departments: Array.from(departments).filter(d => d).sort(),
       sourceTypes: {
-        all: (documents?.length || 0) + (countries?.length || 0) + (people?.length || 0),
+        all: (documents?.length || 0) + (countries?.length || 0) + (people?.length || 0) + (projects?.length || 0),
         document: documents?.length || 0,
         country: countries?.length || 0,
         person: people?.length || 0,
-        project: 0 // Computed dynamically from countries
+        project: projects?.length || 0
       }
     };
     

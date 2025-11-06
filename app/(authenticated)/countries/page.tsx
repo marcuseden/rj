@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, Globe, MapPin, TrendingUp, Users, DollarSign, Briefcase } from 'lucide-react';
+import { Search, Globe, MapPin, TrendingUp, Users, DollarSign, Briefcase, BarChart3, ChevronDown, Target, Filter, Building2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { createClient } from '@/lib/supabase';
 import Link from 'next/link';
+import { InteractiveWorldMap } from '@/components/InteractiveWorldMap';
 
 interface Country {
   id: string;
@@ -60,6 +61,7 @@ export default function CountriesPage() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [page, setPage] = useState(1);
   const itemsPerPage = 30;
+  const [showKpiDropdown, setShowKpiDropdown] = useState(false);
 
   // Region colors
   const regionColors: Record<string, string> = {
@@ -72,8 +74,11 @@ export default function CountriesPage() {
     'North America': '#34495e',
   };
 
+  const [totalProjectsCount, setTotalProjectsCount] = useState(0);
+
   useEffect(() => {
     loadCountries();
+    loadProjectsCount();
   }, []);
 
   useEffect(() => {
@@ -86,6 +91,22 @@ export default function CountriesPage() {
     const end = start + itemsPerPage;
     setDisplayedCountries(filteredCountries.slice(start, end));
   }, [filteredCountries, page]);
+
+  const loadProjectsCount = async () => {
+    try {
+      const supabase = createClient();
+      const { count, error } = await supabase
+        .from('worldbank_projects')
+        .select('*', { count: 'exact', head: true });
+      
+      if (!error && count !== null) {
+        setTotalProjectsCount(count);
+        console.log(`✅ Total projects count: ${count}`);
+      }
+    } catch (error) {
+      console.error('❌ Error loading projects count:', error);
+    }
+  };
 
   const loadCountries = async () => {
     console.log('🌍 Loading countries...');
@@ -113,14 +134,20 @@ export default function CountriesPage() {
       
       // Fetch from Supabase
       console.log('📡 Fetching from Supabase...');
+      console.log('🔌 Creating Supabase client...');
       const supabase = createClient();
+      console.log('✅ Client created');
       
+      console.log('🔍 Starting query to worldbank_countries...');
       const { data, error } = await supabase
         .from('worldbank_countries')
         .select('*');
+      
+      console.log('📊 Query complete. Data:', data?.length, 'Error:', error);
 
       if (error) {
         console.error('❌ Supabase error:', error);
+        console.error('❌ Error details:', JSON.stringify(error, null, 2));
         setLoading(false);
         return;
       }
@@ -129,11 +156,15 @@ export default function CountriesPage() {
         console.log(`✅ Loaded ${data.length} countries from database`);
         
         // Cache the data
+        console.log('💾 Caching data to localStorage...');
         localStorage.setItem(cacheKey, JSON.stringify(data));
         localStorage.setItem(cacheTimeKey, Date.now().toString());
+        console.log('✅ Data cached');
         
+        console.log('📝 Setting state with countries...');
         setCountries(data);
         setFilteredCountries(data);
+        console.log('✅ State updated');
       } else {
         console.warn('⚠️ No countries returned');
       }
@@ -211,7 +242,7 @@ export default function CountriesPage() {
 
   const stats = {
     totalCountries: countries.length,
-    totalProjects: countries.reduce((sum, c) => sum + (c.active_projects || 0), 0),
+    totalProjects: totalProjectsCount,
     regions: uniqueRegions.length,
   };
 
@@ -228,15 +259,97 @@ export default function CountriesPage() {
       {/* Header */}
       <div className="bg-white border-b border-stone-200 px-4 md:px-6 py-6">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-2">
-            <Globe className="h-8 w-8 text-[#0071bc]" />
-            <h1 className="text-2xl md:text-3xl font-bold text-stone-900">
-              World Bank Countries
-            </h1>
+          <div className="flex items-start justify-between gap-4 mb-2">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <Globe className="h-8 w-8 text-[#0071bc]" />
+                <h1 className="text-2xl md:text-3xl font-bold text-stone-900">
+                  World Bank Countries
+                </h1>
+              </div>
+              <p className="text-stone-600">
+                Explore {stats.totalCountries} countries across {stats.regions} regions with {stats.totalProjects} active projects
+              </p>
+            </div>
+            
+            {/* Analytics & Views Dropdown */}
+            <div className="relative">
+              <Button
+                onClick={() => setShowKpiDropdown(!showKpiDropdown)}
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-md"
+              >
+                <BarChart3 className="h-5 w-5 mr-2" />
+                Analytics & Views
+                <ChevronDown className={`h-4 w-4 ml-2 transition-transform duration-200 ${showKpiDropdown ? 'rotate-180' : ''}`} />
+              </Button>
+              
+              {showKpiDropdown && (
+                <div className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-xl border border-stone-200 z-50 animate-in slide-in-from-top-2 duration-200">
+                  <div className="p-3 border-b border-stone-200 bg-stone-50 rounded-t-lg">
+                    <h3 className="font-semibold text-stone-900 text-sm">Analytics & Comparison Tools</h3>
+                  </div>
+                  
+                  {/* Country KPIs Section */}
+                  <div className="p-3 border-b border-stone-100">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Globe className="h-4 w-4 text-blue-600" />
+                      <h4 className="font-semibold text-stone-900 text-xs uppercase tracking-wider">Country KPIs</h4>
+                    </div>
+                    <div className="space-y-1">
+                      <Link href="/worldbank-search" onClick={() => setShowKpiDropdown(false)}>
+                        <button className="w-full text-left px-3 py-2 text-sm text-stone-700 hover:bg-blue-50 hover:text-blue-700 rounded-md transition-colors flex items-center gap-2">
+                          <TrendingUp className="h-3.5 w-3.5" />
+                          Knowledge Base Search
+                        </button>
+                      </Link>
+                      <button 
+                        onClick={() => {
+                          setSelectedRegion('all');
+                          setShowKpiDropdown(false);
+                        }}
+                        className="w-full text-left px-3 py-2 text-sm text-stone-700 hover:bg-blue-50 hover:text-blue-700 rounded-md transition-colors flex items-center gap-2"
+                      >
+                        <Globe className="h-3.5 w-3.5" />
+                        View All Countries
+                      </button>
+                      <button 
+                        onClick={() => {
+                          setShowKpiDropdown(false);
+                          document.getElementById('region-filter')?.focus();
+                        }}
+                        className="w-full text-left px-3 py-2 text-sm text-stone-700 hover:bg-blue-50 hover:text-blue-700 rounded-md transition-colors flex items-center gap-2"
+                      >
+                        <MapPin className="h-3.5 w-3.5" />
+                        Filter by Region
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {/* Project Comparisons Section */}
+                  <div className="p-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Briefcase className="h-4 w-4 text-purple-600" />
+                      <h4 className="font-semibold text-stone-900 text-xs uppercase tracking-wider">Project Comparisons</h4>
+                    </div>
+                    <div className="space-y-1">
+                      <Link href="/worldbank-search?type=projects" onClick={() => setShowKpiDropdown(false)}>
+                        <button className="w-full text-left px-3 py-2 text-sm text-stone-700 hover:bg-purple-50 hover:text-purple-700 rounded-md transition-colors flex items-center gap-2">
+                          <Target className="h-3.5 w-3.5" />
+                          View All Projects
+                        </button>
+                      </Link>
+                      <Link href="/worldbank-search" onClick={() => setShowKpiDropdown(false)}>
+                        <button className="w-full text-left px-3 py-2 text-sm text-stone-700 hover:bg-purple-50 hover:text-purple-700 rounded-md transition-colors flex items-center gap-2">
+                          <Filter className="h-3.5 w-3.5" />
+                          Advanced Search & Filters
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-          <p className="text-stone-600">
-            Explore {stats.totalCountries} countries across {stats.regions} regions with {stats.totalProjects} active projects
-          </p>
         </div>
       </div>
 
@@ -255,17 +368,19 @@ export default function CountriesPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-stone-200">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-stone-600 mb-1">Active Projects</p>
-                  <p className="text-3xl font-bold text-stone-900">{stats.totalProjects.toLocaleString()}</p>
+          <Link href="/worldbank-search?type=projects">
+            <Card className="bg-white border-stone-200 hover:shadow-lg hover:border-[#0071bc] transition-all cursor-pointer group">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-stone-600 mb-1 group-hover:text-[#0071bc] transition-colors">Active Projects</p>
+                    <p className="text-3xl font-bold text-stone-900 group-hover:text-[#0071bc] transition-colors">{stats.totalProjects.toLocaleString()}</p>
+                  </div>
+                  <Briefcase className="h-12 w-12 text-purple-500 opacity-20 group-hover:opacity-40 transition-opacity" />
                 </div>
-                <Briefcase className="h-12 w-12 text-purple-500 opacity-20" />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
 
           <Card className="bg-white border-stone-200">
             <CardContent className="p-6">
@@ -279,115 +394,84 @@ export default function CountriesPage() {
             </CardContent>
           </Card>
         </div>
+      </div>
 
-        {/* Interactive World Map Placeholder */}
-        <Card className="bg-white border-stone-200 mb-8 overflow-hidden">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-stone-900">Interactive World Map</h2>
-              <Badge className="bg-blue-50 text-[#0071bc] border-blue-200">
-                Click countries to explore
+      {/* Full Width Interactive World Map Section */}
+      <div className="bg-white border-y border-stone-200 mb-8 overflow-hidden">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="px-4 md:px-6 py-6">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-2xl font-bold text-stone-900 mb-1">Interactive World Map</h2>
+                <p className="text-sm text-stone-600">Click on any country to view details</p>
+              </div>
+              <Badge className="bg-blue-50 text-[#0071bc] border-blue-200 text-sm px-4 py-2">
+                <Globe className="w-4 h-4 mr-2 inline" />
+                {countries.length} Countries
               </Badge>
             </div>
             
-            {/* Map Placeholder - Will be enhanced with actual SVG map */}
-            <div className="relative bg-gradient-to-br from-blue-50 to-teal-50 rounded-lg border-2 border-stone-200 p-8 min-h-[400px] flex items-center justify-center">
-              <div className="text-center">
-                <Globe className="h-24 w-24 text-[#0071bc] opacity-30 mx-auto mb-4" />
-                <p className="text-lg font-medium text-stone-700 mb-2">
-                  Interactive World Map
-                </p>
-                <p className="text-sm text-stone-500 max-w-md">
-                  Click on countries or use the search below to explore World Bank operations worldwide
-                </p>
+            {/* Interactive Map */}
+            <div className="relative">
+              {/* Mobile instructions */}
+              <div className="lg:hidden absolute top-4 right-4 z-10 bg-stone-900/90 text-white px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 shadow-lg">
+                <span>👆 Tap countries • 🤏 Pinch to zoom</span>
               </div>
-
-              {/* Region Legend */}
-              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur rounded-lg p-4 shadow-lg">
-                <p className="text-xs font-semibold text-stone-700 mb-2">Regions</p>
-                <div className="space-y-1">
-                  {uniqueRegions.slice(0, 6).map(region => (
-                    <div key={region} className="flex items-center gap-2">
-                      <div
-                        className="w-4 h-4 rounded"
-                        style={{ backgroundColor: regionColors[region] || '#95a5a6' }}
-                      />
-                      <span className="text-xs text-stone-600">{region}</span>
-                    </div>
-                  ))}
-                </div>
+              
+              <div className="bg-gradient-to-br from-blue-50 via-teal-50 to-blue-50 rounded-xl border-2 border-stone-200 shadow-lg overflow-hidden">
+                <InteractiveWorldMap
+                  countries={countries}
+                  onCountryHover={setHoveredCountry}
+                />
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
+      </div>
 
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Search Section */}
         <Card className="bg-white border-stone-200 mb-8">
           <CardContent className="p-6">
-            <h3 className="text-lg font-semibold text-stone-900 mb-4">
-              Search Countries
-            </h3>
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-stone-400 h-5 w-5 z-10" />
+              <Input
+                type="text"
+                placeholder="Search by country name, capital, or region..."
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                onFocus={() => searchQuery && updateSuggestions(searchQuery)}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                className="pl-12 pr-4 py-6 text-lg bg-white border-stone-300 focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc] transition-all shadow-sm hover:shadow-md"
+              />
 
-            <div className="flex flex-col md:flex-row gap-4">
-              {/* Search Input with Autocomplete */}
-              <div className="relative flex-1">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-stone-400 h-5 w-5 z-10" />
-                <Input
-                  type="text"
-                  placeholder="Search by country name, capital, or region..."
-                  value={searchQuery}
-                  onChange={(e) => handleSearchChange(e.target.value)}
-                  onFocus={() => searchQuery && updateSuggestions(searchQuery)}
-                  onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                  className="pl-12 pr-4 py-6 text-lg bg-white border-stone-300 focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc] transition-all shadow-sm hover:shadow-md"
-                />
-
-                {/* Autocomplete Suggestions */}
-                {showSuggestions && suggestions.length > 0 && (
-                  <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-stone-200 rounded-lg shadow-xl z-50 overflow-hidden max-h-96 overflow-y-auto">
-                    {suggestions.map((country) => (
-                      <button
-                        key={country.id}
-                        onClick={() => selectCountry(country)}
-                        className="w-full text-left px-4 py-3 hover:bg-stone-50 transition-colors border-b border-stone-100 last:border-b-0"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <div
-                              className="w-2 h-2 rounded-full"
-                              style={{ backgroundColor: regionColors[country.region] || '#95a5a6' }}
-                            />
-                            <div>
-                              <p className="font-medium text-stone-900">{country.name}</p>
-                              <p className="text-xs text-stone-500">
-                                {country.capital_city && `${country.capital_city} • `}
-                                {country.region}
-                              </p>
-                            </div>
-                          </div>
-                          {country.active_projects && country.active_projects > 0 && (
-                            <Badge className="bg-green-50 text-green-700 border-green-200 text-xs">
-                              {country.active_projects} projects
-                            </Badge>
-                          )}
+              {/* Autocomplete Suggestions */}
+              {showSuggestions && suggestions.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-stone-200 rounded-lg shadow-xl z-50 overflow-hidden max-h-96 overflow-y-auto">
+                  {suggestions.map((country) => (
+                    <button
+                      key={country.id}
+                      onClick={() => selectCountry(country)}
+                      className="w-full text-left px-4 py-3 hover:bg-stone-50 transition-colors border-b border-stone-100 last:border-b-0"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <p className="font-medium text-stone-900">{country.name}</p>
+                          <p className="text-xs text-stone-500 mt-0.5">
+                            {country.capital_city && `${country.capital_city} • `}
+                            {country.region}
+                          </p>
                         </div>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Region Filter */}
-              <select
-                value={selectedRegion}
-                onChange={(e) => setSelectedRegion(e.target.value)}
-                className="px-4 py-3 border border-stone-300 rounded-lg bg-white text-base hover:border-stone-400 focus:ring-2 focus:ring-[#0071bc] focus:border-[#0071bc] transition-all shadow-sm md:w-64"
-              >
-                <option value="all">All Regions</option>
-                {uniqueRegions.map(region => (
-                  <option key={region} value={region}>{region}</option>
-                ))}
-              </select>
+                        {country.active_projects && country.active_projects > 0 && (
+                          <Badge className="bg-blue-50 text-[#0071bc] border-blue-200 text-xs ml-3">
+                            {country.active_projects} projects
+                          </Badge>
+                        )}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="mt-4 text-sm text-stone-600">
@@ -405,10 +489,7 @@ export default function CountriesPage() {
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
-                      <div
-                        className="w-3 h-3 rounded-full"
-                        style={{ backgroundColor: regionColors[country.region] || '#95a5a6' }}
-                      />
+                      <Globe className="w-4 h-4 text-[#0071bc]" />
                       <h3 className="font-semibold text-stone-900 group-hover:text-[#0071bc] transition-colors">
                         {country.name}
                       </h3>

@@ -32,6 +32,7 @@ const coreValuesData: Record<string, any> = {
     whatItMeans: {
       title: 'What This Means',
       content: 'Let me be direct. We cannot do this alone. No one can. The challenges we face—poverty, climate change, creating jobs for 1.2 billion young people—are too big for any single institution or country to tackle. That is why partnership is not just nice to have. It is essential. Governments must lead on reforms. The private sector must invest with confidence. Development banks like us must deliver financing and hold ourselves accountable. Together, we can achieve what none of us could accomplish alone.',
+      attribution: 'Ajay Banga, World Bank President',
       keyPoints: [
         'Governments are the architects of reform—crafting policies that drive progress',
         'The private sector brings innovation, efficiency, and the capacity to scale',
@@ -508,7 +509,12 @@ export default function CoreValuePage() {
         {/* What This Means */}
         <Card className="bg-white border-stone-200 p-6 mb-6">
           <h2 className="text-2xl font-semibold text-stone-900 mb-4">{value.whatItMeans.title}</h2>
-          <p className="text-stone-700 leading-relaxed mb-4">{value.whatItMeans.content}</p>
+          <blockquote className="border-l-4 border-[#0071bc] pl-4 mb-4">
+            <p className="text-stone-700 leading-relaxed italic mb-2">{value.whatItMeans.content}</p>
+            {value.whatItMeans.attribution && (
+              <p className="text-sm font-medium text-stone-600">— {value.whatItMeans.attribution}</p>
+            )}
+          </blockquote>
           
           <div className="bg-stone-50 rounded-lg p-4">
             <h3 className="font-semibold text-stone-900 mb-3">Key Points</h3>

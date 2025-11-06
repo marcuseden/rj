@@ -33,45 +33,58 @@ export async function GET(request: NextRequest) {
       total: 0
     };
 
-    // Search Projects (extracted from countries.recent_projects)
+    // Search Projects (from worldbank_projects table)
     if (type === 'all' || type === 'projects') {
-      // Get countries with projects
-      const { data: countriesWithProjects } = await supabase
-        .from('worldbank_countries')
-        .select('iso2_code, name, region, recent_projects')
-        .not('recent_projects', 'is', null);
-      
-      // Extract and flatten projects
-      const allProjects: any[] = [];
-      countriesWithProjects?.forEach((country: any) => {
-        if (country.recent_projects && Array.isArray(country.recent_projects)) {
-          country.recent_projects.forEach((project: any, idx: number) => {
-            const projectName = project.project_name || project.title || '';
-            const matchesQuery = !query || 
-              projectName.toLowerCase().includes(query.toLowerCase()) ||
-              country.name.toLowerCase().includes(query.toLowerCase()) ||
-              (project.sector && project.sector.toLowerCase().includes(query.toLowerCase()));
-            
-            if (matchesQuery) {
-              allProjects.push({
-                id: `project-${country.iso2_code.toLowerCase()}-${idx}`,
-                project_name: projectName,
-                country_name: country.name,
-                country_code: country.iso2_code,
-                region: country.region,
-                sector: project.sector || 'N/A',
-                theme: project.theme,
-                status: project.status || 'Active',
-                total_commitment: project.total_amt || project.totalamt,
-                board_approval_date: project.approvalfy || project.board_approval_date,
-                ...project
-              });
-            }
-          });
+      try {
+        let projectQuery = supabase
+          .from('worldbank_projects')
+          .select('id, project_name, country_name, country_code, region_name, status, total_commitment, total_amount_formatted, board_approval_date, approval_fy, sectors, themes, major_theme, tagged_departments, url');
+
+        if (query) {
+          // Enhanced search: project name, country, region, sectors (as text), themes (as text), and major_theme
+          const searchPattern = `%${query}%`;
+          projectQuery = projectQuery.or(
+            `project_name.ilike.${searchPattern},` +
+            `country_name.ilike.${searchPattern},` +
+            `region_name.ilike.${searchPattern},` +
+            `sectors::text.ilike.${searchPattern},` +
+            `themes::text.ilike.${searchPattern},` +
+            `major_theme.ilike.${searchPattern}`
+          );
         }
-      });
-      
-      results.projects = allProjects.slice(0, limit);
+
+        if (country) {
+          projectQuery = projectQuery.eq('country_name', country);
+        }
+
+        const { data: projects, error: projectsError } = await projectQuery
+          .order('board_approval_date', { ascending: false })
+          .limit(limit);
+
+        if (!projectsError) {
+          results.projects = projects?.map((p: any) => ({
+            id: p.id,
+            project_name: p.project_name,
+            country_name: p.country_name,
+            country_code: p.country_code,
+            region: p.region_name,
+            sector: Array.isArray(p.sectors) ? p.sectors[0] : (p.sectors || 'N/A'),
+            sectors: Array.isArray(p.sectors) ? p.sectors : [p.sectors].filter(Boolean),
+            theme: p.major_theme,
+            themes: p.themes,
+            status: p.status || 'Active',
+            total_commitment: p.total_commitment,
+            total_amount_formatted: p.total_amount_formatted,
+            board_approval_date: p.board_approval_date,
+            approval_fy: p.approval_fy,
+            tagged_departments: p.tagged_departments,
+            url: p.url
+          })) || [];
+        }
+      } catch (err) {
+        console.warn('Projects search error, continuing without projects:', err);
+        results.projects = [];
+      }
     }
 
     // Search Countries
@@ -91,26 +104,42 @@ export async function GET(request: NextRequest) {
       results.countries = countries || [];
     }
 
-    // Search Documents
+    // Search Documents (only if table has data)
     if (type === 'all' || type === 'documents' || type === 'speech' || type === 'strategy') {
-      let docQuery = supabase
-        .from('worldbank_documents')
-        .select('id, title, summary, date, type, tags_document_type, tags_authors, tags_sectors, tags_regions, tags_departments, tags_priority, metadata_reading_time, metadata_word_count');
+      try {
+        let docQuery = supabase
+          .from('worldbank_documents')
+          .select('id, title, summary, date, type, tags_document_type, tags_authors, tags_sectors, tags_regions, tags_departments, tags_priority, metadata_reading_time, metadata_word_count');
 
-      if (query) {
-        // Search in title, summary, and keywords
-        docQuery = docQuery.or(`title.ilike.%${query}%,summary.ilike.%${query}%,keywords.cs.{${query}}`);
+        if (query) {
+          // Enhanced search: title, summary, keywords (as text), content, tags
+          const searchPattern = `%${query}%`;
+          docQuery = docQuery.or(
+            `title.ilike.${searchPattern},` +
+            `summary.ilike.${searchPattern},` +
+            `content.ilike.${searchPattern},` +
+            `keywords::text.ilike.${searchPattern},` +
+            `tags_sectors::text.ilike.${searchPattern},` +
+            `tags_regions::text.ilike.${searchPattern},` +
+            `tags_departments::text.ilike.${searchPattern}`
+          );
+        }
+
+        if (department) {
+          docQuery = docQuery.contains('tags_departments', [department]);
+        }
+
+        const { data: documents, error: docsError } = await docQuery
+          .order('date', { ascending: false })
+          .limit(limit);
+
+        if (!docsError) {
+          results.documents = documents || [];
+        }
+      } catch (err) {
+        console.warn('Documents table error, continuing without documents:', err);
+        results.documents = [];
       }
-
-      if (department) {
-        docQuery = docQuery.contains('tags_departments', [department]);
-      }
-
-      const { data: documents } = await docQuery
-        .order('date', { ascending: false })
-        .limit(limit);
-
-      results.documents = documents || [];
     }
 
     // Search People/Departments (from org chart)
@@ -136,13 +165,13 @@ export async function GET(request: NextRequest) {
       ...results.projects.map((p: any) => ({
         id: p.id,
         title: p.project_name,
-        summary: `${p.country_name} | ${p.sector || 'N/A'} | ${p.total_commitment ? `$${p.total_commitment}M` : 'N/A'}`,
+        summary: `${p.country_name} | ${p.sector || 'N/A'} | ${p.total_amount_formatted || 'N/A'}`,
         date: p.board_approval_date || new Date().toISOString(),
         sourceType: 'project',
         tags: {
           documentType: 'World Bank Project',
-          regions: [p.region],
-          sectors: p.sector ? [p.sector] : [],
+          regions: p.region ? [p.region] : [],
+          sectors: p.sectors || [],
           departments: p.tagged_departments || []
         }
       })),

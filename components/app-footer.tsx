@@ -10,7 +10,6 @@ export function AppFooter() {
   const navItems = [
     { href: '/vision', icon: Home, label: 'Home' },
     { href: '/rj-agent', icon: MessageSquare, label: 'AI Agent' },
-    { href: '/rj-faq', icon: BookOpen, label: 'Knowledge' },
     { href: '/worldbank-search', icon: Search, label: 'Search' },
   ];
 
