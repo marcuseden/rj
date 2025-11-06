@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { createClient } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 
 function getOpenAI() {
   return new OpenAI({
@@ -15,26 +15,40 @@ async function fetchDatabaseContext() {
    * Fetch REAL content from Supabase database for analysis
    * This gives us the most up-to-date and comprehensive knowledge
    */
-  const supabase = createClient();
+  // Create server-side Supabase client for API route
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+  
+  if (!supabaseUrl || !supabaseKey) {
+    console.error('Missing Supabase credentials');
+    return {
+      speeches: [],
+      documents: [],
+      priorities: [],
+      projects: []
+    };
+  }
+  
+  const supabase = createClient(supabaseUrl, supabaseKey);
   
   try {
     // Fetch recent speeches
     const { data: speeches, error: speechesError } = await supabase
-      .table('speeches')
+      .from('speeches')
       .select('title, date, location, full_text, content')
       .order('date', { ascending: false })
       .limit(20);
     
     // Fetch strategic documents
     const { data: documents, error: docsError } = await supabase
-      .table('worldbank_documents')
+      .from('worldbank_documents')
       .select('title, doc_type, date, summary, content')
       .order('date', { ascending: false })
       .limit(20);
     
     // Fetch projects (for concrete examples)
     const { data: projects, error: projectsError } = await supabase
-      .table('worldbank_projects')
+      .from('worldbank_projects')
       .select('project_name, country, sector1_name, status, project_abstract_en, total_amt')
       .order('boardapprovaldate', { ascending: false })
       .limit(15);
