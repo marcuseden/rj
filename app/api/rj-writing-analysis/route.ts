@@ -142,9 +142,47 @@ function buildEnhancedContext(dbData: any, localData: any) {
     return `${i + 1}. ${p.title}: ${p.description}\n   Target: ${p.targets || 'In progress'}`;
   }).join('\n\n');
   
+  // RJ BANGA'S AUTHENTIC VOICE (from speeches - THIS is the Gold Standard)
+  const rjAuthenticVoice = `
+RJ BANGA'S AUTHENTIC COMMUNICATION STYLE (Gold Standard - from actual speeches):
+
+WHAT 95-100% ALIGNMENT SOUNDS LIKE:
+- Specific numbers: "1.2 billion young people entering workforce by 2035"
+- Concrete examples: "In Nigeria, mini-grids cut farmers' work time in half"
+- Urgency: "We don't have time to waste - speed matters"
+- Action language: "We WILL achieve", not "We hope to"
+- Signature phrases: "Forecasts are not destiny"
+- Data points: "45% of financing - $40+ billion annually"
+- Partnership specifics: "governments, private sector, and multilateral development banks working together"
+- Human impact: "giving diabetics regular access to climate-controlled insulin"
+- Timelines: "by 2030", "by 2035"
+- Measurable targets: "300 million Africans", "800 million jobs needed"
+
+WHAT INSTITUTIONAL LANGUAGE LOOKS LIKE (Lower scores 60-75%):
+- Generic: "creating a world free of poverty" (lacks specifics)
+- Vague: "through partnership and innovation" (what kind? how much? when?)
+- No numbers: "ensuring job creation" (how many jobs? by when?)
+- No examples: missing concrete stories from the field
+- No urgency: missing "speed matters" or "we don't have time"
+- Passive: "is to ensure" rather than "we WILL"
+
+The official World Bank mission is institutional language (60-75% alignment).
+RJ's speeches are his AUTHENTIC voice (95-100% alignment).
+
+SCORING GUIDE:
+- 95-100%: Sounds like RJ speaking - specific numbers, concrete examples, urgency, signature phrases
+- 85-94%: Has RJ's elements but missing some specifics or examples
+- 70-84%: Has right themes but too generic, lacks data
+- 60-69%: Institutional language - correct topics but not RJ's voice
+- Below 60%: Missing RJ's key priorities or style`;
+
+
+  
   const context = `
 RJ BANGA'S VERIFIED STRATEGIC VISION & COMMUNICATION STYLE
 (Based on ${speeches.length} speeches, ${documents.length} documents, and ${projects.length} projects in database)
+
+${rjAuthenticVoice}
 
 ================================================================================
 CORE STRATEGIC PRIORITIES (from database)
@@ -313,12 +351,27 @@ USER'S TEXT TO ANALYZE:
 ${text}
 """
 
+CRITICAL SCORING GUIDANCE:
+The gold standard is RJ BANGA'S AUTHENTIC VOICE from his speeches, NOT institutional language.
+
+- Institutional/official language (even if correct) = 60-75% (lacks RJ's personal voice)
+- Generic with right themes but no specifics = 70-80%
+- Has RJ elements but missing data/examples = 80-90%
+- Sounds like RJ actually speaking = 95-100%
+
+DO NOT score institutional language highly just because it's "official."
+RJ's authentic voice is direct, data-driven, with specific examples and urgency.
+
 TASK: Provide TRUTHFUL, SPECIFIC, DATABASE-BACKED analysis:
 
 1. ALIGNMENT SCORE (0-100): 
-   Based on how well it matches RJ's verified strategic priorities and communication style
-   - Compare against REAL speeches and documents in database
-   - Score rigorously - high scores only for truly aligned content
+   Based on how well it matches RJ BANGA'S PERSONAL VOICE (not institutional language)
+   - Sounds like RJ speaking (specific numbers, examples, urgency): 95-100%
+   - Has RJ's themes but needs more specifics/data: 80-90%
+   - Right topics but generic institutional language: 70-80%
+   - Correct themes but lacks RJ's voice: 60-70%
+   - Compare against REAL speeches where RJ uses concrete examples and data
+   - Institutional language scores LOWER (60-75%) than RJ's authentic voice
 
 2. WHAT'S ALIGNED (2-5 specific points):
    - Identify what ACTUALLY matches RJ's approach
