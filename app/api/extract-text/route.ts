@@ -1,24 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-// Import at top level for Next.js compatibility
-let pdfParse: any;
-let mammoth: any;
-
-// Lazy load modules
-async function loadModules() {
-  if (!pdfParse) {
-    pdfParse = (await import('pdf-parse')).default;
-  }
-  if (!mammoth) {
-    mammoth = await import('mammoth');
-  }
-}
+import pdfParse from 'pdf-parse';
+import mammoth from 'mammoth';
 
 export async function POST(request: NextRequest) {
   try {
-    // Load required modules
-    await loadModules();
-    
     const formData = await request.formData();
     const file = formData.get('file') as File;
 
@@ -67,7 +52,7 @@ export async function POST(request: NextRequest) {
         
         console.log(`DOCX buffer size: ${buffer.length} bytes`);
         
-        const result = await mammoth.extractRawText({ buffer });
+        const result = await mammoth.extractRawText({ buffer: buffer });
         text = result.value;
         
         console.log(`Extracted ${text.length} characters from DOCX`);
