@@ -373,3 +373,7 @@ The search results page now provides **visual clarity** and **instant recognitio
 **Accessibility**: ♿ WCAG AA compliant
 
 
+
+
+
+

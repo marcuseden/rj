@@ -256,3 +256,7 @@ All three slow pages are now optimized with:
 **Speed Improvement:** 10-60x faster
 
 
+
+
+
+
