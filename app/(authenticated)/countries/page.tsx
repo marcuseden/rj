@@ -521,9 +521,13 @@ export default function CountriesPage() {
                         <p className="text-xs text-stone-600 truncate">{country.capital_city || country.region}</p>
                       </div>
                     </div>
-                    {country.active_projects && country.active_projects > 0 && (
-                      <Badge className="bg-blue-50 text-[#0071bc] border-blue-200 text-xs flex-shrink-0">
-                        {country.active_projects}
+                    {country.active_projects !== undefined && country.active_projects !== null && (
+                      <Badge className={`text-xs flex-shrink-0 ${
+                        country.active_projects > 0 
+                          ? 'bg-blue-50 text-[#0071bc] border-blue-200' 
+                          : 'bg-stone-50 text-stone-400 border-stone-200'
+                      }`}>
+                        {country.active_projects} {country.active_projects === 1 ? 'project' : 'projects'}
                       </Badge>
                     )}
                     <ChevronRight className="w-5 h-5 text-stone-400 flex-shrink-0 ml-2" />
@@ -579,10 +583,12 @@ export default function CountriesPage() {
                       </div>
                     )}
 
-                    {country.active_projects !== undefined && country.active_projects > 0 && (
-                      <div className="flex items-center gap-2 text-stone-600">
+                    {country.active_projects !== undefined && country.active_projects !== null && (
+                      <div className={`flex items-center gap-2 ${
+                        country.active_projects > 0 ? 'text-stone-600' : 'text-stone-400'
+                      }`}>
                         <Briefcase className="h-4 w-4" />
-                        <span>{country.active_projects} Active Projects</span>
+                        <span>{country.active_projects} Active {country.active_projects === 1 ? 'Project' : 'Projects'}</span>
                       </div>
                     )}
                   </div>
