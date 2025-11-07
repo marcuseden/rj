@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, Globe, MapPin, TrendingUp, Users, DollarSign, Briefcase, BarChart3, ChevronDown, Target, Filter, Building2 } from 'lucide-react';
+import { Search, Globe, MapPin, TrendingUp, Users, DollarSign, Briefcase, BarChart3, ChevronDown, Target, Filter, Building2, ChevronRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
