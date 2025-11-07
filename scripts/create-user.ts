@@ -51,7 +51,14 @@ async function createUser(email: string, password: string) {
   }
 }
 
+// Get email and password from command line args
+const email = process.argv[2] || 'mirjasjoblom@gmail.com';
+const password = process.argv[3] || 'ABC123';
+
 // Create the user
-createUser('mirjasjoblom@gmail.com', 'ABC123');
+createUser(email, password);
+
+
+
 
 
