@@ -527,7 +527,7 @@ export default function CountriesPage() {
                           ? 'bg-blue-50 text-[#0071bc] border-blue-200' 
                           : 'bg-stone-50 text-stone-400 border-stone-200'
                       }`}>
-                        {country.active_projects} {country.active_projects === 1 ? 'project' : 'projects'}
+                        Projects: {country.active_projects}
                       </Badge>
                     )}
                     <ChevronRight className="w-5 h-5 text-stone-400 flex-shrink-0 ml-2" />
