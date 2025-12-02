@@ -7,6 +7,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
+// Helper function to generate slug ID from name
+function generateId(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
 export async function GET(request: NextRequest) {
   console.log('🔄 Auto-updating World Bank leadership...');
   
@@ -21,6 +29,7 @@ export async function GET(request: NextRequest) {
     const leadership = [
       // Level 0: President
       {
+        id: 'ajay-banga',
         name: 'Ajay Banga',
         position: 'President, World Bank Group',
         department: 'Office of the President',
@@ -168,19 +177,23 @@ export async function GET(request: NextRequest) {
     
     for (const member of leadership) {
       try {
+        // Generate ID if not provided
+        const memberId = member.id || generateId(member.name);
+        const memberWithId = { ...member, id: memberId };
+        
         // Check if exists
         const { data: existing } = await supabase
           .from('worldbank_orgchart')
           .select('id')
-          .eq('name', member.name)
+          .eq('id', memberId)
           .maybeSingle();
         
         if (existing) {
           // Update
           const { error } = await supabase
             .from('worldbank_orgchart')
-            .update(member)
-            .eq('id', existing.id);
+            .update(memberWithId)
+            .eq('id', memberId);
           
           if (!error) {
             updated++;
@@ -189,10 +202,10 @@ export async function GET(request: NextRequest) {
             errors.push(`Update failed for ${member.name}: ${error.message}`);
           }
         } else {
-          // Insert
+          // Insert with generated ID
           const { error } = await supabase
             .from('worldbank_orgchart')
-            .insert(member);
+            .insert(memberWithId);
           
           if (!error) {
             added++;
