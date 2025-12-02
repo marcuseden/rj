@@ -41,6 +41,7 @@ export async function GET(request: NextRequest) {
       
       // Level 1: Managing Directors & Senior Leadership
       {
+        id: 'axel-van-trotsenburg',
         name: 'Axel van Trotsenburg',
         position: 'Senior Managing Director',
         department: 'Development Policy and Partnerships',
@@ -50,6 +51,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'anna-bjerde',
         name: 'Anna Bjerde',
         position: 'Managing Director of Operations',
         department: 'Operations',
@@ -59,6 +61,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'anshula-kant',
         name: 'Anshula Kant',
         position: 'Managing Director and Chief Financial Officer',
         department: 'Finance',
@@ -68,6 +71,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'wencai-zhang',
         name: 'Wencai Zhang',
         position: 'Managing Director and Chief Administrative Officer',
         department: 'Administration',
@@ -76,6 +80,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'indermit-gill',
         name: 'Indermit Gill',
         position: 'Senior Vice President and Chief Economist',
         department: 'Development Economics',
@@ -85,6 +90,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'christopher-stephens',
         name: 'Christopher Stephens',
         position: 'Senior Vice President and General Counsel',
         department: 'Legal',
@@ -94,6 +100,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'makhtar-diop',
         name: 'Makhtar Diop',
         position: 'Managing Director, IFC',
         department: 'IFC (International Finance Corporation)',
@@ -105,6 +112,7 @@ export async function GET(request: NextRequest) {
       
       // Level 2: Vice Presidents & Practice Managers
       {
+        id: 'monique-vledder',
         name: 'Monique Vledder',
         position: 'Practice Manager, Global Health, Nutrition, and Population',
         department: 'Health, Nutrition and Population',
@@ -113,6 +121,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'lisa-rosen',
         name: 'Lisa Rosen',
         position: 'Vice President, Ethics & Internal Justice Services',
         department: 'Ethics and Compliance',
@@ -121,6 +130,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'ndiame-diop',
         name: 'Ndiamé Diop',
         position: 'Vice President, Eastern and Southern Africa',
         department: 'Eastern and Southern Africa',
@@ -129,6 +139,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'ousmane-diagana',
         name: 'Ousmane Diagana',
         position: 'Vice President, Western and Central Africa',
         department: 'Western and Central Africa',
@@ -137,6 +148,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'martin-raiser',
         name: 'Martin Raiser',
         position: 'Vice President, South Asia',
         department: 'South Asia',
@@ -145,6 +157,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'carlos-felipe-jaramillo',
         name: 'Carlos Felipe Jaramillo',
         position: 'Vice President, Latin America and Caribbean',
         department: 'Latin America and Caribbean',
@@ -153,6 +166,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'ousmane-dione',
         name: 'Ousmane Dione',
         position: 'Vice President, Middle East and North Africa',
         department: 'Middle East and North Africa',
@@ -161,6 +175,7 @@ export async function GET(request: NextRequest) {
         is_active: true
       },
       {
+        id: 'mamta-murthi',
         name: 'Mamta Murthi',
         position: 'Vice President, Human Development',
         department: 'Human Development',
