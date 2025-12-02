@@ -81,8 +81,8 @@ export default function OrgChartPage() {
     );
   }
 
-  const president = hierarchy.find(m => m.level === 1);
-  const executiveTeam = getLevelMembers(2);
+  const president = hierarchy.find(m => m.level === 0); // Level 0 = President (Ajay Banga)
+  const executiveTeam = getLevelMembers(1); // Level 1 = Managing Directors
 
   return (
     <div className="min-h-screen bg-stone-50 p-4 md:p-6">
